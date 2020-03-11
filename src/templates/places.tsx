@@ -139,7 +139,11 @@ export default ({ data }) => {
           {place.menu && place.menu.length > 0 ? (
             place.menu.map(m => (
               <a href={m.localFile.localURL} key={m.id}>
-                <Img fixed={m.localFile.childImageSharp.fixed} />
+                {m.localFile.childImageSharp ? (
+                  <Img fixed={m.localFile.childImageSharp.fixed} />
+                ) : (
+                  "開く"
+                )}
               </a>
             ))
           ) : (
@@ -309,6 +313,9 @@ export const query = graphql`
       menu {
         id
         title
+        file {
+          contentType
+        }
         localFile {
           localURL
           childImageSharp {
