@@ -1,9 +1,31 @@
 import * as React from "react";
 import { Link, graphql } from "gatsby";
 import { css } from "@emotion/core";
+import { TwitterHashtagButton } from "react-twitter-embed";
 import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import PlaceListItem from "../components/PlaceListItem";
+
+const borderdTitle = css`
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+
+  &::before,
+  &::after {
+    content: "";
+    flex-grow: 1;
+    height: 1px;
+    background: #221f1f;
+    display: block;
+  }
+  &::before {
+    margin-right: 0.6em;
+  }
+  &::after {
+    margin-left: 0.6em;
+  }
+`;
 
 export default ({ data, pageContext }) => {
   const tags = data.allContentfulPlaceTag.edges
@@ -32,7 +54,7 @@ export default ({ data, pageContext }) => {
             font-size: 0.7rem;
             font-weight: bold;
             padding: 1rem 0;
-            margin: 1rem 0 2rem;
+            margin: 1rem 0;
 
             a {
               border-radius: 3em;
@@ -59,31 +81,40 @@ export default ({ data, pageContext }) => {
         </div>
       ) : null}
 
-      <section>
-        <h1
-          css={css`
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
+      <article
+        css={css`
+          margin: 1rem 0;
+          padding: 1rem 0;
+          line-height: 1.5;
 
-            &::before,
-            &::after {
-              content: "";
-              flex-grow: 1;
-              height: 1px;
-              background: #221f1f;
-              display: block;
-            }
-            &::before {
-              margin-right: 0.6em;
-            }
-            &::after {
-              margin-left: 0.6em;
-            }
+          p {
+            margin: 0.3em 0 0.5em;
+          }
+        `}
+      >
+        <h1 css={borderdTitle}>About</h1>
+        <p>釧路地方でテイクアウトを行っているお店を紹介しています。</p>
+        <p>
+          感想や、オススメ情報など{" "}
+          <a href="https://twitter.com/search/?q=%23釧路お持ち帰りごはん">
+            #釧路お持ち帰りごはん
+          </a>{" "}
+          をつけて Tweet してみてください！
+        </p>
+        <div
+          css={css`
+            text-align: center;
           `}
         >
-          最近の更新
-        </h1>
+          <TwitterHashtagButton
+            tag="釧路お持ち帰りごはん"
+            options={{ size: "large" }}
+          />
+        </div>
+      </article>
+
+      <section>
+        <h1 css={borderdTitle}>最近の更新</h1>
         {data.allContentfulPlace.edges.map(({ node }) => (
           <PlaceListItem key={node.id} place={node} />
         ))}

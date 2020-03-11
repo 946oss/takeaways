@@ -29,6 +29,7 @@
     "react-helmet": "^5.2.1",
     "react-map-gl": "^5.2.3",
     "react-responsive-carousel": "^3.1.51",
+    "react-twitter-embed": "^3.0.3",
     "ress": "^2.0.4",
     "typescript": "^3.8.3"
   },
