@@ -5,7 +5,7 @@ import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import PlaceListItem from "../components/PlaceListItem";
 
-export default ({ data }) => {
+export default ({ data, pageContext }) => {
   const tags = data.allContentfulPlaceTag.edges
     .map(e => e.node)
     .sort((a, b) => {
@@ -29,7 +29,6 @@ export default ({ data }) => {
       {tags.length > 0 ? (
         <div
           css={css`
-            border-bottom: 3px solid #fff;
             font-size: 0.7rem;
             font-weight: bold;
             padding: 1rem 0;
@@ -39,13 +38,9 @@ export default ({ data }) => {
               border-radius: 3em;
               border: 1px solid #e50914;
               display: inline-block;
-              margin-left: 0.5em;
+              margin: 0.5em 0 0 0.5em;
               padding: 0.3em 0.7em;
               text-decoration: none;
-
-              &:first-of-type {
-                margin-left: 0;
-              }
             }
           `}
         >
@@ -92,13 +87,38 @@ export default ({ data }) => {
         {data.allContentfulPlace.edges.map(({ node }) => (
           <PlaceListItem key={node.id} place={node} />
         ))}
+
+        <div
+          css={css`
+            display: flex;
+            justify-content: space-between;
+            a {
+              display: inline-block;
+              border-radius: 3em;
+              background: #e50914;
+              color: #f5f5f1;
+              padding: 0.5em 2em;
+              text-decoration: none;
+              font-size: 1.2rem;
+            }
+          `}
+        >
+          {pageContext.previousPagePath ? (
+            <Link to={pageContext.previousPagePath}>&laquo;</Link>
+          ) : (
+            <span></span>
+          )}
+          {pageContext.nextPagePath && (
+            <Link to={pageContext.nextPagePath}>&raquo;</Link>
+          )}
+        </div>
       </section>
     </Layout>
   );
 };
 
 export const pageQuery = graphql`
-  query IndexQuery {
+  query IndexQuery($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
@@ -107,6 +127,8 @@ export const pageQuery = graphql`
     allContentfulPlace(
       filter: { node_locale: { eq: "ja-JP" } }
       sort: { fields: updatedAt, order: DESC }
+      skip: $skip
+      limit: $limit
     ) {
       edges {
         node {

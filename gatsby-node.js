@@ -1,4 +1,5 @@
 const path = require(`path`);
+const { paginate } = require("gatsby-awesome-pagination");
 
 // Log out information after a build is done
 exports.onPostBuild = ({ reporter }) => {
@@ -10,23 +11,34 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
   // Create Places
+  const indexTemplate = path.resolve(`src/templates/index.tsx`);
   const placeTemplate = path.resolve(`src/templates/places.tsx`);
-  (
-    await graphql(`
-      query {
-        allContentfulPlace(
-          filter: { node_locale: { eq: "ja-JP" } }
-          sort: { fields: updatedAt, order: DESC }
-        ) {
-          edges {
-            node {
-              id
-            }
+
+  const allPlaces = await graphql(`
+    query {
+      allContentfulPlace(
+        filter: { node_locale: { eq: "ja-JP" } }
+        sort: { fields: updatedAt, order: DESC }
+      ) {
+        edges {
+          node {
+            id
           }
         }
       }
-    `)
-  ).data.allContentfulPlace.edges.forEach(edge => {
+    }
+  `);
+
+  paginate({
+    createPage,
+    items: allPlaces.data.allContentfulPlace.edges,
+    itemsPerPage: 10,
+    pathPrefix: ({ pageNumber, _ }) =>
+      pageNumber === 0 ? "/" : "/places/page",
+    component: indexTemplate
+  });
+
+  allPlaces.data.allContentfulPlace.edges.forEach(edge => {
     createPage({
       path: `places/${edge.node.id}`,
       component: placeTemplate,
