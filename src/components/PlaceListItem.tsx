@@ -1,0 +1,226 @@
+import * as React from "react";
+import { Link } from "gatsby";
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { css } from "@emotion/core";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+import { mq } from "../responsive";
+
+export default ({ place }) => (
+  <div
+    css={css`
+      margin-bottom: 1.5rem;
+      padding: 1rem 0;
+    `}
+  >
+    {place.tags.length > 0 ? (
+      <div
+        css={css`
+          font-size: 0.7rem;
+          font-weight: bold;
+
+          a {
+            border-radius: 3em;
+            border: 1px solid #e50914;
+            display: inline-block;
+            margin-left: 0.5em;
+            padding: 0.3em 0.7em;
+            text-decoration: none;
+
+            &:first-of-type {
+              margin-left: 0;
+            }
+          }
+        `}
+      >
+        {place.tags.map(t => (
+          <Link to={`/tags/${t.slug}`} key={t.slug}>
+            {t.name}
+          </Link>
+        ))}
+      </div>
+    ) : null}
+    <h3
+      css={css`
+        margin: 0.5rem 0;
+      `}
+    >
+      <Link
+        to={`/places/${place.id}`}
+        css={css`
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        `}
+      >
+        {place.name}
+      </Link>
+    </h3>
+    <div
+      css={css`
+        margin: 0.5rem 0;
+        a {
+          margin-left: 0.5rem;
+
+          &:first-of-type {
+            margin-left: 0;
+          }
+        }
+      `}
+    >
+      {place.facebook ? (
+        <a href={place.facebook} target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faFacebook} size="lg" />
+        </a>
+      ) : null}
+      {place.twitter ? (
+        <a href={place.twitter} target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faTwitter} size="lg" />
+        </a>
+      ) : null}
+    </div>
+    <p
+      css={css`
+        line-height: 1.8;
+        margin-bottom: 0.5rem;
+      `}
+    >
+      {place.description.description}
+    </p>
+    <div
+      css={css(
+        css`
+          display: flex;
+        `,
+        mq({
+          flexDirection: ["column", "row"]
+        })
+      )}
+    >
+      <div
+        css={mq({
+          width: ["100%", 320]
+        })}
+      >
+        {place.pictures ? (
+          <Carousel
+            autoPlay
+            interval={3000}
+            infiniteLoop
+            showThumbs={false}
+            showStatus={false}
+          >
+            {place.pictures.map(pic => (
+              <div key={pic.id}>
+                <img alt={pic.title} srcSet={pic.fixed.srcSet} />
+              </div>
+            ))}
+          </Carousel>
+        ) : null}
+      </div>
+      <div
+        css={css(
+          css`
+            flex: 1;
+          `,
+          mq({
+            marginLeft: [0, "1rem"],
+            marginTop: ["1rem", 0]
+          })
+        )}
+      >
+        <table
+          css={css`
+            margin-bottom: 1rem;
+            th {
+              box-sizing: border-box;
+              font-weight: bold;
+              padding: 0 0.5rem 0.5rem;
+              white-space: nowrap;
+              line-height: 1.5;
+            }
+            td {
+              box-sizing: border-box;
+              padding: 0 0.5rem 0.5rem;
+              line-height: 1.5;
+
+              & .tel {
+                display: inline-block;
+                margin-right: 0.5rem;
+                white-space: nowrap;
+              }
+            }
+          `}
+        >
+          <tbody>
+            <tr>
+              <th>住所</th>
+              <td>{place.address}</td>
+            </tr>
+            {place.closed_on ? (
+              <tr>
+                <th>定休日</th>
+                <td>{place.closed_on.join(" / ")}</td>
+              </tr>
+            ) : null}
+            <tr>
+              <th>営業時間</th>
+              <td>{place.business_hours}</td>
+            </tr>
+            <tr>
+              <th>TEL</th>
+              <td>
+                {place.tel.map(n => (
+                  <a href={`tel:${n}`} className="tel" key={n}>
+                    {n}
+                  </a>
+                ))}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        {place.message ? (
+          <div
+            css={css`
+              background: #fff;
+              padding: 0.5rem;
+              border-radius: 0.3rem;
+              margin: 1rem 0;
+            `}
+          >
+            {documentToReactComponents(place.message.json)}
+          </div>
+        ) : null}
+        <div
+          css={css(
+            css`
+              a {
+                background: #221f1f;
+                border-radius: 3rem;
+                color: #f5f5f1;
+                display: inline-block;
+                font-weight: bold;
+                margin-left: 1rem;
+                padding: 0.5rem 1rem;
+                text-decoration: none;
+
+                &:first-of-type {
+                  margin-left: 0;
+                }
+              }
+            `,
+            mq({
+              textAlign: ["center", "left"]
+            })
+          )}
+        >
+          <Link to={`/places/${place.id}`}>お店を詳しく見る</Link>
+        </div>
+      </div>
+    </div>
+  </div>
+);
