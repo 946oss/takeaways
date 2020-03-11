@@ -25,6 +25,7 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
         downloadLocal: true
       }
-    }
+    },
+    `gatsby-plugin-netlify-cache`
   ]
 };

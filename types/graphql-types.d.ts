@@ -700,8 +700,8 @@ export type ContentfulPlace = Node & {
   node_locale?: Maybe<Scalars["String"]>;
   facebook?: Maybe<Scalars["String"]>;
   pictures?: Maybe<Array<Maybe<ContentfulAsset>>>;
-  message?: Maybe<ContentfulPlaceMessageRichTextNode>;
   twitter?: Maybe<Scalars["String"]>;
+  message?: Maybe<ContentfulPlaceMessageRichTextNode>;
   official?: Maybe<Scalars["Boolean"]>;
   childContentfulPlaceDescriptionTextNode?: Maybe<
     ContentfulPlaceDescriptionTextNode
@@ -1226,13 +1226,13 @@ export type ContentfulPlaceFieldsEnum =
   | "tags___place___pictures___title"
   | "tags___place___pictures___description"
   | "tags___place___pictures___node_locale"
+  | "tags___place___twitter"
   | "tags___place___message___id"
   | "tags___place___message___children"
   | "tags___place___message___content"
   | "tags___place___message___nodeType"
   | "tags___place___message___message"
   | "tags___place___message___json"
-  | "tags___place___twitter"
   | "tags___place___official"
   | "tags___place___childContentfulPlaceDescriptionTextNode___id"
   | "tags___place___childContentfulPlaceDescriptionTextNode___children"
@@ -1437,6 +1437,7 @@ export type ContentfulPlaceFieldsEnum =
   | "pictures___resize___width"
   | "pictures___resize___height"
   | "pictures___resize___aspectRatio"
+  | "twitter"
   | "message___id"
   | "message___parent___id"
   | "message___parent___parent___id"
@@ -1483,7 +1484,6 @@ export type ContentfulPlaceFieldsEnum =
   | "message___nodeType"
   | "message___message"
   | "message___json"
-  | "twitter"
   | "official"
   | "childContentfulPlaceDescriptionTextNode___id"
   | "childContentfulPlaceDescriptionTextNode___parent___id"
@@ -1594,8 +1594,8 @@ export type ContentfulPlaceFilterInput = {
   node_locale?: Maybe<StringQueryOperatorInput>;
   facebook?: Maybe<StringQueryOperatorInput>;
   pictures?: Maybe<ContentfulAssetFilterListInput>;
-  message?: Maybe<ContentfulPlaceMessageRichTextNodeFilterInput>;
   twitter?: Maybe<StringQueryOperatorInput>;
+  message?: Maybe<ContentfulPlaceMessageRichTextNodeFilterInput>;
   official?: Maybe<BooleanQueryOperatorInput>;
   childContentfulPlaceDescriptionTextNode?: Maybe<
     ContentfulPlaceDescriptionTextNodeFilterInput
@@ -2310,6 +2310,7 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___pictures___resize___width"
   | "place___pictures___resize___height"
   | "place___pictures___resize___aspectRatio"
+  | "place___twitter"
   | "place___message___id"
   | "place___message___parent___id"
   | "place___message___parent___children"
@@ -2330,7 +2331,6 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___message___nodeType"
   | "place___message___message"
   | "place___message___json"
-  | "place___twitter"
   | "place___official"
   | "place___childContentfulPlaceDescriptionTextNode___id"
   | "place___childContentfulPlaceDescriptionTextNode___parent___id"
@@ -4089,8 +4089,8 @@ export type QueryContentfulPlaceArgs = {
   node_locale?: Maybe<StringQueryOperatorInput>;
   facebook?: Maybe<StringQueryOperatorInput>;
   pictures?: Maybe<ContentfulAssetFilterListInput>;
-  message?: Maybe<ContentfulPlaceMessageRichTextNodeFilterInput>;
   twitter?: Maybe<StringQueryOperatorInput>;
+  message?: Maybe<ContentfulPlaceMessageRichTextNodeFilterInput>;
   official?: Maybe<BooleanQueryOperatorInput>;
   childContentfulPlaceDescriptionTextNode?: Maybe<
     ContentfulPlaceDescriptionTextNodeFilterInput
