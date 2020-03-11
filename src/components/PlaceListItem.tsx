@@ -3,6 +3,7 @@ import { Link } from "gatsby";
 import Img from "gatsby-image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { css } from "@emotion/core";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -16,7 +17,7 @@ export default ({ place }) => (
       padding: 1rem 0;
     `}
   >
-    {place.tags && place.tags.length > 0 ? (
+    {place.tags && place.tags.length > 0 && (
       <div
         css={css`
           font-size: 0.7rem;
@@ -42,7 +43,7 @@ export default ({ place }) => (
           </Link>
         ))}
       </div>
-    ) : null}
+    )}
     <h3
       css={css`
         margin: 0.5rem 0;
@@ -73,16 +74,21 @@ export default ({ place }) => (
         }
       `}
     >
-      {place.facebook ? (
+      {place.facebook && (
         <a href={place.facebook} target="_blank" rel="noopener noreferrer">
           <FontAwesomeIcon icon={faFacebook} size="lg" />
         </a>
-      ) : null}
-      {place.twitter ? (
+      )}
+      {place.twitter && (
         <a href={place.twitter} target="_blank" rel="noopener noreferrer">
           <FontAwesomeIcon icon={faTwitter} size="lg" />
         </a>
-      ) : null}
+      )}
+      {place.website && (
+        <a href={place.website} target="_blank" rel="noopener noreferrer">
+          <FontAwesomeIcon icon={faLink} size="lg" />
+        </a>
+      )}
     </div>
     <p
       css={css`
@@ -107,7 +113,7 @@ export default ({ place }) => (
           width: ["100%", 320]
         })}
       >
-        {place.pictures ? (
+        {place.pictures && (
           <Carousel
             autoPlay
             interval={3000}
@@ -121,7 +127,7 @@ export default ({ place }) => (
               </div>
             ))}
           </Carousel>
-        ) : null}
+        )}
       </div>
       <div
         css={css(
@@ -162,12 +168,12 @@ export default ({ place }) => (
               <th>住所</th>
               <td>{place.address}</td>
             </tr>
-            {place.closed_on ? (
+            {place.closed_on && (
               <tr>
                 <th>定休日</th>
                 <td>{place.closed_on.join(" / ")}</td>
               </tr>
-            ) : null}
+            )}
             <tr>
               <th>営業時間</th>
               <td>{place.business_hours}</td>
@@ -175,16 +181,17 @@ export default ({ place }) => (
             <tr>
               <th>TEL</th>
               <td>
-                {place.tel.map(n => (
-                  <a href={`tel:${n}`} className="tel" key={n}>
-                    {n}
-                  </a>
-                ))}
+                {place.tel &&
+                  place.tel.map(n => (
+                    <a href={`tel:${n}`} className="tel" key={n}>
+                      {n}
+                    </a>
+                  ))}
               </td>
             </tr>
           </tbody>
         </table>
-        {place.message ? (
+        {place.message && (
           <div
             css={css`
               background: #fff;
@@ -195,7 +202,7 @@ export default ({ place }) => (
           >
             {documentToReactComponents(place.message.json)}
           </div>
-        ) : null}
+        )}
         <div
           css={css(
             css`

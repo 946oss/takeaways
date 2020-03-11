@@ -66,6 +66,8 @@ export const query = graphql`
           closed_on
           business_hours
           facebook
+          twitter
+          website
           name
           description {
             description

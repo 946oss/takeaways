@@ -5093,6 +5093,8 @@ export type IndexQueryQuery = {
         | "closed_on"
         | "business_hours"
         | "facebook"
+        | "twitter"
+        | "website"
         | "name"
         | "tel"
       > & {
@@ -5142,6 +5144,8 @@ export type Unnamed_2_Query = {
       | "closed_on"
       | "business_hours"
       | "facebook"
+      | "twitter"
+      | "website"
       | "name"
       | "tel"
     > & {
@@ -5201,6 +5205,8 @@ export type Unnamed_3_Query = {
         | "closed_on"
         | "business_hours"
         | "facebook"
+        | "twitter"
+        | "website"
         | "name"
         | "tel"
       > & {

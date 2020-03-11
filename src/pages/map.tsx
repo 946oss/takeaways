@@ -65,7 +65,7 @@ export default ({ data }) => {
           </Marker>
         ))}
 
-        {popup ? (
+        {popup && (
           <Popup
             tipSize={5}
             anchor="top"
@@ -81,7 +81,7 @@ export default ({ data }) => {
               <p>{popup.description.description}</p>
             </div>
           </Popup>
-        ) : null}
+        )}
 
         <div
           css={css`

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
 import SEO from "../components/SEO";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import ReactMapGL, {
   Marker,
   NavigationControl,
@@ -60,7 +63,7 @@ export default ({ data }) => {
         >
           {place.name}
         </h1>
-        {place.tags && place.tags.length > 0 ? (
+        {place.tags && place.tags.length > 0 && (
           <div
             css={css`
               font-size: 0.7rem;
@@ -87,14 +90,14 @@ export default ({ data }) => {
               </Link>
             ))}
           </div>
-        ) : null}
+        )}
         <div
           css={css`
             max-width: 480px;
             margin: 1em auto;
           `}
         >
-          {place.pictures ? (
+          {place.pictures && (
             <Carousel
               autoPlay
               interval={3000}
@@ -108,7 +111,36 @@ export default ({ data }) => {
                 </div>
               ))}
             </Carousel>
-          ) : null}
+          )}
+        </div>
+        <div
+          css={css`
+            margin: 0.5rem 0;
+            text-align: center;
+            a {
+              margin-left: 0.5rem;
+
+              &:first-of-type {
+                margin-left: 0;
+              }
+            }
+          `}
+        >
+          {place.facebook && (
+            <a href={place.facebook} target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faFacebook} size="lg" />
+            </a>
+          )}
+          {place.twitter && (
+            <a href={place.twitter} target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faTwitter} size="lg" />
+            </a>
+          )}
+          {place.website && (
+            <a href={place.website} target="_blank" rel="noopener noreferrer">
+              <FontAwesomeIcon icon={faLink} size="lg" />
+            </a>
+          )}
         </div>
         <div
           css={css`
@@ -120,7 +152,7 @@ export default ({ data }) => {
           <p>{place.description.description}</p>
         </div>
 
-        {place.message ? (
+        {place.message && (
           <div
             css={css`
               background: #fff;
@@ -131,7 +163,7 @@ export default ({ data }) => {
             <h3>お店からのメッセージ</h3>
             {documentToReactComponents(place.message.json)}
           </div>
-        ) : null}
+        )}
 
         <h2>メニュー</h2>
 
@@ -188,12 +220,12 @@ export default ({ data }) => {
                 </a>
               </td>
             </tr>
-            {place.closed_on ? (
+            {place.closed_on && (
               <tr>
                 <th>定休日</th>
                 <td>{place.closed_on.join(" / ")}</td>
               </tr>
-            ) : null}
+            )}
             <tr>
               <th>営業時間</th>
               <td>{place.business_hours}</td>
@@ -201,11 +233,12 @@ export default ({ data }) => {
             <tr>
               <th>TEL</th>
               <td>
-                {place.tel.map(n => (
-                  <a href={`tel:${n}`} className="tel" key={n}>
-                    {n}
-                  </a>
-                ))}
+                {place.tel &&
+                  place.tel.map(n => (
+                    <a href={`tel:${n}`} className="tel" key={n}>
+                      {n}
+                    </a>
+                  ))}
               </td>
             </tr>
           </tbody>
@@ -291,6 +324,8 @@ export const query = graphql`
       closed_on
       business_hours
       facebook
+      twitter
+      website
       name
       description {
         description

@@ -38,7 +38,7 @@ export default ({ data, pageContext }) => {
         return 0;
       }
 
-      return ac > bc ? 1 : -1;
+      return ac > bc ? -1 : 1;
     })
     .filter(node => {
       return node.place && node.place.length > 0;
@@ -48,7 +48,7 @@ export default ({ data, pageContext }) => {
   return (
     <Layout>
       <SEO />
-      {tags.length > 0 ? (
+      {tags.length > 0 && (
         <div
           css={css`
             font-size: 0.7rem;
@@ -82,7 +82,7 @@ export default ({ data, pageContext }) => {
             </Link>
           ))}
         </div>
-      ) : null}
+      )}
 
       <article
         css={css`
@@ -172,6 +172,8 @@ export const pageQuery = graphql`
           closed_on
           business_hours
           facebook
+          twitter
+          website
           name
           description {
             description
