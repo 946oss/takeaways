@@ -71,7 +71,10 @@ export default ({ data, pageContext }) => {
               margin-bottom: 0.5rem;
             `}
           >
-            <span role="img">✨</span> 注目
+            <span role="img" aria-label="注目" aria-hidden="true">
+              ✨
+            </span>{" "}
+            注目
           </p>
           {tags.map(t => (
             <Link to={`/tags/${t.slug}`} key={t.slug}>
@@ -181,11 +184,12 @@ export const pageQuery = graphql`
           pictures {
             id
             title
-            file {
-              url
-            }
-            fixed(width: 300, height: 300, cropFocus: CENTER) {
-              srcSet
+            localFile {
+              childImageSharp {
+                fixed(width: 320, height: 320, cropFocus: CENTER) {
+                  ...GatsbyImageSharpFixed
+                }
+              }
             }
           }
           message {

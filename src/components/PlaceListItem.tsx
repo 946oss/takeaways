@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Link } from "gatsby";
+import Img from "gatsby-image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
@@ -116,7 +117,7 @@ export default ({ place }) => (
           >
             {place.pictures.map(pic => (
               <div key={pic.id}>
-                <img alt={pic.title} srcSet={pic.fixed.srcSet} />
+                <Img fixed={pic.localFile.childImageSharp.fixed} />
               </div>
             ))}
           </Carousel>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, graphql } from "gatsby";
+import Img from "gatsby-image";
 import SEO from "../components/SEO";
 import ReactMapGL, {
   Marker,
@@ -103,7 +104,7 @@ export default ({ data }) => {
             >
               {place.pictures.map(pic => (
                 <div key={pic.id}>
-                  <img alt="お店の写真" srcSet={pic.fixed.srcSet} />
+                  <Img fluid={pic.localFile.childImageSharp.fluid} />
                 </div>
               ))}
             </Carousel>
@@ -137,8 +138,8 @@ export default ({ data }) => {
         <div>
           {place.menu && place.menu.length > 0 ? (
             place.menu.map(m => (
-              <a href={m.file.url} key={m.id}>
-                <img src={m.fixed.src} srcSet={m.fixed.secSet} alt={m.title} />
+              <a href={m.localFile.localURL} key={m.id}>
+                <Img fixed={m.localFile.childImageSharp.fixed} />
               </a>
             ))
           ) : (
@@ -297,24 +298,24 @@ export const query = graphql`
       }
       pictures {
         id
-        file {
-          url
-        }
-        fixed(width: 300, height: 300, cropFocus: CENTER) {
-          srcSet
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 640) {
+              ...GatsbyImageSharpFluid
+            }
+          }
         }
       }
       menu {
         id
         title
-        file {
-          fileName
-          url
-          contentType
-        }
-        fixed(width: 300) {
-          srcSet
-          src
+        localFile {
+          localURL
+          childImageSharp {
+            fixed(width: 320, height: 320, cropFocus: CENTER) {
+              ...GatsbyImageSharpFixed
+            }
+          }
         }
       }
       message {

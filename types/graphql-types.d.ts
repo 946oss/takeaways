@@ -32,6 +32,7 @@ export type ContentfulAsset = Node & {
   title?: Maybe<Scalars["String"]>;
   description?: Maybe<Scalars["String"]>;
   node_locale?: Maybe<Scalars["String"]>;
+  localFile?: Maybe<File>;
   fixed?: Maybe<ContentfulFixed>;
   resolutions?: Maybe<ContentfulResolutions>;
   fluid?: Maybe<ContentfulFluid>;
@@ -214,6 +215,146 @@ export type ContentfulAssetFieldsEnum =
   | "title"
   | "description"
   | "node_locale"
+  | "localFile___sourceInstanceName"
+  | "localFile___absolutePath"
+  | "localFile___relativePath"
+  | "localFile___extension"
+  | "localFile___size"
+  | "localFile___prettySize"
+  | "localFile___modifiedTime"
+  | "localFile___accessTime"
+  | "localFile___changeTime"
+  | "localFile___birthTime"
+  | "localFile___root"
+  | "localFile___dir"
+  | "localFile___base"
+  | "localFile___ext"
+  | "localFile___name"
+  | "localFile___relativeDirectory"
+  | "localFile___dev"
+  | "localFile___mode"
+  | "localFile___nlink"
+  | "localFile___uid"
+  | "localFile___gid"
+  | "localFile___rdev"
+  | "localFile___ino"
+  | "localFile___atimeMs"
+  | "localFile___mtimeMs"
+  | "localFile___ctimeMs"
+  | "localFile___atime"
+  | "localFile___mtime"
+  | "localFile___ctime"
+  | "localFile___birthtime"
+  | "localFile___birthtimeMs"
+  | "localFile___blksize"
+  | "localFile___blocks"
+  | "localFile___url"
+  | "localFile___localURL"
+  | "localFile___childImageSharp___fixed___base64"
+  | "localFile___childImageSharp___fixed___tracedSVG"
+  | "localFile___childImageSharp___fixed___aspectRatio"
+  | "localFile___childImageSharp___fixed___width"
+  | "localFile___childImageSharp___fixed___height"
+  | "localFile___childImageSharp___fixed___src"
+  | "localFile___childImageSharp___fixed___srcSet"
+  | "localFile___childImageSharp___fixed___srcWebp"
+  | "localFile___childImageSharp___fixed___srcSetWebp"
+  | "localFile___childImageSharp___fixed___originalName"
+  | "localFile___childImageSharp___resolutions___base64"
+  | "localFile___childImageSharp___resolutions___tracedSVG"
+  | "localFile___childImageSharp___resolutions___aspectRatio"
+  | "localFile___childImageSharp___resolutions___width"
+  | "localFile___childImageSharp___resolutions___height"
+  | "localFile___childImageSharp___resolutions___src"
+  | "localFile___childImageSharp___resolutions___srcSet"
+  | "localFile___childImageSharp___resolutions___srcWebp"
+  | "localFile___childImageSharp___resolutions___srcSetWebp"
+  | "localFile___childImageSharp___resolutions___originalName"
+  | "localFile___childImageSharp___fluid___base64"
+  | "localFile___childImageSharp___fluid___tracedSVG"
+  | "localFile___childImageSharp___fluid___aspectRatio"
+  | "localFile___childImageSharp___fluid___src"
+  | "localFile___childImageSharp___fluid___srcSet"
+  | "localFile___childImageSharp___fluid___srcWebp"
+  | "localFile___childImageSharp___fluid___srcSetWebp"
+  | "localFile___childImageSharp___fluid___sizes"
+  | "localFile___childImageSharp___fluid___originalImg"
+  | "localFile___childImageSharp___fluid___originalName"
+  | "localFile___childImageSharp___fluid___presentationWidth"
+  | "localFile___childImageSharp___fluid___presentationHeight"
+  | "localFile___childImageSharp___sizes___base64"
+  | "localFile___childImageSharp___sizes___tracedSVG"
+  | "localFile___childImageSharp___sizes___aspectRatio"
+  | "localFile___childImageSharp___sizes___src"
+  | "localFile___childImageSharp___sizes___srcSet"
+  | "localFile___childImageSharp___sizes___srcWebp"
+  | "localFile___childImageSharp___sizes___srcSetWebp"
+  | "localFile___childImageSharp___sizes___sizes"
+  | "localFile___childImageSharp___sizes___originalImg"
+  | "localFile___childImageSharp___sizes___originalName"
+  | "localFile___childImageSharp___sizes___presentationWidth"
+  | "localFile___childImageSharp___sizes___presentationHeight"
+  | "localFile___childImageSharp___original___width"
+  | "localFile___childImageSharp___original___height"
+  | "localFile___childImageSharp___original___src"
+  | "localFile___childImageSharp___resize___src"
+  | "localFile___childImageSharp___resize___tracedSVG"
+  | "localFile___childImageSharp___resize___width"
+  | "localFile___childImageSharp___resize___height"
+  | "localFile___childImageSharp___resize___aspectRatio"
+  | "localFile___childImageSharp___resize___originalName"
+  | "localFile___childImageSharp___id"
+  | "localFile___childImageSharp___parent___id"
+  | "localFile___childImageSharp___parent___children"
+  | "localFile___childImageSharp___children"
+  | "localFile___childImageSharp___children___id"
+  | "localFile___childImageSharp___children___children"
+  | "localFile___childImageSharp___internal___content"
+  | "localFile___childImageSharp___internal___contentDigest"
+  | "localFile___childImageSharp___internal___description"
+  | "localFile___childImageSharp___internal___fieldOwners"
+  | "localFile___childImageSharp___internal___ignoreType"
+  | "localFile___childImageSharp___internal___mediaType"
+  | "localFile___childImageSharp___internal___owner"
+  | "localFile___childImageSharp___internal___type"
+  | "localFile___id"
+  | "localFile___parent___id"
+  | "localFile___parent___parent___id"
+  | "localFile___parent___parent___children"
+  | "localFile___parent___children"
+  | "localFile___parent___children___id"
+  | "localFile___parent___children___children"
+  | "localFile___parent___internal___content"
+  | "localFile___parent___internal___contentDigest"
+  | "localFile___parent___internal___description"
+  | "localFile___parent___internal___fieldOwners"
+  | "localFile___parent___internal___ignoreType"
+  | "localFile___parent___internal___mediaType"
+  | "localFile___parent___internal___owner"
+  | "localFile___parent___internal___type"
+  | "localFile___children"
+  | "localFile___children___id"
+  | "localFile___children___parent___id"
+  | "localFile___children___parent___children"
+  | "localFile___children___children"
+  | "localFile___children___children___id"
+  | "localFile___children___children___children"
+  | "localFile___children___internal___content"
+  | "localFile___children___internal___contentDigest"
+  | "localFile___children___internal___description"
+  | "localFile___children___internal___fieldOwners"
+  | "localFile___children___internal___ignoreType"
+  | "localFile___children___internal___mediaType"
+  | "localFile___children___internal___owner"
+  | "localFile___children___internal___type"
+  | "localFile___internal___content"
+  | "localFile___internal___contentDigest"
+  | "localFile___internal___description"
+  | "localFile___internal___fieldOwners"
+  | "localFile___internal___ignoreType"
+  | "localFile___internal___mediaType"
+  | "localFile___internal___owner"
+  | "localFile___internal___type"
   | "fixed___base64"
   | "fixed___tracedSVG"
   | "fixed___aspectRatio"
@@ -299,6 +440,7 @@ export type ContentfulAssetFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
+  localFile?: Maybe<FileFilterInput>;
   fixed?: Maybe<ContentfulFixedFilterInput>;
   resolutions?: Maybe<ContentfulResolutionsFilterInput>;
   fluid?: Maybe<ContentfulFluidFilterInput>;
@@ -893,6 +1035,57 @@ export type ContentfulPlaceFieldsEnum =
   | "pictures___title"
   | "pictures___description"
   | "pictures___node_locale"
+  | "pictures___localFile___sourceInstanceName"
+  | "pictures___localFile___absolutePath"
+  | "pictures___localFile___relativePath"
+  | "pictures___localFile___extension"
+  | "pictures___localFile___size"
+  | "pictures___localFile___prettySize"
+  | "pictures___localFile___modifiedTime"
+  | "pictures___localFile___accessTime"
+  | "pictures___localFile___changeTime"
+  | "pictures___localFile___birthTime"
+  | "pictures___localFile___root"
+  | "pictures___localFile___dir"
+  | "pictures___localFile___base"
+  | "pictures___localFile___ext"
+  | "pictures___localFile___name"
+  | "pictures___localFile___relativeDirectory"
+  | "pictures___localFile___dev"
+  | "pictures___localFile___mode"
+  | "pictures___localFile___nlink"
+  | "pictures___localFile___uid"
+  | "pictures___localFile___gid"
+  | "pictures___localFile___rdev"
+  | "pictures___localFile___ino"
+  | "pictures___localFile___atimeMs"
+  | "pictures___localFile___mtimeMs"
+  | "pictures___localFile___ctimeMs"
+  | "pictures___localFile___atime"
+  | "pictures___localFile___mtime"
+  | "pictures___localFile___ctime"
+  | "pictures___localFile___birthtime"
+  | "pictures___localFile___birthtimeMs"
+  | "pictures___localFile___blksize"
+  | "pictures___localFile___blocks"
+  | "pictures___localFile___url"
+  | "pictures___localFile___localURL"
+  | "pictures___localFile___childImageSharp___id"
+  | "pictures___localFile___childImageSharp___children"
+  | "pictures___localFile___id"
+  | "pictures___localFile___parent___id"
+  | "pictures___localFile___parent___children"
+  | "pictures___localFile___children"
+  | "pictures___localFile___children___id"
+  | "pictures___localFile___children___children"
+  | "pictures___localFile___internal___content"
+  | "pictures___localFile___internal___contentDigest"
+  | "pictures___localFile___internal___description"
+  | "pictures___localFile___internal___fieldOwners"
+  | "pictures___localFile___internal___ignoreType"
+  | "pictures___localFile___internal___mediaType"
+  | "pictures___localFile___internal___owner"
+  | "pictures___localFile___internal___type"
   | "pictures___fixed___base64"
   | "pictures___fixed___tracedSVG"
   | "pictures___fixed___aspectRatio"
@@ -980,6 +1173,57 @@ export type ContentfulPlaceFieldsEnum =
   | "menu___title"
   | "menu___description"
   | "menu___node_locale"
+  | "menu___localFile___sourceInstanceName"
+  | "menu___localFile___absolutePath"
+  | "menu___localFile___relativePath"
+  | "menu___localFile___extension"
+  | "menu___localFile___size"
+  | "menu___localFile___prettySize"
+  | "menu___localFile___modifiedTime"
+  | "menu___localFile___accessTime"
+  | "menu___localFile___changeTime"
+  | "menu___localFile___birthTime"
+  | "menu___localFile___root"
+  | "menu___localFile___dir"
+  | "menu___localFile___base"
+  | "menu___localFile___ext"
+  | "menu___localFile___name"
+  | "menu___localFile___relativeDirectory"
+  | "menu___localFile___dev"
+  | "menu___localFile___mode"
+  | "menu___localFile___nlink"
+  | "menu___localFile___uid"
+  | "menu___localFile___gid"
+  | "menu___localFile___rdev"
+  | "menu___localFile___ino"
+  | "menu___localFile___atimeMs"
+  | "menu___localFile___mtimeMs"
+  | "menu___localFile___ctimeMs"
+  | "menu___localFile___atime"
+  | "menu___localFile___mtime"
+  | "menu___localFile___ctime"
+  | "menu___localFile___birthtime"
+  | "menu___localFile___birthtimeMs"
+  | "menu___localFile___blksize"
+  | "menu___localFile___blocks"
+  | "menu___localFile___url"
+  | "menu___localFile___localURL"
+  | "menu___localFile___childImageSharp___id"
+  | "menu___localFile___childImageSharp___children"
+  | "menu___localFile___id"
+  | "menu___localFile___parent___id"
+  | "menu___localFile___parent___children"
+  | "menu___localFile___children"
+  | "menu___localFile___children___id"
+  | "menu___localFile___children___children"
+  | "menu___localFile___internal___content"
+  | "menu___localFile___internal___contentDigest"
+  | "menu___localFile___internal___description"
+  | "menu___localFile___internal___fieldOwners"
+  | "menu___localFile___internal___ignoreType"
+  | "menu___localFile___internal___mediaType"
+  | "menu___localFile___internal___owner"
+  | "menu___localFile___internal___type"
   | "menu___fixed___base64"
   | "menu___fixed___tracedSVG"
   | "menu___fixed___aspectRatio"
@@ -1821,6 +2065,43 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___pictures___title"
   | "place___pictures___description"
   | "place___pictures___node_locale"
+  | "place___pictures___localFile___sourceInstanceName"
+  | "place___pictures___localFile___absolutePath"
+  | "place___pictures___localFile___relativePath"
+  | "place___pictures___localFile___extension"
+  | "place___pictures___localFile___size"
+  | "place___pictures___localFile___prettySize"
+  | "place___pictures___localFile___modifiedTime"
+  | "place___pictures___localFile___accessTime"
+  | "place___pictures___localFile___changeTime"
+  | "place___pictures___localFile___birthTime"
+  | "place___pictures___localFile___root"
+  | "place___pictures___localFile___dir"
+  | "place___pictures___localFile___base"
+  | "place___pictures___localFile___ext"
+  | "place___pictures___localFile___name"
+  | "place___pictures___localFile___relativeDirectory"
+  | "place___pictures___localFile___dev"
+  | "place___pictures___localFile___mode"
+  | "place___pictures___localFile___nlink"
+  | "place___pictures___localFile___uid"
+  | "place___pictures___localFile___gid"
+  | "place___pictures___localFile___rdev"
+  | "place___pictures___localFile___ino"
+  | "place___pictures___localFile___atimeMs"
+  | "place___pictures___localFile___mtimeMs"
+  | "place___pictures___localFile___ctimeMs"
+  | "place___pictures___localFile___atime"
+  | "place___pictures___localFile___mtime"
+  | "place___pictures___localFile___ctime"
+  | "place___pictures___localFile___birthtime"
+  | "place___pictures___localFile___birthtimeMs"
+  | "place___pictures___localFile___blksize"
+  | "place___pictures___localFile___blocks"
+  | "place___pictures___localFile___url"
+  | "place___pictures___localFile___localURL"
+  | "place___pictures___localFile___id"
+  | "place___pictures___localFile___children"
   | "place___pictures___fixed___base64"
   | "place___pictures___fixed___tracedSVG"
   | "place___pictures___fixed___aspectRatio"
@@ -1883,6 +2164,43 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___menu___title"
   | "place___menu___description"
   | "place___menu___node_locale"
+  | "place___menu___localFile___sourceInstanceName"
+  | "place___menu___localFile___absolutePath"
+  | "place___menu___localFile___relativePath"
+  | "place___menu___localFile___extension"
+  | "place___menu___localFile___size"
+  | "place___menu___localFile___prettySize"
+  | "place___menu___localFile___modifiedTime"
+  | "place___menu___localFile___accessTime"
+  | "place___menu___localFile___changeTime"
+  | "place___menu___localFile___birthTime"
+  | "place___menu___localFile___root"
+  | "place___menu___localFile___dir"
+  | "place___menu___localFile___base"
+  | "place___menu___localFile___ext"
+  | "place___menu___localFile___name"
+  | "place___menu___localFile___relativeDirectory"
+  | "place___menu___localFile___dev"
+  | "place___menu___localFile___mode"
+  | "place___menu___localFile___nlink"
+  | "place___menu___localFile___uid"
+  | "place___menu___localFile___gid"
+  | "place___menu___localFile___rdev"
+  | "place___menu___localFile___ino"
+  | "place___menu___localFile___atimeMs"
+  | "place___menu___localFile___mtimeMs"
+  | "place___menu___localFile___ctimeMs"
+  | "place___menu___localFile___atime"
+  | "place___menu___localFile___mtime"
+  | "place___menu___localFile___ctime"
+  | "place___menu___localFile___birthtime"
+  | "place___menu___localFile___birthtimeMs"
+  | "place___menu___localFile___blksize"
+  | "place___menu___localFile___blocks"
+  | "place___menu___localFile___url"
+  | "place___menu___localFile___localURL"
+  | "place___menu___localFile___id"
+  | "place___menu___localFile___children"
   | "place___menu___fixed___base64"
   | "place___menu___fixed___tracedSVG"
   | "place___menu___fixed___aspectRatio"
@@ -2478,6 +2796,12 @@ export type DirectorySortInput = {
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
 };
 
+export type DuotoneGradient = {
+  highlight: Scalars["String"];
+  shadow: Scalars["String"];
+  opacity?: Maybe<Scalars["Int"]>;
+};
+
 export type File = Node & {
   sourceInstanceName: Scalars["String"];
   absolutePath: Scalars["String"];
@@ -2510,6 +2834,12 @@ export type File = Node & {
   ctime: Scalars["Date"];
   birthtime?: Maybe<Scalars["Date"]>;
   birthtimeMs?: Maybe<Scalars["Float"]>;
+  blksize?: Maybe<Scalars["Int"]>;
+  blocks?: Maybe<Scalars["Int"]>;
+  url?: Maybe<Scalars["String"]>;
+  /** Copy file to static directory and return public url to it */
+  localURL?: Maybe<Scalars["String"]>;
+  childImageSharp?: Maybe<ImageSharp>;
   id: Scalars["ID"];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -2622,6 +2952,101 @@ export type FileFieldsEnum =
   | "ctime"
   | "birthtime"
   | "birthtimeMs"
+  | "blksize"
+  | "blocks"
+  | "url"
+  | "localURL"
+  | "childImageSharp___fixed___base64"
+  | "childImageSharp___fixed___tracedSVG"
+  | "childImageSharp___fixed___aspectRatio"
+  | "childImageSharp___fixed___width"
+  | "childImageSharp___fixed___height"
+  | "childImageSharp___fixed___src"
+  | "childImageSharp___fixed___srcSet"
+  | "childImageSharp___fixed___srcWebp"
+  | "childImageSharp___fixed___srcSetWebp"
+  | "childImageSharp___fixed___originalName"
+  | "childImageSharp___resolutions___base64"
+  | "childImageSharp___resolutions___tracedSVG"
+  | "childImageSharp___resolutions___aspectRatio"
+  | "childImageSharp___resolutions___width"
+  | "childImageSharp___resolutions___height"
+  | "childImageSharp___resolutions___src"
+  | "childImageSharp___resolutions___srcSet"
+  | "childImageSharp___resolutions___srcWebp"
+  | "childImageSharp___resolutions___srcSetWebp"
+  | "childImageSharp___resolutions___originalName"
+  | "childImageSharp___fluid___base64"
+  | "childImageSharp___fluid___tracedSVG"
+  | "childImageSharp___fluid___aspectRatio"
+  | "childImageSharp___fluid___src"
+  | "childImageSharp___fluid___srcSet"
+  | "childImageSharp___fluid___srcWebp"
+  | "childImageSharp___fluid___srcSetWebp"
+  | "childImageSharp___fluid___sizes"
+  | "childImageSharp___fluid___originalImg"
+  | "childImageSharp___fluid___originalName"
+  | "childImageSharp___fluid___presentationWidth"
+  | "childImageSharp___fluid___presentationHeight"
+  | "childImageSharp___sizes___base64"
+  | "childImageSharp___sizes___tracedSVG"
+  | "childImageSharp___sizes___aspectRatio"
+  | "childImageSharp___sizes___src"
+  | "childImageSharp___sizes___srcSet"
+  | "childImageSharp___sizes___srcWebp"
+  | "childImageSharp___sizes___srcSetWebp"
+  | "childImageSharp___sizes___sizes"
+  | "childImageSharp___sizes___originalImg"
+  | "childImageSharp___sizes___originalName"
+  | "childImageSharp___sizes___presentationWidth"
+  | "childImageSharp___sizes___presentationHeight"
+  | "childImageSharp___original___width"
+  | "childImageSharp___original___height"
+  | "childImageSharp___original___src"
+  | "childImageSharp___resize___src"
+  | "childImageSharp___resize___tracedSVG"
+  | "childImageSharp___resize___width"
+  | "childImageSharp___resize___height"
+  | "childImageSharp___resize___aspectRatio"
+  | "childImageSharp___resize___originalName"
+  | "childImageSharp___id"
+  | "childImageSharp___parent___id"
+  | "childImageSharp___parent___parent___id"
+  | "childImageSharp___parent___parent___children"
+  | "childImageSharp___parent___children"
+  | "childImageSharp___parent___children___id"
+  | "childImageSharp___parent___children___children"
+  | "childImageSharp___parent___internal___content"
+  | "childImageSharp___parent___internal___contentDigest"
+  | "childImageSharp___parent___internal___description"
+  | "childImageSharp___parent___internal___fieldOwners"
+  | "childImageSharp___parent___internal___ignoreType"
+  | "childImageSharp___parent___internal___mediaType"
+  | "childImageSharp___parent___internal___owner"
+  | "childImageSharp___parent___internal___type"
+  | "childImageSharp___children"
+  | "childImageSharp___children___id"
+  | "childImageSharp___children___parent___id"
+  | "childImageSharp___children___parent___children"
+  | "childImageSharp___children___children"
+  | "childImageSharp___children___children___id"
+  | "childImageSharp___children___children___children"
+  | "childImageSharp___children___internal___content"
+  | "childImageSharp___children___internal___contentDigest"
+  | "childImageSharp___children___internal___description"
+  | "childImageSharp___children___internal___fieldOwners"
+  | "childImageSharp___children___internal___ignoreType"
+  | "childImageSharp___children___internal___mediaType"
+  | "childImageSharp___children___internal___owner"
+  | "childImageSharp___children___internal___type"
+  | "childImageSharp___internal___content"
+  | "childImageSharp___internal___contentDigest"
+  | "childImageSharp___internal___description"
+  | "childImageSharp___internal___fieldOwners"
+  | "childImageSharp___internal___ignoreType"
+  | "childImageSharp___internal___mediaType"
+  | "childImageSharp___internal___owner"
+  | "childImageSharp___internal___type"
   | "id"
   | "parent___id"
   | "parent___parent___id"
@@ -2741,6 +3166,11 @@ export type FileFilterInput = {
   ctime?: Maybe<DateQueryOperatorInput>;
   birthtime?: Maybe<DateQueryOperatorInput>;
   birthtimeMs?: Maybe<FloatQueryOperatorInput>;
+  blksize?: Maybe<IntQueryOperatorInput>;
+  blocks?: Maybe<IntQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
+  localURL?: Maybe<StringQueryOperatorInput>;
+  childImageSharp?: Maybe<ImageSharpFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -2772,6 +3202,23 @@ export type FloatQueryOperatorInput = {
   nin?: Maybe<Array<Maybe<Scalars["Float"]>>>;
 };
 
+export type ImageCropFocus =
+  | "CENTER"
+  | "NORTH"
+  | "NORTHEAST"
+  | "EAST"
+  | "SOUTHEAST"
+  | "SOUTH"
+  | "SOUTHWEST"
+  | "WEST"
+  | "NORTHWEST"
+  | "ENTROPY"
+  | "ATTENTION";
+
+export type ImageFit = "COVER" | "CONTAIN" | "FILL" | "INSIDE" | "OUTSIDE";
+
+export type ImageFormat = "NO_CHANGE" | "JPG" | "PNG" | "WEBP";
+
 export type ImageResizingBehavior =
   | "NO_CHANGE"
   /** Same as the default resizing, but adds padding so that the generated image has the specified dimensions. */
@@ -2787,6 +3234,468 @@ export type ImageResizingBehavior =
   | "THUMB"
   /** Scale the image regardless of the original aspect ratio. */
   | "SCALE";
+
+export type ImageSharp = Node & {
+  fixed?: Maybe<ImageSharpFixed>;
+  resolutions?: Maybe<ImageSharpResolutions>;
+  fluid?: Maybe<ImageSharpFluid>;
+  sizes?: Maybe<ImageSharpSizes>;
+  original?: Maybe<ImageSharpOriginal>;
+  resize?: Maybe<ImageSharpResize>;
+  id: Scalars["ID"];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+};
+
+export type ImageSharpFixedArgs = {
+  width?: Maybe<Scalars["Int"]>;
+  height?: Maybe<Scalars["Int"]>;
+  base64Width?: Maybe<Scalars["Int"]>;
+  jpegProgressive?: Maybe<Scalars["Boolean"]>;
+  pngCompressionSpeed?: Maybe<Scalars["Int"]>;
+  grayscale?: Maybe<Scalars["Boolean"]>;
+  duotone?: Maybe<DuotoneGradient>;
+  traceSVG?: Maybe<Potrace>;
+  quality?: Maybe<Scalars["Int"]>;
+  jpegQuality?: Maybe<Scalars["Int"]>;
+  pngQuality?: Maybe<Scalars["Int"]>;
+  webpQuality?: Maybe<Scalars["Int"]>;
+  toFormat?: Maybe<ImageFormat>;
+  toFormatBase64?: Maybe<ImageFormat>;
+  cropFocus?: Maybe<ImageCropFocus>;
+  fit?: Maybe<ImageFit>;
+  background?: Maybe<Scalars["String"]>;
+  rotate?: Maybe<Scalars["Int"]>;
+  trim?: Maybe<Scalars["Float"]>;
+};
+
+export type ImageSharpResolutionsArgs = {
+  width?: Maybe<Scalars["Int"]>;
+  height?: Maybe<Scalars["Int"]>;
+  base64Width?: Maybe<Scalars["Int"]>;
+  jpegProgressive?: Maybe<Scalars["Boolean"]>;
+  pngCompressionSpeed?: Maybe<Scalars["Int"]>;
+  grayscale?: Maybe<Scalars["Boolean"]>;
+  duotone?: Maybe<DuotoneGradient>;
+  traceSVG?: Maybe<Potrace>;
+  quality?: Maybe<Scalars["Int"]>;
+  jpegQuality?: Maybe<Scalars["Int"]>;
+  pngQuality?: Maybe<Scalars["Int"]>;
+  webpQuality?: Maybe<Scalars["Int"]>;
+  toFormat?: Maybe<ImageFormat>;
+  toFormatBase64?: Maybe<ImageFormat>;
+  cropFocus?: Maybe<ImageCropFocus>;
+  fit?: Maybe<ImageFit>;
+  background?: Maybe<Scalars["String"]>;
+  rotate?: Maybe<Scalars["Int"]>;
+  trim?: Maybe<Scalars["Float"]>;
+};
+
+export type ImageSharpFluidArgs = {
+  maxWidth?: Maybe<Scalars["Int"]>;
+  maxHeight?: Maybe<Scalars["Int"]>;
+  base64Width?: Maybe<Scalars["Int"]>;
+  grayscale?: Maybe<Scalars["Boolean"]>;
+  jpegProgressive?: Maybe<Scalars["Boolean"]>;
+  pngCompressionSpeed?: Maybe<Scalars["Int"]>;
+  duotone?: Maybe<DuotoneGradient>;
+  traceSVG?: Maybe<Potrace>;
+  quality?: Maybe<Scalars["Int"]>;
+  jpegQuality?: Maybe<Scalars["Int"]>;
+  pngQuality?: Maybe<Scalars["Int"]>;
+  webpQuality?: Maybe<Scalars["Int"]>;
+  toFormat?: Maybe<ImageFormat>;
+  toFormatBase64?: Maybe<ImageFormat>;
+  cropFocus?: Maybe<ImageCropFocus>;
+  fit?: Maybe<ImageFit>;
+  background?: Maybe<Scalars["String"]>;
+  rotate?: Maybe<Scalars["Int"]>;
+  trim?: Maybe<Scalars["Float"]>;
+  sizes?: Maybe<Scalars["String"]>;
+  srcSetBreakpoints?: Maybe<Array<Maybe<Scalars["Int"]>>>;
+};
+
+export type ImageSharpSizesArgs = {
+  maxWidth?: Maybe<Scalars["Int"]>;
+  maxHeight?: Maybe<Scalars["Int"]>;
+  base64Width?: Maybe<Scalars["Int"]>;
+  grayscale?: Maybe<Scalars["Boolean"]>;
+  jpegProgressive?: Maybe<Scalars["Boolean"]>;
+  pngCompressionSpeed?: Maybe<Scalars["Int"]>;
+  duotone?: Maybe<DuotoneGradient>;
+  traceSVG?: Maybe<Potrace>;
+  quality?: Maybe<Scalars["Int"]>;
+  jpegQuality?: Maybe<Scalars["Int"]>;
+  pngQuality?: Maybe<Scalars["Int"]>;
+  webpQuality?: Maybe<Scalars["Int"]>;
+  toFormat?: Maybe<ImageFormat>;
+  toFormatBase64?: Maybe<ImageFormat>;
+  cropFocus?: Maybe<ImageCropFocus>;
+  fit?: Maybe<ImageFit>;
+  background?: Maybe<Scalars["String"]>;
+  rotate?: Maybe<Scalars["Int"]>;
+  trim?: Maybe<Scalars["Float"]>;
+  sizes?: Maybe<Scalars["String"]>;
+  srcSetBreakpoints?: Maybe<Array<Maybe<Scalars["Int"]>>>;
+};
+
+export type ImageSharpResizeArgs = {
+  width?: Maybe<Scalars["Int"]>;
+  height?: Maybe<Scalars["Int"]>;
+  quality?: Maybe<Scalars["Int"]>;
+  jpegQuality?: Maybe<Scalars["Int"]>;
+  pngQuality?: Maybe<Scalars["Int"]>;
+  webpQuality?: Maybe<Scalars["Int"]>;
+  jpegProgressive?: Maybe<Scalars["Boolean"]>;
+  pngCompressionLevel?: Maybe<Scalars["Int"]>;
+  pngCompressionSpeed?: Maybe<Scalars["Int"]>;
+  grayscale?: Maybe<Scalars["Boolean"]>;
+  duotone?: Maybe<DuotoneGradient>;
+  base64?: Maybe<Scalars["Boolean"]>;
+  traceSVG?: Maybe<Potrace>;
+  toFormat?: Maybe<ImageFormat>;
+  cropFocus?: Maybe<ImageCropFocus>;
+  fit?: Maybe<ImageFit>;
+  background?: Maybe<Scalars["String"]>;
+  rotate?: Maybe<Scalars["Int"]>;
+  trim?: Maybe<Scalars["Float"]>;
+};
+
+export type ImageSharpConnection = {
+  totalCount: Scalars["Int"];
+  edges: Array<ImageSharpEdge>;
+  nodes: Array<ImageSharp>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars["String"]>;
+  group: Array<ImageSharpGroupConnection>;
+};
+
+export type ImageSharpConnectionDistinctArgs = {
+  field: ImageSharpFieldsEnum;
+};
+
+export type ImageSharpConnectionGroupArgs = {
+  skip?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars["Int"]>;
+  field: ImageSharpFieldsEnum;
+};
+
+export type ImageSharpEdge = {
+  next?: Maybe<ImageSharp>;
+  node: ImageSharp;
+  previous?: Maybe<ImageSharp>;
+};
+
+export type ImageSharpFieldsEnum =
+  | "fixed___base64"
+  | "fixed___tracedSVG"
+  | "fixed___aspectRatio"
+  | "fixed___width"
+  | "fixed___height"
+  | "fixed___src"
+  | "fixed___srcSet"
+  | "fixed___srcWebp"
+  | "fixed___srcSetWebp"
+  | "fixed___originalName"
+  | "resolutions___base64"
+  | "resolutions___tracedSVG"
+  | "resolutions___aspectRatio"
+  | "resolutions___width"
+  | "resolutions___height"
+  | "resolutions___src"
+  | "resolutions___srcSet"
+  | "resolutions___srcWebp"
+  | "resolutions___srcSetWebp"
+  | "resolutions___originalName"
+  | "fluid___base64"
+  | "fluid___tracedSVG"
+  | "fluid___aspectRatio"
+  | "fluid___src"
+  | "fluid___srcSet"
+  | "fluid___srcWebp"
+  | "fluid___srcSetWebp"
+  | "fluid___sizes"
+  | "fluid___originalImg"
+  | "fluid___originalName"
+  | "fluid___presentationWidth"
+  | "fluid___presentationHeight"
+  | "sizes___base64"
+  | "sizes___tracedSVG"
+  | "sizes___aspectRatio"
+  | "sizes___src"
+  | "sizes___srcSet"
+  | "sizes___srcWebp"
+  | "sizes___srcSetWebp"
+  | "sizes___sizes"
+  | "sizes___originalImg"
+  | "sizes___originalName"
+  | "sizes___presentationWidth"
+  | "sizes___presentationHeight"
+  | "original___width"
+  | "original___height"
+  | "original___src"
+  | "resize___src"
+  | "resize___tracedSVG"
+  | "resize___width"
+  | "resize___height"
+  | "resize___aspectRatio"
+  | "resize___originalName"
+  | "id"
+  | "parent___id"
+  | "parent___parent___id"
+  | "parent___parent___parent___id"
+  | "parent___parent___parent___children"
+  | "parent___parent___children"
+  | "parent___parent___children___id"
+  | "parent___parent___children___children"
+  | "parent___parent___internal___content"
+  | "parent___parent___internal___contentDigest"
+  | "parent___parent___internal___description"
+  | "parent___parent___internal___fieldOwners"
+  | "parent___parent___internal___ignoreType"
+  | "parent___parent___internal___mediaType"
+  | "parent___parent___internal___owner"
+  | "parent___parent___internal___type"
+  | "parent___children"
+  | "parent___children___id"
+  | "parent___children___parent___id"
+  | "parent___children___parent___children"
+  | "parent___children___children"
+  | "parent___children___children___id"
+  | "parent___children___children___children"
+  | "parent___children___internal___content"
+  | "parent___children___internal___contentDigest"
+  | "parent___children___internal___description"
+  | "parent___children___internal___fieldOwners"
+  | "parent___children___internal___ignoreType"
+  | "parent___children___internal___mediaType"
+  | "parent___children___internal___owner"
+  | "parent___children___internal___type"
+  | "parent___internal___content"
+  | "parent___internal___contentDigest"
+  | "parent___internal___description"
+  | "parent___internal___fieldOwners"
+  | "parent___internal___ignoreType"
+  | "parent___internal___mediaType"
+  | "parent___internal___owner"
+  | "parent___internal___type"
+  | "children"
+  | "children___id"
+  | "children___parent___id"
+  | "children___parent___parent___id"
+  | "children___parent___parent___children"
+  | "children___parent___children"
+  | "children___parent___children___id"
+  | "children___parent___children___children"
+  | "children___parent___internal___content"
+  | "children___parent___internal___contentDigest"
+  | "children___parent___internal___description"
+  | "children___parent___internal___fieldOwners"
+  | "children___parent___internal___ignoreType"
+  | "children___parent___internal___mediaType"
+  | "children___parent___internal___owner"
+  | "children___parent___internal___type"
+  | "children___children"
+  | "children___children___id"
+  | "children___children___parent___id"
+  | "children___children___parent___children"
+  | "children___children___children"
+  | "children___children___children___id"
+  | "children___children___children___children"
+  | "children___children___internal___content"
+  | "children___children___internal___contentDigest"
+  | "children___children___internal___description"
+  | "children___children___internal___fieldOwners"
+  | "children___children___internal___ignoreType"
+  | "children___children___internal___mediaType"
+  | "children___children___internal___owner"
+  | "children___children___internal___type"
+  | "children___internal___content"
+  | "children___internal___contentDigest"
+  | "children___internal___description"
+  | "children___internal___fieldOwners"
+  | "children___internal___ignoreType"
+  | "children___internal___mediaType"
+  | "children___internal___owner"
+  | "children___internal___type"
+  | "internal___content"
+  | "internal___contentDigest"
+  | "internal___description"
+  | "internal___fieldOwners"
+  | "internal___ignoreType"
+  | "internal___mediaType"
+  | "internal___owner"
+  | "internal___type";
+
+export type ImageSharpFilterInput = {
+  fixed?: Maybe<ImageSharpFixedFilterInput>;
+  resolutions?: Maybe<ImageSharpResolutionsFilterInput>;
+  fluid?: Maybe<ImageSharpFluidFilterInput>;
+  sizes?: Maybe<ImageSharpSizesFilterInput>;
+  original?: Maybe<ImageSharpOriginalFilterInput>;
+  resize?: Maybe<ImageSharpResizeFilterInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+export type ImageSharpFixed = {
+  base64?: Maybe<Scalars["String"]>;
+  tracedSVG?: Maybe<Scalars["String"]>;
+  aspectRatio?: Maybe<Scalars["Float"]>;
+  width: Scalars["Float"];
+  height: Scalars["Float"];
+  src: Scalars["String"];
+  srcSet: Scalars["String"];
+  srcWebp?: Maybe<Scalars["String"]>;
+  srcSetWebp?: Maybe<Scalars["String"]>;
+  originalName?: Maybe<Scalars["String"]>;
+};
+
+export type ImageSharpFixedFilterInput = {
+  base64?: Maybe<StringQueryOperatorInput>;
+  tracedSVG?: Maybe<StringQueryOperatorInput>;
+  aspectRatio?: Maybe<FloatQueryOperatorInput>;
+  width?: Maybe<FloatQueryOperatorInput>;
+  height?: Maybe<FloatQueryOperatorInput>;
+  src?: Maybe<StringQueryOperatorInput>;
+  srcSet?: Maybe<StringQueryOperatorInput>;
+  srcWebp?: Maybe<StringQueryOperatorInput>;
+  srcSetWebp?: Maybe<StringQueryOperatorInput>;
+  originalName?: Maybe<StringQueryOperatorInput>;
+};
+
+export type ImageSharpFluid = {
+  base64?: Maybe<Scalars["String"]>;
+  tracedSVG?: Maybe<Scalars["String"]>;
+  aspectRatio: Scalars["Float"];
+  src: Scalars["String"];
+  srcSet: Scalars["String"];
+  srcWebp?: Maybe<Scalars["String"]>;
+  srcSetWebp?: Maybe<Scalars["String"]>;
+  sizes: Scalars["String"];
+  originalImg?: Maybe<Scalars["String"]>;
+  originalName?: Maybe<Scalars["String"]>;
+  presentationWidth?: Maybe<Scalars["Int"]>;
+  presentationHeight?: Maybe<Scalars["Int"]>;
+};
+
+export type ImageSharpFluidFilterInput = {
+  base64?: Maybe<StringQueryOperatorInput>;
+  tracedSVG?: Maybe<StringQueryOperatorInput>;
+  aspectRatio?: Maybe<FloatQueryOperatorInput>;
+  src?: Maybe<StringQueryOperatorInput>;
+  srcSet?: Maybe<StringQueryOperatorInput>;
+  srcWebp?: Maybe<StringQueryOperatorInput>;
+  srcSetWebp?: Maybe<StringQueryOperatorInput>;
+  sizes?: Maybe<StringQueryOperatorInput>;
+  originalImg?: Maybe<StringQueryOperatorInput>;
+  originalName?: Maybe<StringQueryOperatorInput>;
+  presentationWidth?: Maybe<IntQueryOperatorInput>;
+  presentationHeight?: Maybe<IntQueryOperatorInput>;
+};
+
+export type ImageSharpGroupConnection = {
+  totalCount: Scalars["Int"];
+  edges: Array<ImageSharpEdge>;
+  nodes: Array<ImageSharp>;
+  pageInfo: PageInfo;
+  field: Scalars["String"];
+  fieldValue?: Maybe<Scalars["String"]>;
+};
+
+export type ImageSharpOriginal = {
+  width?: Maybe<Scalars["Float"]>;
+  height?: Maybe<Scalars["Float"]>;
+  src?: Maybe<Scalars["String"]>;
+};
+
+export type ImageSharpOriginalFilterInput = {
+  width?: Maybe<FloatQueryOperatorInput>;
+  height?: Maybe<FloatQueryOperatorInput>;
+  src?: Maybe<StringQueryOperatorInput>;
+};
+
+export type ImageSharpResize = {
+  src?: Maybe<Scalars["String"]>;
+  tracedSVG?: Maybe<Scalars["String"]>;
+  width?: Maybe<Scalars["Int"]>;
+  height?: Maybe<Scalars["Int"]>;
+  aspectRatio?: Maybe<Scalars["Float"]>;
+  originalName?: Maybe<Scalars["String"]>;
+};
+
+export type ImageSharpResizeFilterInput = {
+  src?: Maybe<StringQueryOperatorInput>;
+  tracedSVG?: Maybe<StringQueryOperatorInput>;
+  width?: Maybe<IntQueryOperatorInput>;
+  height?: Maybe<IntQueryOperatorInput>;
+  aspectRatio?: Maybe<FloatQueryOperatorInput>;
+  originalName?: Maybe<StringQueryOperatorInput>;
+};
+
+export type ImageSharpResolutions = {
+  base64?: Maybe<Scalars["String"]>;
+  tracedSVG?: Maybe<Scalars["String"]>;
+  aspectRatio?: Maybe<Scalars["Float"]>;
+  width: Scalars["Float"];
+  height: Scalars["Float"];
+  src: Scalars["String"];
+  srcSet: Scalars["String"];
+  srcWebp?: Maybe<Scalars["String"]>;
+  srcSetWebp?: Maybe<Scalars["String"]>;
+  originalName?: Maybe<Scalars["String"]>;
+};
+
+export type ImageSharpResolutionsFilterInput = {
+  base64?: Maybe<StringQueryOperatorInput>;
+  tracedSVG?: Maybe<StringQueryOperatorInput>;
+  aspectRatio?: Maybe<FloatQueryOperatorInput>;
+  width?: Maybe<FloatQueryOperatorInput>;
+  height?: Maybe<FloatQueryOperatorInput>;
+  src?: Maybe<StringQueryOperatorInput>;
+  srcSet?: Maybe<StringQueryOperatorInput>;
+  srcWebp?: Maybe<StringQueryOperatorInput>;
+  srcSetWebp?: Maybe<StringQueryOperatorInput>;
+  originalName?: Maybe<StringQueryOperatorInput>;
+};
+
+export type ImageSharpSizes = {
+  base64?: Maybe<Scalars["String"]>;
+  tracedSVG?: Maybe<Scalars["String"]>;
+  aspectRatio: Scalars["Float"];
+  src: Scalars["String"];
+  srcSet: Scalars["String"];
+  srcWebp?: Maybe<Scalars["String"]>;
+  srcSetWebp?: Maybe<Scalars["String"]>;
+  sizes: Scalars["String"];
+  originalImg?: Maybe<Scalars["String"]>;
+  originalName?: Maybe<Scalars["String"]>;
+  presentationWidth?: Maybe<Scalars["Int"]>;
+  presentationHeight?: Maybe<Scalars["Int"]>;
+};
+
+export type ImageSharpSizesFilterInput = {
+  base64?: Maybe<StringQueryOperatorInput>;
+  tracedSVG?: Maybe<StringQueryOperatorInput>;
+  aspectRatio?: Maybe<FloatQueryOperatorInput>;
+  src?: Maybe<StringQueryOperatorInput>;
+  srcSet?: Maybe<StringQueryOperatorInput>;
+  srcWebp?: Maybe<StringQueryOperatorInput>;
+  srcSetWebp?: Maybe<StringQueryOperatorInput>;
+  sizes?: Maybe<StringQueryOperatorInput>;
+  originalImg?: Maybe<StringQueryOperatorInput>;
+  originalName?: Maybe<StringQueryOperatorInput>;
+  presentationWidth?: Maybe<IntQueryOperatorInput>;
+  presentationHeight?: Maybe<IntQueryOperatorInput>;
+};
+
+export type ImageSharpSortInput = {
+  fields?: Maybe<Array<Maybe<ImageSharpFieldsEnum>>>;
+  order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
 
 export type Internal = {
   content?: Maybe<Scalars["String"]>;
@@ -2858,6 +3767,26 @@ export type PageInfo = {
   perPage?: Maybe<Scalars["Int"]>;
 };
 
+export type Potrace = {
+  turnPolicy?: Maybe<PotraceTurnPolicy>;
+  turdSize?: Maybe<Scalars["Float"]>;
+  alphaMax?: Maybe<Scalars["Float"]>;
+  optCurve?: Maybe<Scalars["Boolean"]>;
+  optTolerance?: Maybe<Scalars["Float"]>;
+  threshold?: Maybe<Scalars["Int"]>;
+  blackOnWhite?: Maybe<Scalars["Boolean"]>;
+  color?: Maybe<Scalars["String"]>;
+  background?: Maybe<Scalars["String"]>;
+};
+
+export type PotraceTurnPolicy =
+  | "TURNPOLICY_BLACK"
+  | "TURNPOLICY_WHITE"
+  | "TURNPOLICY_LEFT"
+  | "TURNPOLICY_RIGHT"
+  | "TURNPOLICY_MINORITY"
+  | "TURNPOLICY_MAJORITY";
+
 export type Query = {
   file?: Maybe<File>;
   allFile: FileConnection;
@@ -2867,6 +3796,8 @@ export type Query = {
   allSitePage: SitePageConnection;
   site?: Maybe<Site>;
   allSite: SiteConnection;
+  imageSharp?: Maybe<ImageSharp>;
+  allImageSharp: ImageSharpConnection;
   contentfulAsset?: Maybe<ContentfulAsset>;
   allContentfulAsset: ContentfulAssetConnection;
   contentfulPlaceTag?: Maybe<ContentfulPlaceTag>;
@@ -2921,6 +3852,11 @@ export type QueryFileArgs = {
   ctime?: Maybe<DateQueryOperatorInput>;
   birthtime?: Maybe<DateQueryOperatorInput>;
   birthtimeMs?: Maybe<FloatQueryOperatorInput>;
+  blksize?: Maybe<IntQueryOperatorInput>;
+  blocks?: Maybe<IntQueryOperatorInput>;
+  url?: Maybe<StringQueryOperatorInput>;
+  localURL?: Maybe<StringQueryOperatorInput>;
+  childImageSharp?: Maybe<ImageSharpFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -3023,6 +3959,26 @@ export type QueryAllSiteArgs = {
   limit?: Maybe<Scalars["Int"]>;
 };
 
+export type QueryImageSharpArgs = {
+  fixed?: Maybe<ImageSharpFixedFilterInput>;
+  resolutions?: Maybe<ImageSharpResolutionsFilterInput>;
+  fluid?: Maybe<ImageSharpFluidFilterInput>;
+  sizes?: Maybe<ImageSharpSizesFilterInput>;
+  original?: Maybe<ImageSharpOriginalFilterInput>;
+  resize?: Maybe<ImageSharpResizeFilterInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
+};
+
+export type QueryAllImageSharpArgs = {
+  filter?: Maybe<ImageSharpFilterInput>;
+  sort?: Maybe<ImageSharpSortInput>;
+  skip?: Maybe<Scalars["Int"]>;
+  limit?: Maybe<Scalars["Int"]>;
+};
+
 export type QueryContentfulAssetArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
@@ -3033,6 +3989,7 @@ export type QueryContentfulAssetArgs = {
   title?: Maybe<StringQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
+  localFile?: Maybe<FileFilterInput>;
   fixed?: Maybe<ContentfulFixedFilterInput>;
   resolutions?: Maybe<ContentfulResolutionsFilterInput>;
   fluid?: Maybe<ContentfulFluidFilterInput>;
@@ -3724,6 +4681,7 @@ export type SitePageFieldsEnum =
   | "pluginCreator___pluginOptions___fileName"
   | "pluginCreator___pluginOptions___spaceId"
   | "pluginCreator___pluginOptions___accessToken"
+  | "pluginCreator___pluginOptions___downloadLocal"
   | "pluginCreator___pluginOptions___path"
   | "pluginCreator___pluginOptions___pathCheck"
   | "pluginCreator___nodeAPIs"
@@ -3912,6 +4870,7 @@ export type SitePluginFieldsEnum =
   | "pluginOptions___fileName"
   | "pluginOptions___spaceId"
   | "pluginOptions___accessToken"
+  | "pluginOptions___downloadLocal"
   | "pluginOptions___path"
   | "pluginOptions___pathCheck"
   | "nodeAPIs"
@@ -4032,6 +4991,7 @@ export type SitePluginPluginOptions = {
   fileName?: Maybe<Scalars["String"]>;
   spaceId?: Maybe<Scalars["String"]>;
   accessToken?: Maybe<Scalars["String"]>;
+  downloadLocal?: Maybe<Scalars["Boolean"]>;
   path?: Maybe<Scalars["String"]>;
   pathCheck?: Maybe<Scalars["Boolean"]>;
 };
@@ -4040,6 +5000,7 @@ export type SitePluginPluginOptionsFilterInput = {
   fileName?: Maybe<StringQueryOperatorInput>;
   spaceId?: Maybe<StringQueryOperatorInput>;
   accessToken?: Maybe<StringQueryOperatorInput>;
+  downloadLocal?: Maybe<BooleanQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
 };
@@ -4136,8 +5097,11 @@ export type IndexQueryQuery = {
           Array<
             Maybe<
               Pick<ContentfulAsset, "id" | "title"> & {
-                file: Maybe<Pick<ContentfulAssetFile, "url">>;
-                fixed: Maybe<Pick<ContentfulFixed, "srcSet">>;
+                localFile: Maybe<{
+                  childImageSharp: Maybe<{
+                    fixed: Maybe<GatsbyImageSharpFixedFragment>;
+                  }>;
+                }>;
               }
             >
           >
@@ -4182,8 +5146,11 @@ export type Unnamed_2_Query = {
         Array<
           Maybe<
             Pick<ContentfulAsset, "id"> & {
-              file: Maybe<Pick<ContentfulAssetFile, "url">>;
-              fixed: Maybe<Pick<ContentfulFixed, "srcSet">>;
+              localFile: Maybe<{
+                childImageSharp: Maybe<{
+                  fluid: Maybe<GatsbyImageSharpFluidFragment>;
+                }>;
+              }>;
             }
           >
         >
@@ -4192,10 +5159,13 @@ export type Unnamed_2_Query = {
         Array<
           Maybe<
             Pick<ContentfulAsset, "id" | "title"> & {
-              file: Maybe<
-                Pick<ContentfulAssetFile, "fileName" | "url" | "contentType">
+              localFile: Maybe<
+                Pick<File, "localURL"> & {
+                  childImageSharp: Maybe<{
+                    fixed: Maybe<GatsbyImageSharpFixedFragment>;
+                  }>;
+                }
               >;
-              fixed: Maybe<Pick<ContentfulFixed, "srcSet" | "src">>;
             }
           >
         >
@@ -4356,5 +5326,149 @@ export type GatsbyContentfulSizes_WithWebpFragment = Pick<
 
 export type GatsbyContentfulSizes_WithWebp_NoBase64Fragment = Pick<
   ContentfulSizes,
+  "aspectRatio" | "src" | "srcSet" | "srcWebp" | "srcSetWebp" | "sizes"
+>;
+
+export type GatsbyImageSharpFixedFragment = Pick<
+  ImageSharpFixed,
+  "base64" | "width" | "height" | "src" | "srcSet"
+>;
+
+export type GatsbyImageSharpFixed_TracedSvgFragment = Pick<
+  ImageSharpFixed,
+  "tracedSVG" | "width" | "height" | "src" | "srcSet"
+>;
+
+export type GatsbyImageSharpFixed_WithWebpFragment = Pick<
+  ImageSharpFixed,
+  "base64" | "width" | "height" | "src" | "srcSet" | "srcWebp" | "srcSetWebp"
+>;
+
+export type GatsbyImageSharpFixed_WithWebp_TracedSvgFragment = Pick<
+  ImageSharpFixed,
+  "tracedSVG" | "width" | "height" | "src" | "srcSet" | "srcWebp" | "srcSetWebp"
+>;
+
+export type GatsbyImageSharpFixed_NoBase64Fragment = Pick<
+  ImageSharpFixed,
+  "width" | "height" | "src" | "srcSet"
+>;
+
+export type GatsbyImageSharpFixed_WithWebp_NoBase64Fragment = Pick<
+  ImageSharpFixed,
+  "width" | "height" | "src" | "srcSet" | "srcWebp" | "srcSetWebp"
+>;
+
+export type GatsbyImageSharpFluidFragment = Pick<
+  ImageSharpFluid,
+  "base64" | "aspectRatio" | "src" | "srcSet" | "sizes"
+>;
+
+export type GatsbyImageSharpFluid_TracedSvgFragment = Pick<
+  ImageSharpFluid,
+  "tracedSVG" | "aspectRatio" | "src" | "srcSet" | "sizes"
+>;
+
+export type GatsbyImageSharpFluid_WithWebpFragment = Pick<
+  ImageSharpFluid,
+  | "base64"
+  | "aspectRatio"
+  | "src"
+  | "srcSet"
+  | "srcWebp"
+  | "srcSetWebp"
+  | "sizes"
+>;
+
+export type GatsbyImageSharpFluid_WithWebp_TracedSvgFragment = Pick<
+  ImageSharpFluid,
+  | "tracedSVG"
+  | "aspectRatio"
+  | "src"
+  | "srcSet"
+  | "srcWebp"
+  | "srcSetWebp"
+  | "sizes"
+>;
+
+export type GatsbyImageSharpFluid_NoBase64Fragment = Pick<
+  ImageSharpFluid,
+  "aspectRatio" | "src" | "srcSet" | "sizes"
+>;
+
+export type GatsbyImageSharpFluid_WithWebp_NoBase64Fragment = Pick<
+  ImageSharpFluid,
+  "aspectRatio" | "src" | "srcSet" | "srcWebp" | "srcSetWebp" | "sizes"
+>;
+
+export type GatsbyImageSharpResolutionsFragment = Pick<
+  ImageSharpResolutions,
+  "base64" | "width" | "height" | "src" | "srcSet"
+>;
+
+export type GatsbyImageSharpResolutions_TracedSvgFragment = Pick<
+  ImageSharpResolutions,
+  "tracedSVG" | "width" | "height" | "src" | "srcSet"
+>;
+
+export type GatsbyImageSharpResolutions_WithWebpFragment = Pick<
+  ImageSharpResolutions,
+  "base64" | "width" | "height" | "src" | "srcSet" | "srcWebp" | "srcSetWebp"
+>;
+
+export type GatsbyImageSharpResolutions_WithWebp_TracedSvgFragment = Pick<
+  ImageSharpResolutions,
+  "tracedSVG" | "width" | "height" | "src" | "srcSet" | "srcWebp" | "srcSetWebp"
+>;
+
+export type GatsbyImageSharpResolutions_NoBase64Fragment = Pick<
+  ImageSharpResolutions,
+  "width" | "height" | "src" | "srcSet"
+>;
+
+export type GatsbyImageSharpResolutions_WithWebp_NoBase64Fragment = Pick<
+  ImageSharpResolutions,
+  "width" | "height" | "src" | "srcSet" | "srcWebp" | "srcSetWebp"
+>;
+
+export type GatsbyImageSharpSizesFragment = Pick<
+  ImageSharpSizes,
+  "base64" | "aspectRatio" | "src" | "srcSet" | "sizes"
+>;
+
+export type GatsbyImageSharpSizes_TracedSvgFragment = Pick<
+  ImageSharpSizes,
+  "tracedSVG" | "aspectRatio" | "src" | "srcSet" | "sizes"
+>;
+
+export type GatsbyImageSharpSizes_WithWebpFragment = Pick<
+  ImageSharpSizes,
+  | "base64"
+  | "aspectRatio"
+  | "src"
+  | "srcSet"
+  | "srcWebp"
+  | "srcSetWebp"
+  | "sizes"
+>;
+
+export type GatsbyImageSharpSizes_WithWebp_TracedSvgFragment = Pick<
+  ImageSharpSizes,
+  | "tracedSVG"
+  | "aspectRatio"
+  | "src"
+  | "srcSet"
+  | "srcWebp"
+  | "srcSetWebp"
+  | "sizes"
+>;
+
+export type GatsbyImageSharpSizes_NoBase64Fragment = Pick<
+  ImageSharpSizes,
+  "aspectRatio" | "src" | "srcSet" | "sizes"
+>;
+
+export type GatsbyImageSharpSizes_WithWebp_NoBase64Fragment = Pick<
+  ImageSharpSizes,
   "aspectRatio" | "src" | "srcSet" | "srcWebp" | "srcSetWebp" | "sizes"
 >;
