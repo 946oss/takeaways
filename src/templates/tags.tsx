@@ -78,11 +78,12 @@ export const query = graphql`
           pictures {
             id
             title
-            file {
-              url
-            }
-            fixed(width: 300, height: 300, cropFocus: CENTER) {
-              srcSet
+            localFile {
+              childImageSharp {
+                fixed(width: 320, height: 320, cropFocus: CENTER) {
+                  ...GatsbyImageSharpFixed
+                }
+              }
             }
           }
           message {
