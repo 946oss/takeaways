@@ -59,7 +59,7 @@ export default ({ data }) => {
         >
           {place.name}
         </h1>
-        {place.tags.length > 0 ? (
+        {place.tags && place.tags.length > 0 ? (
           <div
             css={css`
               font-size: 0.7rem;
@@ -134,17 +134,17 @@ export default ({ data }) => {
 
         <h2>メニュー</h2>
 
-        {place.menu.length > 0 ? (
-          place.menu.map(m => (
-            <div key={m.id}>
-              <a href={m.file.url}>
+        <div>
+          {place.menu && place.menu.length > 0 ? (
+            place.menu.map(m => (
+              <a href={m.file.url} key={m.id}>
                 <img src={m.fixed.src} srcSet={m.fixed.secSet} alt={m.title} />
               </a>
-            </div>
-          ))
-        ) : (
-          <p>メニュー情報がありません...</p>
-        )}
+            ))
+          ) : (
+            <p>メニュー情報がありません...</p>
+          )}
+        </div>
 
         <h2>店舗情報</h2>
 

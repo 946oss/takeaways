@@ -15,7 +15,7 @@ export default ({ place }) => (
       padding: 1rem 0;
     `}
   >
-    {place.tags.length > 0 ? (
+    {place.tags && place.tags.length > 0 ? (
       <div
         css={css`
           font-size: 0.7rem;
