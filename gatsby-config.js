@@ -27,6 +27,20 @@ module.exports = {
         downloadLocal: true
       }
     },
-    `gatsby-plugin-netlify-cache`
+    `gatsby-plugin-netlify-cache`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `お持ち帰りごはん 釧路版`,
+        short_name: `お持ち帰りごはん`,
+        lang: `ja`,
+        start_url: `/`,
+        background_color: `#f5f5f1`,
+        theme_color: `#221f1f`,
+        display: `standalone`,
+        icon: `static/logo.png`
+      }
+    },
+    `gatsby-plugin-offline`
   ]
 };

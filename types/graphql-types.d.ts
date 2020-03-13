@@ -683,15 +683,19 @@ export type ContentfulPlace = Node & {
   children: Array<Node>;
   internal: Internal;
   name?: Maybe<Scalars["String"]>;
+  official?: Maybe<Scalars["Boolean"]>;
   location?: Maybe<ContentfulPlaceLocation>;
   address?: Maybe<Scalars["String"]>;
   tel?: Maybe<Array<Maybe<Scalars["String"]>>>;
   closed_on?: Maybe<Array<Maybe<Scalars["String"]>>>;
   business_hours?: Maybe<Scalars["String"]>;
   website?: Maybe<Scalars["String"]>;
+  twitter?: Maybe<Scalars["String"]>;
+  pictures?: Maybe<Array<Maybe<ContentfulAsset>>>;
   menu?: Maybe<Array<Maybe<ContentfulAsset>>>;
   tags?: Maybe<Array<Maybe<ContentfulPlaceTag>>>;
   description?: Maybe<ContentfulPlaceDescriptionTextNode>;
+  message?: Maybe<ContentfulPlaceMessageRichTextNode>;
   spaceId?: Maybe<Scalars["String"]>;
   contentful_id?: Maybe<Scalars["String"]>;
   createdAt?: Maybe<Scalars["Date"]>;
@@ -699,10 +703,6 @@ export type ContentfulPlace = Node & {
   sys?: Maybe<ContentfulPlaceSys>;
   node_locale?: Maybe<Scalars["String"]>;
   facebook?: Maybe<Scalars["String"]>;
-  pictures?: Maybe<Array<Maybe<ContentfulAsset>>>;
-  twitter?: Maybe<Scalars["String"]>;
-  message?: Maybe<ContentfulPlaceMessageRichTextNode>;
-  official?: Maybe<Scalars["Boolean"]>;
   childContentfulPlaceDescriptionTextNode?: Maybe<
     ContentfulPlaceDescriptionTextNode
   >;
@@ -982,6 +982,7 @@ export type ContentfulPlaceFieldsEnum =
   | "internal___owner"
   | "internal___type"
   | "name"
+  | "official"
   | "location___lon"
   | "location___lat"
   | "address"
@@ -989,6 +990,145 @@ export type ContentfulPlaceFieldsEnum =
   | "closed_on"
   | "business_hours"
   | "website"
+  | "twitter"
+  | "pictures"
+  | "pictures___id"
+  | "pictures___parent___id"
+  | "pictures___parent___parent___id"
+  | "pictures___parent___parent___children"
+  | "pictures___parent___children"
+  | "pictures___parent___children___id"
+  | "pictures___parent___children___children"
+  | "pictures___parent___internal___content"
+  | "pictures___parent___internal___contentDigest"
+  | "pictures___parent___internal___description"
+  | "pictures___parent___internal___fieldOwners"
+  | "pictures___parent___internal___ignoreType"
+  | "pictures___parent___internal___mediaType"
+  | "pictures___parent___internal___owner"
+  | "pictures___parent___internal___type"
+  | "pictures___children"
+  | "pictures___children___id"
+  | "pictures___children___parent___id"
+  | "pictures___children___parent___children"
+  | "pictures___children___children"
+  | "pictures___children___children___id"
+  | "pictures___children___children___children"
+  | "pictures___children___internal___content"
+  | "pictures___children___internal___contentDigest"
+  | "pictures___children___internal___description"
+  | "pictures___children___internal___fieldOwners"
+  | "pictures___children___internal___ignoreType"
+  | "pictures___children___internal___mediaType"
+  | "pictures___children___internal___owner"
+  | "pictures___children___internal___type"
+  | "pictures___internal___content"
+  | "pictures___internal___contentDigest"
+  | "pictures___internal___description"
+  | "pictures___internal___fieldOwners"
+  | "pictures___internal___ignoreType"
+  | "pictures___internal___mediaType"
+  | "pictures___internal___owner"
+  | "pictures___internal___type"
+  | "pictures___contentful_id"
+  | "pictures___file___url"
+  | "pictures___file___details___size"
+  | "pictures___file___fileName"
+  | "pictures___file___contentType"
+  | "pictures___title"
+  | "pictures___description"
+  | "pictures___node_locale"
+  | "pictures___localFile___sourceInstanceName"
+  | "pictures___localFile___absolutePath"
+  | "pictures___localFile___relativePath"
+  | "pictures___localFile___extension"
+  | "pictures___localFile___size"
+  | "pictures___localFile___prettySize"
+  | "pictures___localFile___modifiedTime"
+  | "pictures___localFile___accessTime"
+  | "pictures___localFile___changeTime"
+  | "pictures___localFile___birthTime"
+  | "pictures___localFile___root"
+  | "pictures___localFile___dir"
+  | "pictures___localFile___base"
+  | "pictures___localFile___ext"
+  | "pictures___localFile___name"
+  | "pictures___localFile___relativeDirectory"
+  | "pictures___localFile___dev"
+  | "pictures___localFile___mode"
+  | "pictures___localFile___nlink"
+  | "pictures___localFile___uid"
+  | "pictures___localFile___gid"
+  | "pictures___localFile___rdev"
+  | "pictures___localFile___ino"
+  | "pictures___localFile___atimeMs"
+  | "pictures___localFile___mtimeMs"
+  | "pictures___localFile___ctimeMs"
+  | "pictures___localFile___atime"
+  | "pictures___localFile___mtime"
+  | "pictures___localFile___ctime"
+  | "pictures___localFile___birthtime"
+  | "pictures___localFile___birthtimeMs"
+  | "pictures___localFile___blksize"
+  | "pictures___localFile___blocks"
+  | "pictures___localFile___url"
+  | "pictures___localFile___localURL"
+  | "pictures___localFile___childImageSharp___id"
+  | "pictures___localFile___childImageSharp___children"
+  | "pictures___localFile___id"
+  | "pictures___localFile___parent___id"
+  | "pictures___localFile___parent___children"
+  | "pictures___localFile___children"
+  | "pictures___localFile___children___id"
+  | "pictures___localFile___children___children"
+  | "pictures___localFile___internal___content"
+  | "pictures___localFile___internal___contentDigest"
+  | "pictures___localFile___internal___description"
+  | "pictures___localFile___internal___fieldOwners"
+  | "pictures___localFile___internal___ignoreType"
+  | "pictures___localFile___internal___mediaType"
+  | "pictures___localFile___internal___owner"
+  | "pictures___localFile___internal___type"
+  | "pictures___fixed___base64"
+  | "pictures___fixed___tracedSVG"
+  | "pictures___fixed___aspectRatio"
+  | "pictures___fixed___width"
+  | "pictures___fixed___height"
+  | "pictures___fixed___src"
+  | "pictures___fixed___srcSet"
+  | "pictures___fixed___srcWebp"
+  | "pictures___fixed___srcSetWebp"
+  | "pictures___resolutions___base64"
+  | "pictures___resolutions___tracedSVG"
+  | "pictures___resolutions___aspectRatio"
+  | "pictures___resolutions___width"
+  | "pictures___resolutions___height"
+  | "pictures___resolutions___src"
+  | "pictures___resolutions___srcSet"
+  | "pictures___resolutions___srcWebp"
+  | "pictures___resolutions___srcSetWebp"
+  | "pictures___fluid___base64"
+  | "pictures___fluid___tracedSVG"
+  | "pictures___fluid___aspectRatio"
+  | "pictures___fluid___src"
+  | "pictures___fluid___srcSet"
+  | "pictures___fluid___srcWebp"
+  | "pictures___fluid___srcSetWebp"
+  | "pictures___fluid___sizes"
+  | "pictures___sizes___base64"
+  | "pictures___sizes___tracedSVG"
+  | "pictures___sizes___aspectRatio"
+  | "pictures___sizes___src"
+  | "pictures___sizes___srcSet"
+  | "pictures___sizes___srcWebp"
+  | "pictures___sizes___srcSetWebp"
+  | "pictures___sizes___sizes"
+  | "pictures___resize___base64"
+  | "pictures___resize___tracedSVG"
+  | "pictures___resize___src"
+  | "pictures___resize___width"
+  | "pictures___resize___height"
+  | "pictures___resize___aspectRatio"
   | "menu"
   | "menu___id"
   | "menu___parent___id"
@@ -1184,6 +1324,7 @@ export type ContentfulPlaceFieldsEnum =
   | "tags___place___internal___owner"
   | "tags___place___internal___type"
   | "tags___place___name"
+  | "tags___place___official"
   | "tags___place___location___lon"
   | "tags___place___location___lat"
   | "tags___place___address"
@@ -1191,6 +1332,14 @@ export type ContentfulPlaceFieldsEnum =
   | "tags___place___closed_on"
   | "tags___place___business_hours"
   | "tags___place___website"
+  | "tags___place___twitter"
+  | "tags___place___pictures"
+  | "tags___place___pictures___id"
+  | "tags___place___pictures___children"
+  | "tags___place___pictures___contentful_id"
+  | "tags___place___pictures___title"
+  | "tags___place___pictures___description"
+  | "tags___place___pictures___node_locale"
   | "tags___place___menu"
   | "tags___place___menu___id"
   | "tags___place___menu___children"
@@ -1212,6 +1361,12 @@ export type ContentfulPlaceFieldsEnum =
   | "tags___place___description___id"
   | "tags___place___description___children"
   | "tags___place___description___description"
+  | "tags___place___message___id"
+  | "tags___place___message___children"
+  | "tags___place___message___content"
+  | "tags___place___message___nodeType"
+  | "tags___place___message___message"
+  | "tags___place___message___json"
   | "tags___place___spaceId"
   | "tags___place___contentful_id"
   | "tags___place___createdAt"
@@ -1219,21 +1374,6 @@ export type ContentfulPlaceFieldsEnum =
   | "tags___place___sys___revision"
   | "tags___place___node_locale"
   | "tags___place___facebook"
-  | "tags___place___pictures"
-  | "tags___place___pictures___id"
-  | "tags___place___pictures___children"
-  | "tags___place___pictures___contentful_id"
-  | "tags___place___pictures___title"
-  | "tags___place___pictures___description"
-  | "tags___place___pictures___node_locale"
-  | "tags___place___twitter"
-  | "tags___place___message___id"
-  | "tags___place___message___children"
-  | "tags___place___message___content"
-  | "tags___place___message___nodeType"
-  | "tags___place___message___message"
-  | "tags___place___message___json"
-  | "tags___place___official"
   | "tags___place___childContentfulPlaceDescriptionTextNode___id"
   | "tags___place___childContentfulPlaceDescriptionTextNode___children"
   | "tags___place___childContentfulPlaceDescriptionTextNode___description"
@@ -1288,156 +1428,6 @@ export type ContentfulPlaceFieldsEnum =
   | "description___internal___owner"
   | "description___internal___type"
   | "description___description"
-  | "spaceId"
-  | "contentful_id"
-  | "createdAt"
-  | "updatedAt"
-  | "sys___revision"
-  | "sys___contentType___sys___type"
-  | "sys___contentType___sys___linkType"
-  | "sys___contentType___sys___id"
-  | "sys___contentType___sys___contentful_id"
-  | "node_locale"
-  | "facebook"
-  | "pictures"
-  | "pictures___id"
-  | "pictures___parent___id"
-  | "pictures___parent___parent___id"
-  | "pictures___parent___parent___children"
-  | "pictures___parent___children"
-  | "pictures___parent___children___id"
-  | "pictures___parent___children___children"
-  | "pictures___parent___internal___content"
-  | "pictures___parent___internal___contentDigest"
-  | "pictures___parent___internal___description"
-  | "pictures___parent___internal___fieldOwners"
-  | "pictures___parent___internal___ignoreType"
-  | "pictures___parent___internal___mediaType"
-  | "pictures___parent___internal___owner"
-  | "pictures___parent___internal___type"
-  | "pictures___children"
-  | "pictures___children___id"
-  | "pictures___children___parent___id"
-  | "pictures___children___parent___children"
-  | "pictures___children___children"
-  | "pictures___children___children___id"
-  | "pictures___children___children___children"
-  | "pictures___children___internal___content"
-  | "pictures___children___internal___contentDigest"
-  | "pictures___children___internal___description"
-  | "pictures___children___internal___fieldOwners"
-  | "pictures___children___internal___ignoreType"
-  | "pictures___children___internal___mediaType"
-  | "pictures___children___internal___owner"
-  | "pictures___children___internal___type"
-  | "pictures___internal___content"
-  | "pictures___internal___contentDigest"
-  | "pictures___internal___description"
-  | "pictures___internal___fieldOwners"
-  | "pictures___internal___ignoreType"
-  | "pictures___internal___mediaType"
-  | "pictures___internal___owner"
-  | "pictures___internal___type"
-  | "pictures___contentful_id"
-  | "pictures___file___url"
-  | "pictures___file___details___size"
-  | "pictures___file___fileName"
-  | "pictures___file___contentType"
-  | "pictures___title"
-  | "pictures___description"
-  | "pictures___node_locale"
-  | "pictures___localFile___sourceInstanceName"
-  | "pictures___localFile___absolutePath"
-  | "pictures___localFile___relativePath"
-  | "pictures___localFile___extension"
-  | "pictures___localFile___size"
-  | "pictures___localFile___prettySize"
-  | "pictures___localFile___modifiedTime"
-  | "pictures___localFile___accessTime"
-  | "pictures___localFile___changeTime"
-  | "pictures___localFile___birthTime"
-  | "pictures___localFile___root"
-  | "pictures___localFile___dir"
-  | "pictures___localFile___base"
-  | "pictures___localFile___ext"
-  | "pictures___localFile___name"
-  | "pictures___localFile___relativeDirectory"
-  | "pictures___localFile___dev"
-  | "pictures___localFile___mode"
-  | "pictures___localFile___nlink"
-  | "pictures___localFile___uid"
-  | "pictures___localFile___gid"
-  | "pictures___localFile___rdev"
-  | "pictures___localFile___ino"
-  | "pictures___localFile___atimeMs"
-  | "pictures___localFile___mtimeMs"
-  | "pictures___localFile___ctimeMs"
-  | "pictures___localFile___atime"
-  | "pictures___localFile___mtime"
-  | "pictures___localFile___ctime"
-  | "pictures___localFile___birthtime"
-  | "pictures___localFile___birthtimeMs"
-  | "pictures___localFile___blksize"
-  | "pictures___localFile___blocks"
-  | "pictures___localFile___url"
-  | "pictures___localFile___localURL"
-  | "pictures___localFile___childImageSharp___id"
-  | "pictures___localFile___childImageSharp___children"
-  | "pictures___localFile___id"
-  | "pictures___localFile___parent___id"
-  | "pictures___localFile___parent___children"
-  | "pictures___localFile___children"
-  | "pictures___localFile___children___id"
-  | "pictures___localFile___children___children"
-  | "pictures___localFile___internal___content"
-  | "pictures___localFile___internal___contentDigest"
-  | "pictures___localFile___internal___description"
-  | "pictures___localFile___internal___fieldOwners"
-  | "pictures___localFile___internal___ignoreType"
-  | "pictures___localFile___internal___mediaType"
-  | "pictures___localFile___internal___owner"
-  | "pictures___localFile___internal___type"
-  | "pictures___fixed___base64"
-  | "pictures___fixed___tracedSVG"
-  | "pictures___fixed___aspectRatio"
-  | "pictures___fixed___width"
-  | "pictures___fixed___height"
-  | "pictures___fixed___src"
-  | "pictures___fixed___srcSet"
-  | "pictures___fixed___srcWebp"
-  | "pictures___fixed___srcSetWebp"
-  | "pictures___resolutions___base64"
-  | "pictures___resolutions___tracedSVG"
-  | "pictures___resolutions___aspectRatio"
-  | "pictures___resolutions___width"
-  | "pictures___resolutions___height"
-  | "pictures___resolutions___src"
-  | "pictures___resolutions___srcSet"
-  | "pictures___resolutions___srcWebp"
-  | "pictures___resolutions___srcSetWebp"
-  | "pictures___fluid___base64"
-  | "pictures___fluid___tracedSVG"
-  | "pictures___fluid___aspectRatio"
-  | "pictures___fluid___src"
-  | "pictures___fluid___srcSet"
-  | "pictures___fluid___srcWebp"
-  | "pictures___fluid___srcSetWebp"
-  | "pictures___fluid___sizes"
-  | "pictures___sizes___base64"
-  | "pictures___sizes___tracedSVG"
-  | "pictures___sizes___aspectRatio"
-  | "pictures___sizes___src"
-  | "pictures___sizes___srcSet"
-  | "pictures___sizes___srcWebp"
-  | "pictures___sizes___srcSetWebp"
-  | "pictures___sizes___sizes"
-  | "pictures___resize___base64"
-  | "pictures___resize___tracedSVG"
-  | "pictures___resize___src"
-  | "pictures___resize___width"
-  | "pictures___resize___height"
-  | "pictures___resize___aspectRatio"
-  | "twitter"
   | "message___id"
   | "message___parent___id"
   | "message___parent___parent___id"
@@ -1484,7 +1474,17 @@ export type ContentfulPlaceFieldsEnum =
   | "message___nodeType"
   | "message___message"
   | "message___json"
-  | "official"
+  | "spaceId"
+  | "contentful_id"
+  | "createdAt"
+  | "updatedAt"
+  | "sys___revision"
+  | "sys___contentType___sys___type"
+  | "sys___contentType___sys___linkType"
+  | "sys___contentType___sys___id"
+  | "sys___contentType___sys___contentful_id"
+  | "node_locale"
+  | "facebook"
   | "childContentfulPlaceDescriptionTextNode___id"
   | "childContentfulPlaceDescriptionTextNode___parent___id"
   | "childContentfulPlaceDescriptionTextNode___parent___parent___id"
@@ -1577,15 +1577,19 @@ export type ContentfulPlaceFilterInput = {
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   name?: Maybe<StringQueryOperatorInput>;
+  official?: Maybe<BooleanQueryOperatorInput>;
   location?: Maybe<ContentfulPlaceLocationFilterInput>;
   address?: Maybe<StringQueryOperatorInput>;
   tel?: Maybe<StringQueryOperatorInput>;
   closed_on?: Maybe<StringQueryOperatorInput>;
   business_hours?: Maybe<StringQueryOperatorInput>;
   website?: Maybe<StringQueryOperatorInput>;
+  twitter?: Maybe<StringQueryOperatorInput>;
+  pictures?: Maybe<ContentfulAssetFilterListInput>;
   menu?: Maybe<ContentfulAssetFilterListInput>;
   tags?: Maybe<ContentfulPlaceTagFilterListInput>;
   description?: Maybe<ContentfulPlaceDescriptionTextNodeFilterInput>;
+  message?: Maybe<ContentfulPlaceMessageRichTextNodeFilterInput>;
   spaceId?: Maybe<StringQueryOperatorInput>;
   contentful_id?: Maybe<StringQueryOperatorInput>;
   createdAt?: Maybe<DateQueryOperatorInput>;
@@ -1593,10 +1597,6 @@ export type ContentfulPlaceFilterInput = {
   sys?: Maybe<ContentfulPlaceSysFilterInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
   facebook?: Maybe<StringQueryOperatorInput>;
-  pictures?: Maybe<ContentfulAssetFilterListInput>;
-  twitter?: Maybe<StringQueryOperatorInput>;
-  message?: Maybe<ContentfulPlaceMessageRichTextNodeFilterInput>;
-  official?: Maybe<BooleanQueryOperatorInput>;
   childContentfulPlaceDescriptionTextNode?: Maybe<
     ContentfulPlaceDescriptionTextNodeFilterInput
   >;
@@ -2040,6 +2040,7 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___internal___owner"
   | "place___internal___type"
   | "place___name"
+  | "place___official"
   | "place___location___lon"
   | "place___location___lat"
   | "place___address"
@@ -2047,6 +2048,106 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___closed_on"
   | "place___business_hours"
   | "place___website"
+  | "place___twitter"
+  | "place___pictures"
+  | "place___pictures___id"
+  | "place___pictures___parent___id"
+  | "place___pictures___parent___children"
+  | "place___pictures___children"
+  | "place___pictures___children___id"
+  | "place___pictures___children___children"
+  | "place___pictures___internal___content"
+  | "place___pictures___internal___contentDigest"
+  | "place___pictures___internal___description"
+  | "place___pictures___internal___fieldOwners"
+  | "place___pictures___internal___ignoreType"
+  | "place___pictures___internal___mediaType"
+  | "place___pictures___internal___owner"
+  | "place___pictures___internal___type"
+  | "place___pictures___contentful_id"
+  | "place___pictures___file___url"
+  | "place___pictures___file___fileName"
+  | "place___pictures___file___contentType"
+  | "place___pictures___title"
+  | "place___pictures___description"
+  | "place___pictures___node_locale"
+  | "place___pictures___localFile___sourceInstanceName"
+  | "place___pictures___localFile___absolutePath"
+  | "place___pictures___localFile___relativePath"
+  | "place___pictures___localFile___extension"
+  | "place___pictures___localFile___size"
+  | "place___pictures___localFile___prettySize"
+  | "place___pictures___localFile___modifiedTime"
+  | "place___pictures___localFile___accessTime"
+  | "place___pictures___localFile___changeTime"
+  | "place___pictures___localFile___birthTime"
+  | "place___pictures___localFile___root"
+  | "place___pictures___localFile___dir"
+  | "place___pictures___localFile___base"
+  | "place___pictures___localFile___ext"
+  | "place___pictures___localFile___name"
+  | "place___pictures___localFile___relativeDirectory"
+  | "place___pictures___localFile___dev"
+  | "place___pictures___localFile___mode"
+  | "place___pictures___localFile___nlink"
+  | "place___pictures___localFile___uid"
+  | "place___pictures___localFile___gid"
+  | "place___pictures___localFile___rdev"
+  | "place___pictures___localFile___ino"
+  | "place___pictures___localFile___atimeMs"
+  | "place___pictures___localFile___mtimeMs"
+  | "place___pictures___localFile___ctimeMs"
+  | "place___pictures___localFile___atime"
+  | "place___pictures___localFile___mtime"
+  | "place___pictures___localFile___ctime"
+  | "place___pictures___localFile___birthtime"
+  | "place___pictures___localFile___birthtimeMs"
+  | "place___pictures___localFile___blksize"
+  | "place___pictures___localFile___blocks"
+  | "place___pictures___localFile___url"
+  | "place___pictures___localFile___localURL"
+  | "place___pictures___localFile___id"
+  | "place___pictures___localFile___children"
+  | "place___pictures___fixed___base64"
+  | "place___pictures___fixed___tracedSVG"
+  | "place___pictures___fixed___aspectRatio"
+  | "place___pictures___fixed___width"
+  | "place___pictures___fixed___height"
+  | "place___pictures___fixed___src"
+  | "place___pictures___fixed___srcSet"
+  | "place___pictures___fixed___srcWebp"
+  | "place___pictures___fixed___srcSetWebp"
+  | "place___pictures___resolutions___base64"
+  | "place___pictures___resolutions___tracedSVG"
+  | "place___pictures___resolutions___aspectRatio"
+  | "place___pictures___resolutions___width"
+  | "place___pictures___resolutions___height"
+  | "place___pictures___resolutions___src"
+  | "place___pictures___resolutions___srcSet"
+  | "place___pictures___resolutions___srcWebp"
+  | "place___pictures___resolutions___srcSetWebp"
+  | "place___pictures___fluid___base64"
+  | "place___pictures___fluid___tracedSVG"
+  | "place___pictures___fluid___aspectRatio"
+  | "place___pictures___fluid___src"
+  | "place___pictures___fluid___srcSet"
+  | "place___pictures___fluid___srcWebp"
+  | "place___pictures___fluid___srcSetWebp"
+  | "place___pictures___fluid___sizes"
+  | "place___pictures___sizes___base64"
+  | "place___pictures___sizes___tracedSVG"
+  | "place___pictures___sizes___aspectRatio"
+  | "place___pictures___sizes___src"
+  | "place___pictures___sizes___srcSet"
+  | "place___pictures___sizes___srcWebp"
+  | "place___pictures___sizes___srcSetWebp"
+  | "place___pictures___sizes___sizes"
+  | "place___pictures___resize___base64"
+  | "place___pictures___resize___tracedSVG"
+  | "place___pictures___resize___src"
+  | "place___pictures___resize___width"
+  | "place___pictures___resize___height"
+  | "place___pictures___resize___aspectRatio"
   | "place___menu"
   | "place___menu___id"
   | "place___menu___parent___id"
@@ -2167,11 +2268,14 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___tags___place___id"
   | "place___tags___place___children"
   | "place___tags___place___name"
+  | "place___tags___place___official"
   | "place___tags___place___address"
   | "place___tags___place___tel"
   | "place___tags___place___closed_on"
   | "place___tags___place___business_hours"
   | "place___tags___place___website"
+  | "place___tags___place___twitter"
+  | "place___tags___place___pictures"
   | "place___tags___place___menu"
   | "place___tags___place___tags"
   | "place___tags___place___spaceId"
@@ -2180,9 +2284,6 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___tags___place___updatedAt"
   | "place___tags___place___node_locale"
   | "place___tags___place___facebook"
-  | "place___tags___place___pictures"
-  | "place___tags___place___twitter"
-  | "place___tags___place___official"
   | "place___tags___spaceId"
   | "place___tags___contentful_id"
   | "place___tags___createdAt"
@@ -2204,113 +2305,6 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___description___internal___owner"
   | "place___description___internal___type"
   | "place___description___description"
-  | "place___spaceId"
-  | "place___contentful_id"
-  | "place___createdAt"
-  | "place___updatedAt"
-  | "place___sys___revision"
-  | "place___node_locale"
-  | "place___facebook"
-  | "place___pictures"
-  | "place___pictures___id"
-  | "place___pictures___parent___id"
-  | "place___pictures___parent___children"
-  | "place___pictures___children"
-  | "place___pictures___children___id"
-  | "place___pictures___children___children"
-  | "place___pictures___internal___content"
-  | "place___pictures___internal___contentDigest"
-  | "place___pictures___internal___description"
-  | "place___pictures___internal___fieldOwners"
-  | "place___pictures___internal___ignoreType"
-  | "place___pictures___internal___mediaType"
-  | "place___pictures___internal___owner"
-  | "place___pictures___internal___type"
-  | "place___pictures___contentful_id"
-  | "place___pictures___file___url"
-  | "place___pictures___file___fileName"
-  | "place___pictures___file___contentType"
-  | "place___pictures___title"
-  | "place___pictures___description"
-  | "place___pictures___node_locale"
-  | "place___pictures___localFile___sourceInstanceName"
-  | "place___pictures___localFile___absolutePath"
-  | "place___pictures___localFile___relativePath"
-  | "place___pictures___localFile___extension"
-  | "place___pictures___localFile___size"
-  | "place___pictures___localFile___prettySize"
-  | "place___pictures___localFile___modifiedTime"
-  | "place___pictures___localFile___accessTime"
-  | "place___pictures___localFile___changeTime"
-  | "place___pictures___localFile___birthTime"
-  | "place___pictures___localFile___root"
-  | "place___pictures___localFile___dir"
-  | "place___pictures___localFile___base"
-  | "place___pictures___localFile___ext"
-  | "place___pictures___localFile___name"
-  | "place___pictures___localFile___relativeDirectory"
-  | "place___pictures___localFile___dev"
-  | "place___pictures___localFile___mode"
-  | "place___pictures___localFile___nlink"
-  | "place___pictures___localFile___uid"
-  | "place___pictures___localFile___gid"
-  | "place___pictures___localFile___rdev"
-  | "place___pictures___localFile___ino"
-  | "place___pictures___localFile___atimeMs"
-  | "place___pictures___localFile___mtimeMs"
-  | "place___pictures___localFile___ctimeMs"
-  | "place___pictures___localFile___atime"
-  | "place___pictures___localFile___mtime"
-  | "place___pictures___localFile___ctime"
-  | "place___pictures___localFile___birthtime"
-  | "place___pictures___localFile___birthtimeMs"
-  | "place___pictures___localFile___blksize"
-  | "place___pictures___localFile___blocks"
-  | "place___pictures___localFile___url"
-  | "place___pictures___localFile___localURL"
-  | "place___pictures___localFile___id"
-  | "place___pictures___localFile___children"
-  | "place___pictures___fixed___base64"
-  | "place___pictures___fixed___tracedSVG"
-  | "place___pictures___fixed___aspectRatio"
-  | "place___pictures___fixed___width"
-  | "place___pictures___fixed___height"
-  | "place___pictures___fixed___src"
-  | "place___pictures___fixed___srcSet"
-  | "place___pictures___fixed___srcWebp"
-  | "place___pictures___fixed___srcSetWebp"
-  | "place___pictures___resolutions___base64"
-  | "place___pictures___resolutions___tracedSVG"
-  | "place___pictures___resolutions___aspectRatio"
-  | "place___pictures___resolutions___width"
-  | "place___pictures___resolutions___height"
-  | "place___pictures___resolutions___src"
-  | "place___pictures___resolutions___srcSet"
-  | "place___pictures___resolutions___srcWebp"
-  | "place___pictures___resolutions___srcSetWebp"
-  | "place___pictures___fluid___base64"
-  | "place___pictures___fluid___tracedSVG"
-  | "place___pictures___fluid___aspectRatio"
-  | "place___pictures___fluid___src"
-  | "place___pictures___fluid___srcSet"
-  | "place___pictures___fluid___srcWebp"
-  | "place___pictures___fluid___srcSetWebp"
-  | "place___pictures___fluid___sizes"
-  | "place___pictures___sizes___base64"
-  | "place___pictures___sizes___tracedSVG"
-  | "place___pictures___sizes___aspectRatio"
-  | "place___pictures___sizes___src"
-  | "place___pictures___sizes___srcSet"
-  | "place___pictures___sizes___srcWebp"
-  | "place___pictures___sizes___srcSetWebp"
-  | "place___pictures___sizes___sizes"
-  | "place___pictures___resize___base64"
-  | "place___pictures___resize___tracedSVG"
-  | "place___pictures___resize___src"
-  | "place___pictures___resize___width"
-  | "place___pictures___resize___height"
-  | "place___pictures___resize___aspectRatio"
-  | "place___twitter"
   | "place___message___id"
   | "place___message___parent___id"
   | "place___message___parent___children"
@@ -2331,7 +2325,13 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___message___nodeType"
   | "place___message___message"
   | "place___message___json"
-  | "place___official"
+  | "place___spaceId"
+  | "place___contentful_id"
+  | "place___createdAt"
+  | "place___updatedAt"
+  | "place___sys___revision"
+  | "place___node_locale"
+  | "place___facebook"
   | "place___childContentfulPlaceDescriptionTextNode___id"
   | "place___childContentfulPlaceDescriptionTextNode___parent___id"
   | "place___childContentfulPlaceDescriptionTextNode___parent___children"
@@ -3927,15 +3927,15 @@ export type QuerySitePageArgs = {
   internalComponentName?: Maybe<StringQueryOperatorInput>;
   componentChunkName?: Maybe<StringQueryOperatorInput>;
   matchPath?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>;
   context?: Maybe<SitePageContextFilterInput>;
   pluginCreator?: Maybe<SitePluginFilterInput>;
   pluginCreatorId?: Maybe<StringQueryOperatorInput>;
   componentPath?: Maybe<StringQueryOperatorInput>;
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
 };
 
 export type QueryAllSitePageArgs = {
@@ -3950,6 +3950,8 @@ export type QuerySiteArgs = {
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
   port?: Maybe<IntQueryOperatorInput>;
   host?: Maybe<StringQueryOperatorInput>;
+  polyfill?: Maybe<BooleanQueryOperatorInput>;
+  pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -4070,15 +4072,19 @@ export type QueryContentfulPlaceArgs = {
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   name?: Maybe<StringQueryOperatorInput>;
+  official?: Maybe<BooleanQueryOperatorInput>;
   location?: Maybe<ContentfulPlaceLocationFilterInput>;
   address?: Maybe<StringQueryOperatorInput>;
   tel?: Maybe<StringQueryOperatorInput>;
   closed_on?: Maybe<StringQueryOperatorInput>;
   business_hours?: Maybe<StringQueryOperatorInput>;
   website?: Maybe<StringQueryOperatorInput>;
+  twitter?: Maybe<StringQueryOperatorInput>;
+  pictures?: Maybe<ContentfulAssetFilterListInput>;
   menu?: Maybe<ContentfulAssetFilterListInput>;
   tags?: Maybe<ContentfulPlaceTagFilterListInput>;
   description?: Maybe<ContentfulPlaceDescriptionTextNodeFilterInput>;
+  message?: Maybe<ContentfulPlaceMessageRichTextNodeFilterInput>;
   spaceId?: Maybe<StringQueryOperatorInput>;
   contentful_id?: Maybe<StringQueryOperatorInput>;
   createdAt?: Maybe<DateQueryOperatorInput>;
@@ -4086,10 +4092,6 @@ export type QueryContentfulPlaceArgs = {
   sys?: Maybe<ContentfulPlaceSysFilterInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
   facebook?: Maybe<StringQueryOperatorInput>;
-  pictures?: Maybe<ContentfulAssetFilterListInput>;
-  twitter?: Maybe<StringQueryOperatorInput>;
-  message?: Maybe<ContentfulPlaceMessageRichTextNodeFilterInput>;
-  official?: Maybe<BooleanQueryOperatorInput>;
   childContentfulPlaceDescriptionTextNode?: Maybe<
     ContentfulPlaceDescriptionTextNodeFilterInput
   >;
@@ -4147,6 +4149,7 @@ export type QuerySitePluginArgs = {
   version?: Maybe<StringQueryOperatorInput>;
   pluginOptions?: Maybe<SitePluginPluginOptionsFilterInput>;
   nodeAPIs?: Maybe<StringQueryOperatorInput>;
+  browserAPIs?: Maybe<StringQueryOperatorInput>;
   ssrAPIs?: Maybe<StringQueryOperatorInput>;
   pluginFilepath?: Maybe<StringQueryOperatorInput>;
   packageJson?: Maybe<SitePluginPackageJsonFilterInput>;
@@ -4164,6 +4167,8 @@ export type Site = Node & {
   siteMetadata?: Maybe<SiteSiteMetadata>;
   port?: Maybe<Scalars["Int"]>;
   host?: Maybe<Scalars["String"]>;
+  polyfill?: Maybe<Scalars["Boolean"]>;
+  pathPrefix?: Maybe<Scalars["String"]>;
   id: Scalars["ID"];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -4362,6 +4367,8 @@ export type SiteFieldsEnum =
   | "siteMetadata___keywords"
   | "port"
   | "host"
+  | "polyfill"
+  | "pathPrefix"
   | "id"
   | "parent___id"
   | "parent___parent___id"
@@ -4454,6 +4461,8 @@ export type SiteFilterInput = {
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
   port?: Maybe<IntQueryOperatorInput>;
   host?: Maybe<StringQueryOperatorInput>;
+  polyfill?: Maybe<BooleanQueryOperatorInput>;
+  pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -4475,15 +4484,15 @@ export type SitePage = Node & {
   internalComponentName: Scalars["String"];
   componentChunkName: Scalars["String"];
   matchPath?: Maybe<Scalars["String"]>;
+  id: Scalars["ID"];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
   isCreatedByStatefulCreatePages?: Maybe<Scalars["Boolean"]>;
   context?: Maybe<SitePageContext>;
   pluginCreator?: Maybe<SitePlugin>;
   pluginCreatorId?: Maybe<Scalars["String"]>;
   componentPath?: Maybe<Scalars["String"]>;
-  id: Scalars["ID"];
-  parent?: Maybe<Node>;
-  children: Array<Node>;
-  internal: Internal;
 };
 
 export type SitePageConnection = {
@@ -4541,84 +4550,6 @@ export type SitePageFieldsEnum =
   | "internalComponentName"
   | "componentChunkName"
   | "matchPath"
-  | "isCreatedByStatefulCreatePages"
-  | "context___pageNumber"
-  | "context___humanPageNumber"
-  | "context___skip"
-  | "context___limit"
-  | "context___numberOfPages"
-  | "context___previousPagePath"
-  | "context___nextPagePath"
-  | "context___id"
-  | "context___slug"
-  | "pluginCreator___id"
-  | "pluginCreator___parent___id"
-  | "pluginCreator___parent___parent___id"
-  | "pluginCreator___parent___parent___children"
-  | "pluginCreator___parent___children"
-  | "pluginCreator___parent___children___id"
-  | "pluginCreator___parent___children___children"
-  | "pluginCreator___parent___internal___content"
-  | "pluginCreator___parent___internal___contentDigest"
-  | "pluginCreator___parent___internal___description"
-  | "pluginCreator___parent___internal___fieldOwners"
-  | "pluginCreator___parent___internal___ignoreType"
-  | "pluginCreator___parent___internal___mediaType"
-  | "pluginCreator___parent___internal___owner"
-  | "pluginCreator___parent___internal___type"
-  | "pluginCreator___children"
-  | "pluginCreator___children___id"
-  | "pluginCreator___children___parent___id"
-  | "pluginCreator___children___parent___children"
-  | "pluginCreator___children___children"
-  | "pluginCreator___children___children___id"
-  | "pluginCreator___children___children___children"
-  | "pluginCreator___children___internal___content"
-  | "pluginCreator___children___internal___contentDigest"
-  | "pluginCreator___children___internal___description"
-  | "pluginCreator___children___internal___fieldOwners"
-  | "pluginCreator___children___internal___ignoreType"
-  | "pluginCreator___children___internal___mediaType"
-  | "pluginCreator___children___internal___owner"
-  | "pluginCreator___children___internal___type"
-  | "pluginCreator___internal___content"
-  | "pluginCreator___internal___contentDigest"
-  | "pluginCreator___internal___description"
-  | "pluginCreator___internal___fieldOwners"
-  | "pluginCreator___internal___ignoreType"
-  | "pluginCreator___internal___mediaType"
-  | "pluginCreator___internal___owner"
-  | "pluginCreator___internal___type"
-  | "pluginCreator___resolve"
-  | "pluginCreator___name"
-  | "pluginCreator___version"
-  | "pluginCreator___pluginOptions___fileName"
-  | "pluginCreator___pluginOptions___spaceId"
-  | "pluginCreator___pluginOptions___accessToken"
-  | "pluginCreator___pluginOptions___downloadLocal"
-  | "pluginCreator___pluginOptions___path"
-  | "pluginCreator___pluginOptions___pathCheck"
-  | "pluginCreator___nodeAPIs"
-  | "pluginCreator___ssrAPIs"
-  | "pluginCreator___pluginFilepath"
-  | "pluginCreator___packageJson___name"
-  | "pluginCreator___packageJson___description"
-  | "pluginCreator___packageJson___version"
-  | "pluginCreator___packageJson___main"
-  | "pluginCreator___packageJson___author"
-  | "pluginCreator___packageJson___license"
-  | "pluginCreator___packageJson___dependencies"
-  | "pluginCreator___packageJson___dependencies___name"
-  | "pluginCreator___packageJson___dependencies___version"
-  | "pluginCreator___packageJson___devDependencies"
-  | "pluginCreator___packageJson___devDependencies___name"
-  | "pluginCreator___packageJson___devDependencies___version"
-  | "pluginCreator___packageJson___peerDependencies"
-  | "pluginCreator___packageJson___peerDependencies___name"
-  | "pluginCreator___packageJson___peerDependencies___version"
-  | "pluginCreator___packageJson___keywords"
-  | "pluginCreatorId"
-  | "componentPath"
   | "id"
   | "parent___id"
   | "parent___parent___id"
@@ -4704,7 +4635,94 @@ export type SitePageFieldsEnum =
   | "internal___ignoreType"
   | "internal___mediaType"
   | "internal___owner"
-  | "internal___type";
+  | "internal___type"
+  | "isCreatedByStatefulCreatePages"
+  | "context___pageNumber"
+  | "context___humanPageNumber"
+  | "context___skip"
+  | "context___limit"
+  | "context___numberOfPages"
+  | "context___previousPagePath"
+  | "context___nextPagePath"
+  | "context___id"
+  | "context___slug"
+  | "pluginCreator___id"
+  | "pluginCreator___parent___id"
+  | "pluginCreator___parent___parent___id"
+  | "pluginCreator___parent___parent___children"
+  | "pluginCreator___parent___children"
+  | "pluginCreator___parent___children___id"
+  | "pluginCreator___parent___children___children"
+  | "pluginCreator___parent___internal___content"
+  | "pluginCreator___parent___internal___contentDigest"
+  | "pluginCreator___parent___internal___description"
+  | "pluginCreator___parent___internal___fieldOwners"
+  | "pluginCreator___parent___internal___ignoreType"
+  | "pluginCreator___parent___internal___mediaType"
+  | "pluginCreator___parent___internal___owner"
+  | "pluginCreator___parent___internal___type"
+  | "pluginCreator___children"
+  | "pluginCreator___children___id"
+  | "pluginCreator___children___parent___id"
+  | "pluginCreator___children___parent___children"
+  | "pluginCreator___children___children"
+  | "pluginCreator___children___children___id"
+  | "pluginCreator___children___children___children"
+  | "pluginCreator___children___internal___content"
+  | "pluginCreator___children___internal___contentDigest"
+  | "pluginCreator___children___internal___description"
+  | "pluginCreator___children___internal___fieldOwners"
+  | "pluginCreator___children___internal___ignoreType"
+  | "pluginCreator___children___internal___mediaType"
+  | "pluginCreator___children___internal___owner"
+  | "pluginCreator___children___internal___type"
+  | "pluginCreator___internal___content"
+  | "pluginCreator___internal___contentDigest"
+  | "pluginCreator___internal___description"
+  | "pluginCreator___internal___fieldOwners"
+  | "pluginCreator___internal___ignoreType"
+  | "pluginCreator___internal___mediaType"
+  | "pluginCreator___internal___owner"
+  | "pluginCreator___internal___type"
+  | "pluginCreator___resolve"
+  | "pluginCreator___name"
+  | "pluginCreator___version"
+  | "pluginCreator___pluginOptions___fileName"
+  | "pluginCreator___pluginOptions___spaceId"
+  | "pluginCreator___pluginOptions___accessToken"
+  | "pluginCreator___pluginOptions___downloadLocal"
+  | "pluginCreator___pluginOptions___name"
+  | "pluginCreator___pluginOptions___short_name"
+  | "pluginCreator___pluginOptions___lang"
+  | "pluginCreator___pluginOptions___start_url"
+  | "pluginCreator___pluginOptions___background_color"
+  | "pluginCreator___pluginOptions___theme_color"
+  | "pluginCreator___pluginOptions___display"
+  | "pluginCreator___pluginOptions___icon"
+  | "pluginCreator___pluginOptions___path"
+  | "pluginCreator___pluginOptions___pathCheck"
+  | "pluginCreator___nodeAPIs"
+  | "pluginCreator___browserAPIs"
+  | "pluginCreator___ssrAPIs"
+  | "pluginCreator___pluginFilepath"
+  | "pluginCreator___packageJson___name"
+  | "pluginCreator___packageJson___description"
+  | "pluginCreator___packageJson___version"
+  | "pluginCreator___packageJson___main"
+  | "pluginCreator___packageJson___author"
+  | "pluginCreator___packageJson___license"
+  | "pluginCreator___packageJson___dependencies"
+  | "pluginCreator___packageJson___dependencies___name"
+  | "pluginCreator___packageJson___dependencies___version"
+  | "pluginCreator___packageJson___devDependencies"
+  | "pluginCreator___packageJson___devDependencies___name"
+  | "pluginCreator___packageJson___devDependencies___version"
+  | "pluginCreator___packageJson___peerDependencies"
+  | "pluginCreator___packageJson___peerDependencies___name"
+  | "pluginCreator___packageJson___peerDependencies___version"
+  | "pluginCreator___packageJson___keywords"
+  | "pluginCreatorId"
+  | "componentPath";
 
 export type SitePageFilterInput = {
   path?: Maybe<StringQueryOperatorInput>;
@@ -4712,15 +4730,15 @@ export type SitePageFilterInput = {
   internalComponentName?: Maybe<StringQueryOperatorInput>;
   componentChunkName?: Maybe<StringQueryOperatorInput>;
   matchPath?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>;
   context?: Maybe<SitePageContextFilterInput>;
   pluginCreator?: Maybe<SitePluginFilterInput>;
   pluginCreatorId?: Maybe<StringQueryOperatorInput>;
   componentPath?: Maybe<StringQueryOperatorInput>;
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
 };
 
 export type SitePageGroupConnection = {
@@ -4747,6 +4765,7 @@ export type SitePlugin = Node & {
   version?: Maybe<Scalars["String"]>;
   pluginOptions?: Maybe<SitePluginPluginOptions>;
   nodeAPIs?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  browserAPIs?: Maybe<Array<Maybe<Scalars["String"]>>>;
   ssrAPIs?: Maybe<Array<Maybe<Scalars["String"]>>>;
   pluginFilepath?: Maybe<Scalars["String"]>;
   packageJson?: Maybe<SitePluginPackageJson>;
@@ -4871,9 +4890,18 @@ export type SitePluginFieldsEnum =
   | "pluginOptions___spaceId"
   | "pluginOptions___accessToken"
   | "pluginOptions___downloadLocal"
+  | "pluginOptions___name"
+  | "pluginOptions___short_name"
+  | "pluginOptions___lang"
+  | "pluginOptions___start_url"
+  | "pluginOptions___background_color"
+  | "pluginOptions___theme_color"
+  | "pluginOptions___display"
+  | "pluginOptions___icon"
   | "pluginOptions___path"
   | "pluginOptions___pathCheck"
   | "nodeAPIs"
+  | "browserAPIs"
   | "ssrAPIs"
   | "pluginFilepath"
   | "packageJson___name"
@@ -4903,6 +4931,7 @@ export type SitePluginFilterInput = {
   version?: Maybe<StringQueryOperatorInput>;
   pluginOptions?: Maybe<SitePluginPluginOptionsFilterInput>;
   nodeAPIs?: Maybe<StringQueryOperatorInput>;
+  browserAPIs?: Maybe<StringQueryOperatorInput>;
   ssrAPIs?: Maybe<StringQueryOperatorInput>;
   pluginFilepath?: Maybe<StringQueryOperatorInput>;
   packageJson?: Maybe<SitePluginPackageJsonFilterInput>;
@@ -4992,6 +5021,14 @@ export type SitePluginPluginOptions = {
   spaceId?: Maybe<Scalars["String"]>;
   accessToken?: Maybe<Scalars["String"]>;
   downloadLocal?: Maybe<Scalars["Boolean"]>;
+  name?: Maybe<Scalars["String"]>;
+  short_name?: Maybe<Scalars["String"]>;
+  lang?: Maybe<Scalars["String"]>;
+  start_url?: Maybe<Scalars["String"]>;
+  background_color?: Maybe<Scalars["String"]>;
+  theme_color?: Maybe<Scalars["String"]>;
+  display?: Maybe<Scalars["String"]>;
+  icon?: Maybe<Scalars["String"]>;
   path?: Maybe<Scalars["String"]>;
   pathCheck?: Maybe<Scalars["Boolean"]>;
 };
@@ -5001,6 +5038,14 @@ export type SitePluginPluginOptionsFilterInput = {
   spaceId?: Maybe<StringQueryOperatorInput>;
   accessToken?: Maybe<StringQueryOperatorInput>;
   downloadLocal?: Maybe<BooleanQueryOperatorInput>;
+  name?: Maybe<StringQueryOperatorInput>;
+  short_name?: Maybe<StringQueryOperatorInput>;
+  lang?: Maybe<StringQueryOperatorInput>;
+  start_url?: Maybe<StringQueryOperatorInput>;
+  background_color?: Maybe<StringQueryOperatorInput>;
+  theme_color?: Maybe<StringQueryOperatorInput>;
+  display?: Maybe<StringQueryOperatorInput>;
+  icon?: Maybe<StringQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
 };
