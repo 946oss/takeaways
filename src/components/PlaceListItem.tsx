@@ -109,11 +109,18 @@ export default ({ place }) => (
       )}
     >
       <div
-        css={mq({
-          width: ["100%", 320]
-        })}
+        css={css(
+          css`
+            img {
+              max-width: 100%;
+            }
+          `,
+          mq({
+            width: ["100%", 320]
+          })
+        )}
       >
-        {place.pictures && (
+        {place.pictures ? (
           <Carousel
             autoPlay
             interval={3000}
@@ -131,6 +138,8 @@ export default ({ place }) => (
               />
             ))}
           </Carousel>
+        ) : (
+          <img src="/noimage.jpg" alt="No Image" />
         )}
       </div>
       <div
