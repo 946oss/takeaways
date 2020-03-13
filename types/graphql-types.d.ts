@@ -4360,6 +4360,7 @@ export type SiteEdge = {
 export type SiteFieldsEnum =
   | "buildTime"
   | "siteMetadata___name"
+  | "siteMetadata___siteUrl"
   | "siteMetadata___title"
   | "siteMetadata___description"
   | "siteMetadata___keywords"
@@ -5019,6 +5020,7 @@ export type SitePluginSortInput = {
 
 export type SiteSiteMetadata = {
   name?: Maybe<Scalars["String"]>;
+  siteUrl?: Maybe<Scalars["String"]>;
   title?: Maybe<Scalars["String"]>;
   description?: Maybe<Scalars["String"]>;
   keywords?: Maybe<Array<Maybe<Scalars["String"]>>>;
@@ -5026,6 +5028,7 @@ export type SiteSiteMetadata = {
 
 export type SiteSiteMetadataFilterInput = {
   name?: Maybe<StringQueryOperatorInput>;
+  siteUrl?: Maybe<StringQueryOperatorInput>;
   title?: Maybe<StringQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
   keywords?: Maybe<StringQueryOperatorInput>;
@@ -5052,7 +5055,10 @@ export type Unnamed_1_QueryVariables = {};
 export type Unnamed_1_Query = {
   site: Maybe<{
     siteMetadata: Maybe<
-      Pick<SiteSiteMetadata, "title" | "description" | "name" | "keywords">
+      Pick<
+        SiteSiteMetadata,
+        "title" | "siteUrl" | "description" | "name" | "keywords"
+      >
     >;
   }>;
 };

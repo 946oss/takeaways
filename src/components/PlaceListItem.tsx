@@ -122,9 +122,13 @@ export default ({ place }) => (
             showStatus={false}
           >
             {place.pictures.map(pic => (
-              <div key={pic.id}>
-                <Img fixed={pic.localFile.childImageSharp.fixed} />
-              </div>
+              <Img
+                key={pic.id}
+                fixed={pic.localFile.childImageSharp.fixed}
+                style={{
+                  position: "static"
+                }}
+              />
             ))}
           </Carousel>
         )}

@@ -114,6 +114,7 @@ export default ({ data, pageContext }) => {
             options={{ size: "large" }}
           />
         </div>
+        <p>掲載希望のご連絡は、ページ下部の連絡先よりお願いします。</p>
       </article>
 
       <section>

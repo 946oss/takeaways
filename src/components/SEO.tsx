@@ -23,6 +23,7 @@ const SEO = ({
         site {
           siteMetadata {
             title
+            siteUrl
             description
             name
             keywords
@@ -54,6 +55,10 @@ const SEO = ({
         {
           property: `og:description`,
           content: metaDescription
+        },
+        {
+          property: `og:image`,
+          content: `${site.siteMetadata.siteUrl}/square.png`
         },
         {
           property: `og:site_name`,
