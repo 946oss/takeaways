@@ -16,6 +16,18 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { Global, css } from "@emotion/core";
 import Layout from "../components/Layout";
+import {
+  EmailShareButton,
+  EmailIcon,
+  FacebookShareButton,
+  FacebookIcon,
+  LineShareButton,
+  LineIcon,
+  PocketShareButton,
+  PocketIcon,
+  TwitterShareButton,
+  TwitterIcon
+} from "react-share";
 
 const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
   c0,0,0.1,0.1,0.1,0.2c0.2,0.3,0.4,0.6,0.7,0.9c2.6,3.1,7.4,7.6,7.4,7.6s4.8-4.5,7.4-7.5c0.2-0.3,0.5-0.6,0.7-0.9
@@ -30,6 +42,8 @@ export default ({ data }) => {
     longitude: place.location.lon,
     zoom: 14
   });
+
+  const url = `${data.site.siteMetadata.siteUrl}/places/${place.id}`;
 
   return (
     <Layout>
@@ -164,6 +178,34 @@ export default ({ data }) => {
             {documentToReactComponents(place.message.json)}
           </div>
         )}
+
+        <div
+          css={css`
+            display: flex;
+            justify-content: space-evenly;
+            margin: 1em auto;
+            max-width: 320px;
+          `}
+        >
+          <FacebookShareButton url={url} hashtag={`#${place.name}`}>
+            <FacebookIcon round={true} size={32} />
+          </FacebookShareButton>
+          <TwitterShareButton
+            url={url}
+            hashtags={["釧路お持ち帰りごはん", place.name.replace(/\s+/g, "_")]}
+          >
+            <TwitterIcon round={true} size={32} />
+          </TwitterShareButton>
+          <LineShareButton url={url}>
+            <LineIcon round={true} size={32} />
+          </LineShareButton>
+          <PocketShareButton url={url}>
+            <PocketIcon round={true} size={32} />
+          </PocketShareButton>
+          <EmailShareButton url={url} body={`${place.name}`} separator={"\n"}>
+            <EmailIcon round={true} size={32} />
+          </EmailShareButton>
+        </div>
 
         <h2>メニュー</h2>
 
@@ -315,6 +357,7 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+        siteUrl
       }
     }
     contentfulPlace(id: { eq: $id }) {
