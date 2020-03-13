@@ -6280,10 +6280,10 @@ gatsby-plugin-emotion@^4.1.24:
     "@babel/runtime" "^7.7.6"
     "@emotion/babel-preset-css-prop" "^10.0.23"
 
-gatsby-plugin-graphql-codegen@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-graphql-codegen/-/gatsby-plugin-graphql-codegen-2.4.0.tgz#7e57c74e8fc3ddff3dbc69adcbe13075988ab068"
-  integrity sha512-jl8U3JZC2QILnVLCXhC9ouviX2DkhCCD5S6ZhHXPObVat63rWsQSTzbvKLIFok+H7WvvjCiwpmLKdb57GlTtqg==
+gatsby-plugin-graphql-codegen@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-graphql-codegen/-/gatsby-plugin-graphql-codegen-2.5.0.tgz#b174210504902c27ce0deb7860bbcbb87a1e3b2a"
+  integrity sha512-JdESUjUFmiSnzsAlCJslDZq/s3VhU6eSKwItInx2az6EIQrb/By3Ep9OsFe8Zs4SEpAn7Nob1fedTg5HDM3cQw==
   dependencies:
     "@graphql-codegen/core" "^1.12.2"
     "@graphql-codegen/typescript" "^1.12.2"
