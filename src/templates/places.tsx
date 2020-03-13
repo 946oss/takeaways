@@ -187,7 +187,7 @@ export default ({ data }) => {
             max-width: 320px;
           `}
         >
-          <FacebookShareButton url={url} hashtag={`#${place.name}`}>
+          <FacebookShareButton url={url} hashtag="#釧路お持ち帰りごはん">
             <FacebookIcon round={true} size={32} />
           </FacebookShareButton>
           <TwitterShareButton
