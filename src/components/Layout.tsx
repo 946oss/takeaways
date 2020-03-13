@@ -20,6 +20,10 @@ export default ({ children }) => (
         a {
           color: #e50914;
         }
+
+        img {
+          max-width: 100%;
+        }
       `}
     />
     <Header />
@@ -52,8 +56,8 @@ export default ({ children }) => (
           }
         `}
       >
-        <Link to="/">一覧を見る</Link>
         <Link to="/map/">地図から探す</Link>
+        <Link to="/all/">一覧を見る</Link>
       </nav>
 
       {children}

@@ -14,6 +14,12 @@ module.exports = {
     `gatsby-plugin-emotion`,
     `gatsby-plugin-typescript`,
     {
+      resolve: `gatsby-plugin-react-helmet-canonical-urls`,
+      options: {
+        siteUrl: process.env.URL || ""
+      }
+    },
+    {
       resolve: "gatsby-plugin-graphql-codegen",
       options: {
         fileName: `types/graphql-types.d.ts`

@@ -7,7 +7,6 @@ import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { css } from "@emotion/core";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from "react-responsive-carousel";
 import { mq } from "../responsive";
 
 export default ({ place }) => (
@@ -109,35 +108,21 @@ export default ({ place }) => (
       )}
     >
       <div
-        css={css(
-          css`
-            img {
-              max-width: 100%;
-            }
-          `,
-          mq({
-            width: ["100%", 320]
-          })
-        )}
+        css={mq({
+          width: ["100%", 320]
+        })}
       >
         {place.pictures ? (
-          <Carousel
-            autoPlay
-            interval={3000}
-            infiniteLoop
-            showThumbs={false}
-            showStatus={false}
-          >
-            {place.pictures.map(pic => (
+          place.pictures
+            .slice(0, 1)
+            .map(pic => (
               <Img
                 key={pic.id}
                 fixed={pic.localFile.childImageSharp.fixed}
-                style={{
-                  position: "static"
-                }}
+                style={{ width: "100%" }}
+                imgStyle={{ width: "100%" }}
               />
-            ))}
-          </Carousel>
+            ))
         ) : (
           <img src="/noimage.jpg" alt="No Image" />
         )}

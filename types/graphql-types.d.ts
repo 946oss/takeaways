@@ -4687,6 +4687,7 @@ export type SitePageFieldsEnum =
   | "pluginCreator___resolve"
   | "pluginCreator___name"
   | "pluginCreator___version"
+  | "pluginCreator___pluginOptions___siteUrl"
   | "pluginCreator___pluginOptions___fileName"
   | "pluginCreator___pluginOptions___spaceId"
   | "pluginCreator___pluginOptions___accessToken"
@@ -4886,6 +4887,7 @@ export type SitePluginFieldsEnum =
   | "resolve"
   | "name"
   | "version"
+  | "pluginOptions___siteUrl"
   | "pluginOptions___fileName"
   | "pluginOptions___spaceId"
   | "pluginOptions___accessToken"
@@ -5017,6 +5019,7 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 };
 
 export type SitePluginPluginOptions = {
+  siteUrl?: Maybe<Scalars["String"]>;
   fileName?: Maybe<Scalars["String"]>;
   spaceId?: Maybe<Scalars["String"]>;
   accessToken?: Maybe<Scalars["String"]>;
@@ -5034,6 +5037,7 @@ export type SitePluginPluginOptions = {
 };
 
 export type SitePluginPluginOptionsFilterInput = {
+  siteUrl?: Maybe<StringQueryOperatorInput>;
   fileName?: Maybe<StringQueryOperatorInput>;
   spaceId?: Maybe<StringQueryOperatorInput>;
   accessToken?: Maybe<StringQueryOperatorInput>;
@@ -5098,6 +5102,18 @@ export type Unnamed_1_Query = {
       >
     >;
   }>;
+};
+
+export type AllQueryQueryVariables = {};
+
+export type AllQueryQuery = {
+  allContentfulPlace: {
+    edges: Array<{
+      node: Pick<ContentfulPlace, "id" | "address" | "name"> & {
+        tags: Maybe<Array<Maybe<Pick<ContentfulPlaceTag, "slug" | "name">>>>;
+      };
+    }>;
+  };
 };
 
 export type MapQueryQueryVariables = {};
