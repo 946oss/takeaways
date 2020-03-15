@@ -55,7 +55,7 @@ export default () => (
             text-decoration: none;
           `}
         >
-          <Logo />
+          <Logo fill="#221f1f" />
         </Link>
       </h1>
     </div>
