@@ -17,8 +17,6 @@ const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,
 
 export default ({ data }) => {
   const [viewport, setViewport] = useState({
-    width: "100%",
-    height: "100vh",
     latitude: 43,
     longitude: 144.3838363,
     zoom: 12
@@ -29,6 +27,9 @@ export default ({ data }) => {
     <Layout>
       <SEO title="地図から探す" />
       <ReactMapGL
+        {...viewport}
+        width="100%"
+        height="80vh"
         onLoad={event => {
           event.target.getStyle().layers.forEach(thisLayer => {
             if (thisLayer.type === "symbol") {
@@ -39,7 +40,6 @@ export default ({ data }) => {
             }
           });
         }}
-        {...viewport}
         onViewportChange={setViewport}
         mapboxApiAccessToken="pk.eyJ1IjoiOTQ2b3NzIiwiYSI6ImNrN2t2dTA4eTAwbjYzbHA4YjdpOGxhbm4ifQ.4BZeulOXSjBeAClmJaM9Ig"
       >

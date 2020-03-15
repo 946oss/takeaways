@@ -36,8 +36,6 @@ const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,
 export default ({ data }) => {
   const place = data.contentfulPlace;
   const [viewport, setViewport] = useState({
-    width: "100%",
-    height: 240,
     latitude: place.location.lat,
     longitude: place.location.lon,
     zoom: 14
@@ -214,7 +212,12 @@ export default ({ data }) => {
             place.menu.map(m => (
               <a href={m.localFile.localURL} key={m.id}>
                 {m.localFile.childImageSharp ? (
-                  <Img fixed={m.localFile.childImageSharp.fixed} />
+                  <Img
+                    css={css`
+                      max-width: 100%;
+                    `}
+                    fixed={m.localFile.childImageSharp.fixed}
+                  />
                 ) : (
                   "開く"
                 )}
@@ -288,6 +291,8 @@ export default ({ data }) => {
 
         <ReactMapGL
           {...viewport}
+          width="100%"
+          height="240px"
           onViewportChange={setViewport}
           mapboxApiAccessToken="pk.eyJ1IjoiOTQ2b3NzIiwiYSI6ImNrN2t2dTA4eTAwbjYzbHA4YjdpOGxhbm4ifQ.4BZeulOXSjBeAClmJaM9Ig"
           onLoad={event => {
