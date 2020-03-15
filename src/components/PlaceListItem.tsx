@@ -1,4 +1,5 @@
 import * as React from "react";
+import { ContentfulPlace } from "../../types/graphql-types";
 import { Link } from "gatsby";
 import Img from "gatsby-image";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
@@ -9,7 +10,9 @@ import { css } from "@emotion/core";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { mq } from "../responsive";
 
-export default ({ place }) => (
+const PlaceListItem: React.FC<{ place: Partial<ContentfulPlace> }> = ({
+  place
+}) => (
   <div
     css={css`
       margin-bottom: 1.5rem;
@@ -124,7 +127,7 @@ export default ({ place }) => (
               />
             ))
         ) : (
-          <img src="/noimage.jpg" alt="No Image" />
+          <img src="/noimage.jpg" alt="" />
         )}
       </div>
       <div
@@ -230,3 +233,5 @@ export default ({ place }) => (
     </div>
   </div>
 );
+
+export default PlaceListItem;

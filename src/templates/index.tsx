@@ -1,4 +1,5 @@
 import * as React from "react";
+import { IndexQuery, SitePageContext } from "../../types/graphql-types";
 import { Link, graphql } from "gatsby";
 import { css } from "@emotion/core";
 import { TwitterHashtagButton } from "react-twitter-embed";
@@ -27,7 +28,10 @@ const borderdTitle = css`
   }
 `;
 
-export default ({ data, pageContext }) => {
+const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
+  data,
+  pageContext
+}) => {
   const tags = data.allContentfulPlaceTag.edges
     .map(e => e.node)
     .sort((a, b) => {
@@ -152,7 +156,7 @@ export default ({ data, pageContext }) => {
 };
 
 export const pageQuery = graphql`
-  query IndexQuery($skip: Int!, $limit: Int!) {
+  query Index($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
@@ -218,3 +222,5 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export default Index;

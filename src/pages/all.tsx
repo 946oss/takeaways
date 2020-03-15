@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import { AllQuery } from "../../types/graphql-types";
 import { Link, graphql } from "gatsby";
 import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import { css } from "@emotion/core";
 
-export default ({ data }) => (
+const All: React.FC<{ data: AllQuery }> = ({ data }) => (
   <Layout>
     <SEO title="店舗一覧" />
 
@@ -53,7 +54,7 @@ export default ({ data }) => (
 );
 
 export const pageQuery = graphql`
-  query AllQuery {
+  query All {
     allContentfulPlace(
       filter: { node_locale: { eq: "ja-JP" } }
       sort: { fields: name, order: ASC }
@@ -72,3 +73,5 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export default All;

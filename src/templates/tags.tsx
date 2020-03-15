@@ -1,11 +1,12 @@
 import * as React from "react";
+import { TagsQuery } from "../../types/graphql-types";
 import { graphql } from "gatsby";
 import { css } from "@emotion/core";
 import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import PlaceListItem from "../components/PlaceListItem";
 
-export default ({ data }) => (
+const Tags: React.FC<{ data: TagsQuery }> = ({ data }) => (
   <Layout>
     <SEO />
     <section>
@@ -41,7 +42,7 @@ export default ({ data }) => (
 );
 
 export const query = graphql`
-  query($slug: String!) {
+  query Tags($slug: String!) {
     site {
       siteMetadata {
         title
@@ -101,3 +102,5 @@ export const query = graphql`
     }
   }
 `;
+
+export default Tags;

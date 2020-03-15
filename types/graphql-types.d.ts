@@ -4689,6 +4689,7 @@ export type SitePageFieldsEnum =
   | "pluginCreator___version"
   | "pluginCreator___pluginOptions___siteUrl"
   | "pluginCreator___pluginOptions___fileName"
+  | "pluginCreator___pluginOptions___documentPaths"
   | "pluginCreator___pluginOptions___spaceId"
   | "pluginCreator___pluginOptions___accessToken"
   | "pluginCreator___pluginOptions___downloadLocal"
@@ -4889,6 +4890,7 @@ export type SitePluginFieldsEnum =
   | "version"
   | "pluginOptions___siteUrl"
   | "pluginOptions___fileName"
+  | "pluginOptions___documentPaths"
   | "pluginOptions___spaceId"
   | "pluginOptions___accessToken"
   | "pluginOptions___downloadLocal"
@@ -5021,6 +5023,7 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 export type SitePluginPluginOptions = {
   siteUrl?: Maybe<Scalars["String"]>;
   fileName?: Maybe<Scalars["String"]>;
+  documentPaths?: Maybe<Array<Maybe<Scalars["String"]>>>;
   spaceId?: Maybe<Scalars["String"]>;
   accessToken?: Maybe<Scalars["String"]>;
   downloadLocal?: Maybe<Scalars["Boolean"]>;
@@ -5039,6 +5042,7 @@ export type SitePluginPluginOptions = {
 export type SitePluginPluginOptionsFilterInput = {
   siteUrl?: Maybe<StringQueryOperatorInput>;
   fileName?: Maybe<StringQueryOperatorInput>;
+  documentPaths?: Maybe<StringQueryOperatorInput>;
   spaceId?: Maybe<StringQueryOperatorInput>;
   accessToken?: Maybe<StringQueryOperatorInput>;
   downloadLocal?: Maybe<BooleanQueryOperatorInput>;
@@ -5104,9 +5108,9 @@ export type Unnamed_1_Query = {
   }>;
 };
 
-export type AllQueryQueryVariables = {};
+export type AllQueryVariables = {};
 
-export type AllQueryQuery = {
+export type AllQuery = {
   allContentfulPlace: {
     edges: Array<{
       node: Pick<ContentfulPlace, "id" | "address" | "name"> & {
@@ -5116,9 +5120,9 @@ export type AllQueryQuery = {
   };
 };
 
-export type MapQueryQueryVariables = {};
+export type MapQueryVariables = {};
 
-export type MapQueryQuery = {
+export type MapQuery = {
   site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, "title">> }>;
   allContentfulPlace: {
     edges: Array<{
@@ -5135,12 +5139,12 @@ export type MapQueryQuery = {
   };
 };
 
-export type IndexQueryQueryVariables = {
+export type IndexQueryVariables = {
   skip: Scalars["Int"];
   limit: Scalars["Int"];
 };
 
-export type IndexQueryQuery = {
+export type IndexQuery = {
   site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, "title">> }>;
   allContentfulPlace: Pick<ContentfulPlaceConnection, "totalCount"> & {
     edges: Array<{
@@ -5188,11 +5192,11 @@ export type IndexQueryQuery = {
   };
 };
 
-export type Unnamed_2_QueryVariables = {
+export type PlacesQueryVariables = {
   id: Scalars["String"];
 };
 
-export type Unnamed_2_Query = {
+export type PlacesQuery = {
   site: Maybe<{
     siteMetadata: Maybe<Pick<SiteSiteMetadata, "title" | "siteUrl">>;
   }>;
@@ -5249,11 +5253,11 @@ export type Unnamed_2_Query = {
   >;
 };
 
-export type Unnamed_3_QueryVariables = {
+export type TagsQueryVariables = {
   slug: Scalars["String"];
 };
 
-export type Unnamed_3_Query = {
+export type TagsQuery = {
   site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, "title">> }>;
   contentfulPlaceTag: Maybe<Pick<ContentfulPlaceTag, "name" | "slug">>;
   allContentfulPlace: Pick<ContentfulPlaceConnection, "totalCount"> & {
