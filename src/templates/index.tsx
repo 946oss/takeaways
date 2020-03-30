@@ -34,20 +34,9 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
 }) => {
   const tags = data.allContentfulPlaceTag.edges
     .map(e => e.node)
-    .sort((a, b) => {
-      const ac = a.place ? a.place.length : 0;
-      const bc = b.place ? b.place.length : 0;
-
-      if (ac === bc) {
-        return 0;
-      }
-
-      return ac > bc ? -1 : 1;
-    })
     .filter(node => {
       return node.place && node.place.length > 0;
-    })
-    .slice(0, 7);
+    });
 
   return (
     <Layout>
@@ -78,7 +67,7 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
             <span role="img" aria-label="注目" aria-hidden="true">
               ✨
             </span>{" "}
-            注目
+            ジャンルから
           </p>
           {tags.map(t => (
             <Link to={`/tags/${t.slug}`} key={t.slug}>
@@ -209,7 +198,10 @@ export const pageQuery = graphql`
       }
       totalCount
     }
-    allContentfulPlaceTag(filter: { node_locale: { eq: "ja-JP" } }) {
+    allContentfulPlaceTag(
+      filter: { node_locale: { eq: "ja-JP" } }
+      sort: { fields: name, order: ASC }
+    ) {
       edges {
         node {
           slug

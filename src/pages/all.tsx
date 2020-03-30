@@ -39,7 +39,7 @@ const All: React.FC<{ data: AllQuery }> = ({ data }) => (
           {node.tags && node.tags.length > 0 && (
             <div className="tags">
               {node.tags.map(t => (
-                <span>{t.name}</span>
+                <span key={t.slug}>{t.name}</span>
               ))}
             </div>
           )}

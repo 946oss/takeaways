@@ -147,14 +147,15 @@ const PlaceListItem: React.FC<{ place: Partial<ContentfulPlace> }> = ({
             th {
               box-sizing: border-box;
               font-weight: bold;
-              padding: 0 0.5rem 0.5rem;
-              white-space: nowrap;
               line-height: 1.5;
+              padding: 0 0.5rem 0.5rem;
+              text-align: right;
+              white-space: nowrap;
             }
             td {
               box-sizing: border-box;
-              padding: 0 0.5rem 0.5rem;
               line-height: 1.5;
+              padding: 0 0.5rem 0.5rem;
 
               & .tel {
                 display: inline-block;

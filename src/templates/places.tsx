@@ -3,9 +3,6 @@ import { PlacesQuery } from "../../types/graphql-types";
 import { Link, graphql } from "gatsby";
 import Img from "gatsby-image";
 import SEO from "../components/SEO";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLink } from "@fortawesome/free-solid-svg-icons";
-import { faFacebook, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import ReactMapGL, {
   Marker,
   NavigationControl,
@@ -128,35 +125,6 @@ const Places: React.FC<{ data: PlacesQuery }> = ({ data }) => {
         </div>
         <div
           css={css`
-            margin: 0.5rem 0;
-            text-align: center;
-            a {
-              margin-left: 0.5rem;
-
-              &:first-of-type {
-                margin-left: 0;
-              }
-            }
-          `}
-        >
-          {place.facebook && (
-            <a href={place.facebook} target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faFacebook} size="lg" />
-            </a>
-          )}
-          {place.twitter && (
-            <a href={place.twitter} target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faTwitter} size="lg" />
-            </a>
-          )}
-          {place.website && (
-            <a href={place.website} target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={faLink} size="lg" />
-            </a>
-          )}
-        </div>
-        <div
-          css={css`
             margin: 0.5em 0 1em;
             text-align: center;
             white-space: pre-line;
@@ -240,11 +208,13 @@ const Places: React.FC<{ data: PlacesQuery }> = ({ data }) => {
               padding: 0 0.5rem 0.5rem;
               white-space: nowrap;
               line-height: 1.5;
+              text-align: right;
             }
             td {
               box-sizing: border-box;
               padding: 0 0.5rem 0.5rem;
               line-height: 1.5;
+              word-break: break-all;
 
               & .tel {
                 display: inline-block;
@@ -287,6 +257,48 @@ const Places: React.FC<{ data: PlacesQuery }> = ({ data }) => {
                   ))}
               </td>
             </tr>
+            {place.facebook && (
+              <tr>
+                <th>Facebook ページ</th>
+                <td>
+                  <a
+                    href={place.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {place.facebook}
+                  </a>
+                </td>
+              </tr>
+            )}
+            {place.twitter && (
+              <tr>
+                <th>Twitter</th>
+                <td>
+                  <a
+                    href={place.twitter}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {place.twitter}
+                  </a>
+                </td>
+              </tr>
+            )}
+            {place.website && (
+              <tr>
+                <th>ウェブサイト</th>
+                <td>
+                  <a
+                    href={place.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {place.website}
+                  </a>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
 
@@ -353,6 +365,21 @@ const Places: React.FC<{ data: PlacesQuery }> = ({ data }) => {
             <ScaleControl />
           </div>
         </ReactMapGL>
+        <p
+          css={css`
+            font-size: 0.9rem;
+            margin: 1rem 0;
+            text-align: right;
+          `}
+        >
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://forms.gle/EkyR4ykrKfswHuFZ6"
+          >
+            掲載情報の訂正リクエスト
+          </a>
+        </p>
       </section>
     </Layout>
   );

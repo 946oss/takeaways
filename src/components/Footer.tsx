@@ -7,7 +7,7 @@ export default () => (
   <div
     css={css`
       background: #221f1f;
-      color: #554e4e;
+      color: #7e7373;
       margin-top: 1.45rem;
       padding: 2rem;
       text-align: center;
