@@ -2033,10 +2033,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-map-gl@^5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@types/react-map-gl/-/react-map-gl-5.2.0.tgz#6fe8223e856b98deb20b0bbf169eb6a2c0b13f5f"
-  integrity sha512-Bb0dKBa45hIIQEmXLnKOQjPu45WkQOKK4Zzp10kbLazlx+ZzlbbSNVBarv5s4iUAXmocdZS4lE9OmYjtmqmicw==
+"@types/react-map-gl@^5.2.1":
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/@types/react-map-gl/-/react-map-gl-5.2.1.tgz#4ca0ce9319b4357eea5917a7a168eed6f84db060"
+  integrity sha512-bG7zLgpB/geHYuiWxcJUg9xPL1M/70pzzG+4OVVIh2mJJp05ll8HGAX8YGDEy26WaLHddfEAFESBkwMbAr/upw==
   dependencies:
     "@types/geojson" "*"
     "@types/mapbox-gl" "*"
