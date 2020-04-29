@@ -46,6 +46,20 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
   return (
     <Layout>
       <SEO />
+      <p
+        css={css`
+          font-size: large;
+          font-weight: bold;
+          text-align: center;
+        `}
+      >
+        <Link to="/tags/gochisotaxiavailable">
+          <img src="/gochitaxi.png" alt="ごちそうタクシー便" />
+        </Link>
+        <a href="https://drive.google.com/open?id=1PEuqIFoykrn4xjtRBrPXJcRJ1xIY8_AY">
+          「ごちそうタクシー便」参加店舗募集中！
+        </a>
+      </p>
       {tags.length > 0 && (
         <div
           css={css`
