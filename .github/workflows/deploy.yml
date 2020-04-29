@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: build
+    name: Build and deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,12 +23,6 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - uses: actions/cache@v1
-        with:
-          path: .cache
-          key: ${{ runner.os }}-gatsby-v2
-          restore-keys: |
-            ${{ runner.os }}-gatsby-v2
       - name: Install Dependencies
         run: yarn install
       - name: Build
@@ -37,21 +31,6 @@ jobs:
           CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
           CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
           URL: ${{ secrets.URL }}
-      - name: Upload Artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: public
-          path: public
-
-  deploy:
-    name: deploy
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download Artifact
-        uses: actions/download-artifact@v1
-        with:
-          name: public
       - name: Push to Netlify
         uses: netlify/actions/cli@master
         env:
