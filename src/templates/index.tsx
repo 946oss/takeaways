@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { IndexQuery, SitePageContext } from "../../types/graphql-types";
 import { Link, graphql } from "gatsby";
 import { css } from "@emotion/core";
@@ -36,7 +36,12 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
     .map(e => e.node)
     .filter(node => {
       return node.place && node.place.length > 0;
+    })
+    .sort((a, b) => {
+      return b.place.length - a.place.length;
     });
+
+  const [expandTags, setExpandTags] = useState(false);
 
   return (
     <Layout>
@@ -69,11 +74,21 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
             </span>{" "}
             ジャンルから
           </p>
-          {tags.map(t => (
+          {tags.slice(0, expandTags ? tags.length : 12).map(t => (
             <Link to={`/tags/${t.slug}`} key={t.slug}>
               {t.name}
             </Link>
           ))}
+          <a
+            css={css`
+              background-color: #e50914;
+              color: #f5f5f1;
+              cursor: pointer;
+            `}
+            onClick={_ => setExpandTags(!expandTags)}
+          >
+            {expandTags ? `省略する` : `すべて見る`}
+          </a>
         </div>
       )}
 

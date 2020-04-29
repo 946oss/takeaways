@@ -686,22 +686,22 @@ export type ContentfulPlace = Node & {
   location?: Maybe<ContentfulPlaceLocation>;
   address?: Maybe<Scalars["String"]>;
   tel?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  closed_on?: Maybe<Array<Maybe<Scalars["String"]>>>;
   business_hours?: Maybe<Scalars["String"]>;
   website?: Maybe<Scalars["String"]>;
   pictures?: Maybe<Array<Maybe<ContentfulAsset>>>;
   menu?: Maybe<Array<Maybe<ContentfulAsset>>>;
   tags?: Maybe<Array<Maybe<ContentfulPlaceTag>>>;
   description?: Maybe<ContentfulPlaceDescriptionTextNode>;
+  message?: Maybe<ContentfulPlaceMessageRichTextNode>;
   spaceId?: Maybe<Scalars["String"]>;
   contentful_id?: Maybe<Scalars["String"]>;
   createdAt?: Maybe<Scalars["Date"]>;
   updatedAt?: Maybe<Scalars["Date"]>;
   sys?: Maybe<ContentfulPlaceSys>;
   node_locale?: Maybe<Scalars["String"]>;
-  closed_on?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  message?: Maybe<ContentfulPlaceMessageRichTextNode>;
-  official?: Maybe<Scalars["Boolean"]>;
   facebook?: Maybe<Scalars["String"]>;
+  official?: Maybe<Scalars["Boolean"]>;
   twitter?: Maybe<Scalars["String"]>;
   childContentfulPlaceDescriptionTextNode?: Maybe<
     ContentfulPlaceDescriptionTextNode
@@ -986,6 +986,7 @@ export type ContentfulPlaceFieldsEnum =
   | "location___lat"
   | "address"
   | "tel"
+  | "closed_on"
   | "business_hours"
   | "website"
   | "pictures"
@@ -1325,6 +1326,7 @@ export type ContentfulPlaceFieldsEnum =
   | "tags___place___location___lat"
   | "tags___place___address"
   | "tags___place___tel"
+  | "tags___place___closed_on"
   | "tags___place___business_hours"
   | "tags___place___website"
   | "tags___place___pictures"
@@ -1355,21 +1357,20 @@ export type ContentfulPlaceFieldsEnum =
   | "tags___place___description___id"
   | "tags___place___description___children"
   | "tags___place___description___description"
-  | "tags___place___spaceId"
-  | "tags___place___contentful_id"
-  | "tags___place___createdAt"
-  | "tags___place___updatedAt"
-  | "tags___place___sys___revision"
-  | "tags___place___node_locale"
-  | "tags___place___closed_on"
   | "tags___place___message___id"
   | "tags___place___message___children"
   | "tags___place___message___content"
   | "tags___place___message___nodeType"
   | "tags___place___message___message"
   | "tags___place___message___json"
-  | "tags___place___official"
+  | "tags___place___spaceId"
+  | "tags___place___contentful_id"
+  | "tags___place___createdAt"
+  | "tags___place___updatedAt"
+  | "tags___place___sys___revision"
+  | "tags___place___node_locale"
   | "tags___place___facebook"
+  | "tags___place___official"
   | "tags___place___twitter"
   | "tags___place___childContentfulPlaceDescriptionTextNode___id"
   | "tags___place___childContentfulPlaceDescriptionTextNode___children"
@@ -1425,17 +1426,6 @@ export type ContentfulPlaceFieldsEnum =
   | "description___internal___owner"
   | "description___internal___type"
   | "description___description"
-  | "spaceId"
-  | "contentful_id"
-  | "createdAt"
-  | "updatedAt"
-  | "sys___revision"
-  | "sys___contentType___sys___type"
-  | "sys___contentType___sys___linkType"
-  | "sys___contentType___sys___id"
-  | "sys___contentType___sys___contentful_id"
-  | "node_locale"
-  | "closed_on"
   | "message___id"
   | "message___parent___id"
   | "message___parent___parent___id"
@@ -1482,8 +1472,18 @@ export type ContentfulPlaceFieldsEnum =
   | "message___nodeType"
   | "message___message"
   | "message___json"
-  | "official"
+  | "spaceId"
+  | "contentful_id"
+  | "createdAt"
+  | "updatedAt"
+  | "sys___revision"
+  | "sys___contentType___sys___type"
+  | "sys___contentType___sys___linkType"
+  | "sys___contentType___sys___id"
+  | "sys___contentType___sys___contentful_id"
+  | "node_locale"
   | "facebook"
+  | "official"
   | "twitter"
   | "childContentfulPlaceDescriptionTextNode___id"
   | "childContentfulPlaceDescriptionTextNode___parent___id"
@@ -1580,22 +1580,22 @@ export type ContentfulPlaceFilterInput = {
   location?: Maybe<ContentfulPlaceLocationFilterInput>;
   address?: Maybe<StringQueryOperatorInput>;
   tel?: Maybe<StringQueryOperatorInput>;
+  closed_on?: Maybe<StringQueryOperatorInput>;
   business_hours?: Maybe<StringQueryOperatorInput>;
   website?: Maybe<StringQueryOperatorInput>;
   pictures?: Maybe<ContentfulAssetFilterListInput>;
   menu?: Maybe<ContentfulAssetFilterListInput>;
   tags?: Maybe<ContentfulPlaceTagFilterListInput>;
   description?: Maybe<ContentfulPlaceDescriptionTextNodeFilterInput>;
+  message?: Maybe<ContentfulPlaceMessageRichTextNodeFilterInput>;
   spaceId?: Maybe<StringQueryOperatorInput>;
   contentful_id?: Maybe<StringQueryOperatorInput>;
   createdAt?: Maybe<DateQueryOperatorInput>;
   updatedAt?: Maybe<DateQueryOperatorInput>;
   sys?: Maybe<ContentfulPlaceSysFilterInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
-  closed_on?: Maybe<StringQueryOperatorInput>;
-  message?: Maybe<ContentfulPlaceMessageRichTextNodeFilterInput>;
-  official?: Maybe<BooleanQueryOperatorInput>;
   facebook?: Maybe<StringQueryOperatorInput>;
+  official?: Maybe<BooleanQueryOperatorInput>;
   twitter?: Maybe<StringQueryOperatorInput>;
   childContentfulPlaceDescriptionTextNode?: Maybe<
     ContentfulPlaceDescriptionTextNodeFilterInput
@@ -2044,6 +2044,7 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___location___lat"
   | "place___address"
   | "place___tel"
+  | "place___closed_on"
   | "place___business_hours"
   | "place___website"
   | "place___pictures"
@@ -2267,6 +2268,7 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___tags___place___name"
   | "place___tags___place___address"
   | "place___tags___place___tel"
+  | "place___tags___place___closed_on"
   | "place___tags___place___business_hours"
   | "place___tags___place___website"
   | "place___tags___place___pictures"
@@ -2277,9 +2279,8 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___tags___place___createdAt"
   | "place___tags___place___updatedAt"
   | "place___tags___place___node_locale"
-  | "place___tags___place___closed_on"
-  | "place___tags___place___official"
   | "place___tags___place___facebook"
+  | "place___tags___place___official"
   | "place___tags___place___twitter"
   | "place___tags___spaceId"
   | "place___tags___contentful_id"
@@ -2302,13 +2303,6 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___description___internal___owner"
   | "place___description___internal___type"
   | "place___description___description"
-  | "place___spaceId"
-  | "place___contentful_id"
-  | "place___createdAt"
-  | "place___updatedAt"
-  | "place___sys___revision"
-  | "place___node_locale"
-  | "place___closed_on"
   | "place___message___id"
   | "place___message___parent___id"
   | "place___message___parent___children"
@@ -2329,8 +2323,14 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___message___nodeType"
   | "place___message___message"
   | "place___message___json"
-  | "place___official"
+  | "place___spaceId"
+  | "place___contentful_id"
+  | "place___createdAt"
+  | "place___updatedAt"
+  | "place___sys___revision"
+  | "place___node_locale"
   | "place___facebook"
+  | "place___official"
   | "place___twitter"
   | "place___childContentfulPlaceDescriptionTextNode___id"
   | "place___childContentfulPlaceDescriptionTextNode___parent___id"
@@ -4075,22 +4075,22 @@ export type QueryContentfulPlaceArgs = {
   location?: Maybe<ContentfulPlaceLocationFilterInput>;
   address?: Maybe<StringQueryOperatorInput>;
   tel?: Maybe<StringQueryOperatorInput>;
+  closed_on?: Maybe<StringQueryOperatorInput>;
   business_hours?: Maybe<StringQueryOperatorInput>;
   website?: Maybe<StringQueryOperatorInput>;
   pictures?: Maybe<ContentfulAssetFilterListInput>;
   menu?: Maybe<ContentfulAssetFilterListInput>;
   tags?: Maybe<ContentfulPlaceTagFilterListInput>;
   description?: Maybe<ContentfulPlaceDescriptionTextNodeFilterInput>;
+  message?: Maybe<ContentfulPlaceMessageRichTextNodeFilterInput>;
   spaceId?: Maybe<StringQueryOperatorInput>;
   contentful_id?: Maybe<StringQueryOperatorInput>;
   createdAt?: Maybe<DateQueryOperatorInput>;
   updatedAt?: Maybe<DateQueryOperatorInput>;
   sys?: Maybe<ContentfulPlaceSysFilterInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
-  closed_on?: Maybe<StringQueryOperatorInput>;
-  message?: Maybe<ContentfulPlaceMessageRichTextNodeFilterInput>;
-  official?: Maybe<BooleanQueryOperatorInput>;
   facebook?: Maybe<StringQueryOperatorInput>;
+  official?: Maybe<BooleanQueryOperatorInput>;
   twitter?: Maybe<StringQueryOperatorInput>;
   childContentfulPlaceDescriptionTextNode?: Maybe<
     ContentfulPlaceDescriptionTextNodeFilterInput
@@ -4365,6 +4365,16 @@ export type SiteFieldsEnum =
   | "siteMetadata___title"
   | "siteMetadata___description"
   | "siteMetadata___keywords"
+  | "siteMetadata___mapBoxAccessToken"
+  | "siteMetadata___defaultMapLocation___latitude"
+  | "siteMetadata___defaultMapLocation___longitude"
+  | "siteMetadata___defaultMapLocation___zoom"
+  | "siteMetadata___coopOrgs"
+  | "siteMetadata___coopOrgs___name"
+  | "siteMetadata___coopOrgs___website"
+  | "siteMetadata___coopOrgs___email"
+  | "siteMetadata___coopOrgs___tel"
+  | "siteMetadata___copyright"
   | "port"
   | "host"
   | "polyfill"
@@ -5069,6 +5079,40 @@ export type SiteSiteMetadata = {
   title?: Maybe<Scalars["String"]>;
   description?: Maybe<Scalars["String"]>;
   keywords?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  mapBoxAccessToken?: Maybe<Scalars["String"]>;
+  defaultMapLocation?: Maybe<SiteSiteMetadataDefaultMapLocation>;
+  coopOrgs?: Maybe<Array<Maybe<SiteSiteMetadataCoopOrgs>>>;
+  copyright?: Maybe<Scalars["String"]>;
+};
+
+export type SiteSiteMetadataCoopOrgs = {
+  name?: Maybe<Scalars["String"]>;
+  website?: Maybe<Scalars["String"]>;
+  email?: Maybe<Scalars["String"]>;
+  tel?: Maybe<Scalars["String"]>;
+};
+
+export type SiteSiteMetadataCoopOrgsFilterInput = {
+  name?: Maybe<StringQueryOperatorInput>;
+  website?: Maybe<StringQueryOperatorInput>;
+  email?: Maybe<StringQueryOperatorInput>;
+  tel?: Maybe<StringQueryOperatorInput>;
+};
+
+export type SiteSiteMetadataCoopOrgsFilterListInput = {
+  elemMatch?: Maybe<SiteSiteMetadataCoopOrgsFilterInput>;
+};
+
+export type SiteSiteMetadataDefaultMapLocation = {
+  latitude?: Maybe<Scalars["Int"]>;
+  longitude?: Maybe<Scalars["Float"]>;
+  zoom?: Maybe<Scalars["Int"]>;
+};
+
+export type SiteSiteMetadataDefaultMapLocationFilterInput = {
+  latitude?: Maybe<IntQueryOperatorInput>;
+  longitude?: Maybe<FloatQueryOperatorInput>;
+  zoom?: Maybe<IntQueryOperatorInput>;
 };
 
 export type SiteSiteMetadataFilterInput = {
@@ -5077,6 +5121,10 @@ export type SiteSiteMetadataFilterInput = {
   title?: Maybe<StringQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
   keywords?: Maybe<StringQueryOperatorInput>;
+  mapBoxAccessToken?: Maybe<StringQueryOperatorInput>;
+  defaultMapLocation?: Maybe<SiteSiteMetadataDefaultMapLocationFilterInput>;
+  coopOrgs?: Maybe<SiteSiteMetadataCoopOrgsFilterListInput>;
+  copyright?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SiteSortInput = {
@@ -5093,6 +5141,27 @@ export type StringQueryOperatorInput = {
   nin?: Maybe<Array<Maybe<Scalars["String"]>>>;
   regex?: Maybe<Scalars["String"]>;
   glob?: Maybe<Scalars["String"]>;
+};
+
+export type FooterQueryVariables = {};
+
+export type FooterQuery = {
+  site: Maybe<{
+    siteMetadata: Maybe<
+      Pick<SiteSiteMetadata, "copyright"> & {
+        coopOrgs: Maybe<
+          Array<
+            Maybe<
+              Pick<
+                SiteSiteMetadataCoopOrgs,
+                "name" | "website" | "email" | "tel"
+              >
+            >
+          >
+        >;
+      }
+    >;
+  }>;
 };
 
 export type Unnamed_1_QueryVariables = {};
@@ -5123,7 +5192,18 @@ export type AllQuery = {
 export type MapQueryVariables = {};
 
 export type MapQuery = {
-  site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, "title">> }>;
+  site: Maybe<{
+    siteMetadata: Maybe<
+      Pick<SiteSiteMetadata, "title"> & {
+        defaultMapLocation: Maybe<
+          Pick<
+            SiteSiteMetadataDefaultMapLocation,
+            "latitude" | "longitude" | "zoom"
+          >
+        >;
+      }
+    >;
+  }>;
   allContentfulPlace: {
     edges: Array<{
       node: Pick<

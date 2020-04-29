@@ -29,7 +29,7 @@ const PlaceListItem: React.FC<{ place: Partial<ContentfulPlace> }> = ({
             border-radius: 3em;
             border: 1px solid #e50914;
             display: inline-block;
-            margin-left: 0.5em;
+            margin: 0.5em 0 0 0.5em;
             padding: 0.3em 0.7em;
             text-decoration: none;
 
