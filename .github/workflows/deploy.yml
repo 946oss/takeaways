@@ -26,9 +26,9 @@ jobs:
       - uses: actions/cache@v1
         with:
           path: .cache
-          key: ${{ runner.os }}-gatsby
+          key: ${{ runner.os }}-gatsby-v2
           restore-keys: |
-            ${{ runner.os }}-gatsby
+            ${{ runner.os }}-gatsby-v2
       - name: Install Dependencies
         run: yarn install
       - name: Build
