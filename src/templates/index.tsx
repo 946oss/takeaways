@@ -6,6 +6,7 @@ import { TwitterHashtagButton } from "react-twitter-embed";
 import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import PlaceListItem from "../components/PlaceListItem";
+import GochitaxiBanner from "../components/gochitaxi-banner.svg";
 
 const borderdTitle = css`
   font-size: 0.8rem;
@@ -54,7 +55,7 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
         `}
       >
         <Link to="/tags/gochisotaxiavailable">
-          <img src="/gochitaxi.png" alt="ごちそうタクシー便" />
+          <GochitaxiBanner />
         </Link>
         <a href="https://drive.google.com/open?id=1PEuqIFoykrn4xjtRBrPXJcRJ1xIY8_AY">
           「ごちそうタクシー便」参加店舗募集中！

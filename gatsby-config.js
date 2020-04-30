@@ -73,6 +73,7 @@ module.exports = {
         icon: `static/logo.png`
       }
     },
+    `gatsby-plugin-react-svg`,
     `gatsby-plugin-offline`
   ]
 };
