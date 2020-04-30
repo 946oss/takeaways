@@ -39,7 +39,7 @@ export default () => {
             css`
               display: flex;
               flex-wrap: wrap;
-              justify-content: space-between;
+              justify-content: space-around;
               line-height: 1.5;
               margin: 0 auto;
               max-width: 960px;
@@ -55,6 +55,7 @@ export default () => {
         >
           {site.siteMetadata.coopOrgs.map(org => (
             <div
+              key={org.name}
               css={css`
                 padding: 1rem;
               `}

@@ -27,7 +27,8 @@ module.exports = {
         tel: `0154-31-0923`
       }
     ],
-    copyright: `お持ち帰りごはん 釧路版 by 釧路OSSコミュニティ`
+    copyright: `お持ち帰りごはん 釧路版 by 釧路OSSコミュニティ`,
+    pickUpTags: [`gochisotaxiavailable`]
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

@@ -21,10 +21,63 @@ const Map: React.FC<{ data: MapQuery }> = ({ data }) => {
     data.site.siteMetadata.defaultMapLocation
   );
   const [popup, setPopup] = useState(null);
+  const [selectedPickupTags, setSelectedPickupTags] = useState([]);
+
+  const placeNodes = data.allContentfulPlace.edges.map(({ node }) => node);
+  const places =
+    selectedPickupTags.length > 0
+      ? placeNodes.filter(place =>
+          selectedPickupTags
+            .map(t => place.tags && place.tags.map(tag => tag.slug).includes(t))
+            .every(find => find)
+        )
+      : placeNodes;
+
+  const pickupTags = data.allContentfulPlaceTag.edges
+    .map(({ node }) => node)
+    .filter(tag => data.site.siteMetadata.pickUpTags.includes(tag.slug));
 
   return (
     <Layout>
       <SEO title="地図から探す" />
+      {pickupTags.length > 0 && (
+        <div
+          css={css`
+            margin: 1em 0;
+            display: flex;
+            justify-content: space-evenly;
+            font-weight: bold;
+            flex-wrap: wrap;
+
+            input {
+              margin-right: 0.5em;
+            }
+          `}
+        >
+          {pickupTags.map(tag => (
+            <label key={tag.slug}>
+              <input
+                type="checkbox"
+                value={tag.slug}
+                checked={selectedPickupTags.includes(tag.slug)}
+                onChange={event =>
+                  selectedPickupTags.includes(event.target.value)
+                    ? setSelectedPickupTags(
+                        selectedPickupTags.filter(
+                          tag => tag !== event.target.value
+                        )
+                      )
+                    : setSelectedPickupTags([
+                        ...selectedPickupTags,
+                        event.target.value
+                      ])
+                }
+              />
+              {tag.name}
+            </label>
+          ))}
+        </div>
+      )}
       <ReactMapGL
         {...viewport}
         width="100%"
@@ -42,11 +95,11 @@ const Map: React.FC<{ data: MapQuery }> = ({ data }) => {
         onViewportChange={setViewport}
         mapboxApiAccessToken="pk.eyJ1IjoiOTQ2b3NzIiwiYSI6ImNrN2t2dTA4eTAwbjYzbHA4YjdpOGxhbm4ifQ.4BZeulOXSjBeAClmJaM9Ig"
       >
-        {data.allContentfulPlace.edges.map(({ node }) => (
+        {places.map(place => (
           <Marker
-            key={node.id}
-            longitude={node.location.lon}
-            latitude={node.location.lat}
+            key={place.id}
+            longitude={place.location.lon}
+            latitude={place.location.lat}
           >
             <svg
               height="20"
@@ -57,7 +110,7 @@ const Map: React.FC<{ data: MapQuery }> = ({ data }) => {
                 stroke: "none",
                 transform: `translate(${-20 / 2}px,${-20}px)`
               }}
-              onClick={() => setPopup(node)}
+              onClick={() => setPopup(place)}
             >
               <path d={ICON} />
             </svg>
@@ -127,6 +180,18 @@ export const pageQuery = graphql`
           longitude
           zoom
         }
+        pickUpTags
+      }
+    }
+    allContentfulPlaceTag(
+      filter: { node_locale: { eq: "ja-JP" } }
+      sort: { fields: name, order: ASC }
+    ) {
+      edges {
+        node {
+          slug
+          name
+        }
       }
     }
     allContentfulPlace(
@@ -145,6 +210,9 @@ export const pageQuery = graphql`
           location {
             lat
             lon
+          }
+          tags {
+            slug
           }
         }
       }
