@@ -5,7 +5,7 @@ import { css } from "@emotion/core";
 import { TwitterHashtagButton } from "react-twitter-embed";
 import SEO from "../components/SEO";
 import Layout from "../components/Layout";
-import PlaceListItem from "../components/PlaceListItem";
+import PlaceList from "../components/PlaceList";
 import GochitaxiBanner from "../components/gochitaxi-banner.svg";
 
 const borderdTitle = css`
@@ -47,66 +47,6 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
   return (
     <Layout>
       <SEO />
-      <p
-        css={css`
-          font-size: large;
-          font-weight: bold;
-          text-align: center;
-        `}
-      >
-        <Link to="/tags/gochisotaxiavailable">
-          <GochitaxiBanner />
-        </Link>
-        <a href="https://drive.google.com/open?id=1PEuqIFoykrn4xjtRBrPXJcRJ1xIY8_AY">
-          「ごちそうタクシー便」参加店舗募集中！
-        </a>
-      </p>
-      {tags.length > 0 && (
-        <div
-          css={css`
-            font-size: 0.7rem;
-            font-weight: bold;
-            padding: 1rem 0;
-            margin: 1rem 0;
-
-            a {
-              border-radius: 3em;
-              border: 1px solid #e50914;
-              display: inline-block;
-              margin: 0.5em 0 0 0.5em;
-              padding: 0.3em 0.7em;
-              text-decoration: none;
-            }
-          `}
-        >
-          <p
-            css={css`
-              margin-bottom: 0.5rem;
-            `}
-          >
-            <span role="img" aria-label="注目" aria-hidden="true">
-              ✨
-            </span>{" "}
-            ジャンルから
-          </p>
-          {tags.slice(0, expandTags ? tags.length : 12).map(t => (
-            <Link to={`/tags/${t.slug}`} key={t.slug}>
-              {t.name}
-            </Link>
-          ))}
-          <a
-            css={css`
-              background-color: #e50914;
-              color: #f5f5f1;
-              cursor: pointer;
-            `}
-            onClick={_ => setExpandTags(!expandTags)}
-          >
-            {expandTags ? `省略する` : `すべて見る`}
-          </a>
-        </div>
-      )}
-
       <article
         css={css`
           margin: 1rem 0;
@@ -119,7 +59,16 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
         `}
       >
         <h1 css={borderdTitle}>About</h1>
-        <p>釧路地方でテイクアウトを行っているお店を紹介しています。</p>
+        <p>釧路・根室管内の飲食店のテイクアウト情報を紹介しています。</p>
+        <p
+          css={css`
+            font-weight: bold;
+          `}
+        >
+          ※
+          「ごちそうタクシー便」に対応していない店舗情報も掲載されています。ご注意ください。
+          ※
+        </p>
         <p>
           感想や、オススメ情報など{" "}
           <a href="https://twitter.com/search/?q=%23釧路お持ち帰りごはん">
@@ -139,36 +88,80 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
         </div>
       </article>
 
-      <section>
-        <h1 css={borderdTitle}>最近の更新</h1>
-        {data.allContentfulPlace.edges.map(({ node }) => (
-          <PlaceListItem key={node.id} place={node} />
-        ))}
-
-        <div
+      <section
+        css={css`
+          font-size: large;
+          font-weight: bold;
+          text-align: center;
+          max-width: 640px;
+          margin: 0 auto;
+        `}
+      >
+        <Link
+          to="/tags/gochisotaxiavailable"
           css={css`
-            display: flex;
-            justify-content: space-between;
+            color: #221f1f;
+          `}
+        >
+          <GochitaxiBanner />
+        </Link>
+        <a href="https://drive.google.com/open?id=1PEuqIFoykrn4xjtRBrPXJcRJ1xIY8_AY">
+          「ごちそうタクシー便」参加店舗募集中！
+        </a>
+      </section>
+
+      {tags.length > 0 && (
+        <nav
+          css={css`
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 1rem 0;
+            margin: 1rem 0;
+
             a {
-              display: inline-block;
               border-radius: 3em;
-              background: #e50914;
-              color: #f5f5f1;
-              padding: 0.5em 2em;
+              border: 1px solid #e50914;
+              display: inline-block;
+              margin: 0.5em 0 0 0.5em;
+              padding: 0.3em 0.7em;
               text-decoration: none;
-              font-size: 1.2rem;
             }
           `}
         >
-          {pageContext.previousPagePath ? (
-            <Link to={pageContext.previousPagePath}>&laquo;</Link>
-          ) : (
-            <span></span>
-          )}
-          {pageContext.nextPagePath && (
-            <Link to={pageContext.nextPagePath}>&raquo;</Link>
-          )}
-        </div>
+          <header
+            css={css`
+              margin-bottom: 0.5rem;
+            `}
+          >
+            <span role="img" aria-label="注目" aria-hidden="true">
+              ✨
+            </span>{" "}
+            ジャンルから
+          </header>
+          {tags.slice(0, expandTags ? tags.length : 12).map(t => (
+            <Link to={`/tags/${t.slug}`} key={t.slug}>
+              {t.name}
+            </Link>
+          ))}
+          <a
+            css={css`
+              background-color: #e50914;
+              color: #f5f5f1;
+              cursor: pointer;
+            `}
+            onClick={_ => setExpandTags(!expandTags)}
+          >
+            {expandTags ? `省略する` : `すべて見る`}
+          </a>
+        </nav>
+      )}
+
+      <section>
+        <h1 css={borderdTitle}>最近の更新</h1>
+        <PlaceList
+          places={data.allContentfulPlace.edges.map(({ node }) => node)}
+          pageContext={pageContext}
+        />
       </section>
     </Layout>
   );
@@ -190,35 +183,20 @@ export const pageQuery = graphql`
       edges {
         node {
           id
-          official
           address
           closed_on
           business_hours
-          facebook
-          twitter
-          website
           name
-          description {
-            description
-          }
-          tel
-          location {
-            lat
-            lon
-          }
           pictures {
             id
             title
             localFile {
               childImageSharp {
-                fixed(width: 320, height: 320, cropFocus: CENTER) {
-                  ...GatsbyImageSharpFixed
+                fixed(width: 440, height: 308, cropFocus: CENTER) {
+                  ...GatsbyImageSharpFixed_withWebp_tracedSVG
                 }
               }
             }
-          }
-          message {
-            json
           }
           tags {
             slug

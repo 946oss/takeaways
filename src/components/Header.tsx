@@ -13,7 +13,7 @@ export default () => (
     <div
       css={css`
         margin: 0 auto;
-        max-width: 960px;
+        max-width: 1300px;
         padding: 1.45rem 1.0875rem;
         position: relative;
       `}

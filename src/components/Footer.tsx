@@ -4,7 +4,6 @@ import { FooterQuery } from "../../types/graphql-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { css } from "@emotion/core";
-import { mq } from "../responsive";
 
 export default () => {
   const { site }: FooterQuery = useStaticQuery(graphql`
@@ -35,28 +34,25 @@ export default () => {
     >
       {site.siteMetadata.coopOrgs.length && (
         <div
-          css={css(
-            css`
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: space-around;
-              line-height: 1.5;
-              margin: 0 auto;
-              max-width: 960px;
+          css={css`
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            line-height: 1.5;
+            margin: 0 auto;
+            max-width: 1300px;
 
-              & a {
-                color: inherit;
-              }
-            `,
-            mq({
-              flexDirection: ["column", "row"]
-            })
-          )}
+            & a {
+              color: inherit;
+            }
+          `}
         >
           {site.siteMetadata.coopOrgs.map(org => (
             <div
               key={org.name}
               css={css`
+                flex: 1;
+                min-width: 320px;
                 padding: 1rem;
               `}
             >
@@ -91,7 +87,7 @@ export default () => {
         css={css`
           font-weight: bold;
           margin: 0 auto;
-          max-width: 960px;
+          max-width: 1300px;
           padding: 1.45rem 1.0875rem 0.5rem;
         `}
       >

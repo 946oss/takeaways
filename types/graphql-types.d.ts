@@ -249,6 +249,7 @@ export type ContentfulAssetFieldsEnum =
   | "localFile___blksize"
   | "localFile___blocks"
   | "localFile___url"
+  | "localFile___publicURL"
   | "localFile___localURL"
   | "localFile___childImageSharp___fixed___base64"
   | "localFile___childImageSharp___fixed___tracedSVG"
@@ -689,6 +690,7 @@ export type ContentfulPlace = Node & {
   tel?: Maybe<Array<Maybe<Scalars["String"]>>>;
   closed_on?: Maybe<Array<Maybe<Scalars["String"]>>>;
   business_hours?: Maybe<Scalars["String"]>;
+  website?: Maybe<Scalars["String"]>;
   facebook?: Maybe<Scalars["String"]>;
   pictures?: Maybe<Array<Maybe<ContentfulAsset>>>;
   menu?: Maybe<Array<Maybe<ContentfulAsset>>>;
@@ -701,7 +703,6 @@ export type ContentfulPlace = Node & {
   updatedAt?: Maybe<Scalars["Date"]>;
   sys?: Maybe<ContentfulPlaceSys>;
   node_locale?: Maybe<Scalars["String"]>;
-  website?: Maybe<Scalars["String"]>;
   twitter?: Maybe<Scalars["String"]>;
   childContentfulPlaceDescriptionTextNode?: Maybe<
     ContentfulPlaceDescriptionTextNode
@@ -989,6 +990,7 @@ export type ContentfulPlaceFieldsEnum =
   | "tel"
   | "closed_on"
   | "business_hours"
+  | "website"
   | "facebook"
   | "pictures"
   | "pictures___id"
@@ -1071,6 +1073,7 @@ export type ContentfulPlaceFieldsEnum =
   | "pictures___localFile___blksize"
   | "pictures___localFile___blocks"
   | "pictures___localFile___url"
+  | "pictures___localFile___publicURL"
   | "pictures___localFile___localURL"
   | "pictures___localFile___childImageSharp___id"
   | "pictures___localFile___childImageSharp___children"
@@ -1209,6 +1212,7 @@ export type ContentfulPlaceFieldsEnum =
   | "menu___localFile___blksize"
   | "menu___localFile___blocks"
   | "menu___localFile___url"
+  | "menu___localFile___publicURL"
   | "menu___localFile___localURL"
   | "menu___localFile___childImageSharp___id"
   | "menu___localFile___childImageSharp___children"
@@ -1330,6 +1334,7 @@ export type ContentfulPlaceFieldsEnum =
   | "tags___place___tel"
   | "tags___place___closed_on"
   | "tags___place___business_hours"
+  | "tags___place___website"
   | "tags___place___facebook"
   | "tags___place___pictures"
   | "tags___place___pictures___id"
@@ -1371,7 +1376,6 @@ export type ContentfulPlaceFieldsEnum =
   | "tags___place___updatedAt"
   | "tags___place___sys___revision"
   | "tags___place___node_locale"
-  | "tags___place___website"
   | "tags___place___twitter"
   | "tags___place___childContentfulPlaceDescriptionTextNode___id"
   | "tags___place___childContentfulPlaceDescriptionTextNode___children"
@@ -1469,6 +1473,7 @@ export type ContentfulPlaceFieldsEnum =
   | "message___content___content"
   | "message___content___content___value"
   | "message___content___content___nodeType"
+  | "message___content___content___content"
   | "message___content___nodeType"
   | "message___nodeType"
   | "message___message"
@@ -1483,7 +1488,6 @@ export type ContentfulPlaceFieldsEnum =
   | "sys___contentType___sys___id"
   | "sys___contentType___sys___contentful_id"
   | "node_locale"
-  | "website"
   | "twitter"
   | "childContentfulPlaceDescriptionTextNode___id"
   | "childContentfulPlaceDescriptionTextNode___parent___id"
@@ -1566,6 +1570,7 @@ export type ContentfulPlaceFieldsEnum =
   | "childContentfulPlaceMessageRichTextNode___content___content"
   | "childContentfulPlaceMessageRichTextNode___content___content___value"
   | "childContentfulPlaceMessageRichTextNode___content___content___nodeType"
+  | "childContentfulPlaceMessageRichTextNode___content___content___content"
   | "childContentfulPlaceMessageRichTextNode___content___nodeType"
   | "childContentfulPlaceMessageRichTextNode___nodeType"
   | "childContentfulPlaceMessageRichTextNode___message"
@@ -1583,6 +1588,7 @@ export type ContentfulPlaceFilterInput = {
   tel?: Maybe<StringQueryOperatorInput>;
   closed_on?: Maybe<StringQueryOperatorInput>;
   business_hours?: Maybe<StringQueryOperatorInput>;
+  website?: Maybe<StringQueryOperatorInput>;
   facebook?: Maybe<StringQueryOperatorInput>;
   pictures?: Maybe<ContentfulAssetFilterListInput>;
   menu?: Maybe<ContentfulAssetFilterListInput>;
@@ -1595,7 +1601,6 @@ export type ContentfulPlaceFilterInput = {
   updatedAt?: Maybe<DateQueryOperatorInput>;
   sys?: Maybe<ContentfulPlaceSysFilterInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
-  website?: Maybe<StringQueryOperatorInput>;
   twitter?: Maybe<StringQueryOperatorInput>;
   childContentfulPlaceDescriptionTextNode?: Maybe<
     ContentfulPlaceDescriptionTextNodeFilterInput
@@ -1666,13 +1671,45 @@ export type ContentfulPlaceMessageRichTextNodeContent = {
 };
 
 export type ContentfulPlaceMessageRichTextNodeContentContent = {
+  data?: Maybe<ContentfulPlaceMessageRichTextNodeContentContentData>;
+  value?: Maybe<Scalars["String"]>;
+  nodeType?: Maybe<Scalars["String"]>;
+  content?: Maybe<
+    Array<Maybe<ContentfulPlaceMessageRichTextNodeContentContentContent>>
+  >;
+};
+
+export type ContentfulPlaceMessageRichTextNodeContentContentContent = {
   value?: Maybe<Scalars["String"]>;
   nodeType?: Maybe<Scalars["String"]>;
 };
 
-export type ContentfulPlaceMessageRichTextNodeContentContentFilterInput = {
+export type ContentfulPlaceMessageRichTextNodeContentContentContentFilterInput = {
   value?: Maybe<StringQueryOperatorInput>;
   nodeType?: Maybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulPlaceMessageRichTextNodeContentContentContentFilterListInput = {
+  elemMatch?: Maybe<
+    ContentfulPlaceMessageRichTextNodeContentContentContentFilterInput
+  >;
+};
+
+export type ContentfulPlaceMessageRichTextNodeContentContentData = {
+  uri?: Maybe<Scalars["String"]>;
+};
+
+export type ContentfulPlaceMessageRichTextNodeContentContentDataFilterInput = {
+  uri?: Maybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulPlaceMessageRichTextNodeContentContentFilterInput = {
+  data?: Maybe<ContentfulPlaceMessageRichTextNodeContentContentDataFilterInput>;
+  value?: Maybe<StringQueryOperatorInput>;
+  nodeType?: Maybe<StringQueryOperatorInput>;
+  content?: Maybe<
+    ContentfulPlaceMessageRichTextNodeContentContentContentFilterListInput
+  >;
 };
 
 export type ContentfulPlaceMessageRichTextNodeContentContentFilterListInput = {
@@ -1787,8 +1824,12 @@ export type ContentfulPlaceMessageRichTextNodeFieldsEnum =
   | "internal___type"
   | "content"
   | "content___content"
+  | "content___content___data___uri"
   | "content___content___value"
   | "content___content___nodeType"
+  | "content___content___content"
+  | "content___content___content___value"
+  | "content___content___content___nodeType"
   | "content___nodeType"
   | "nodeType"
   | "message"
@@ -2047,6 +2088,7 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___tel"
   | "place___closed_on"
   | "place___business_hours"
+  | "place___website"
   | "place___facebook"
   | "place___pictures"
   | "place___pictures___id"
@@ -2104,6 +2146,7 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___pictures___localFile___blksize"
   | "place___pictures___localFile___blocks"
   | "place___pictures___localFile___url"
+  | "place___pictures___localFile___publicURL"
   | "place___pictures___localFile___localURL"
   | "place___pictures___localFile___id"
   | "place___pictures___localFile___children"
@@ -2203,6 +2246,7 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___menu___localFile___blksize"
   | "place___menu___localFile___blocks"
   | "place___menu___localFile___url"
+  | "place___menu___localFile___publicURL"
   | "place___menu___localFile___localURL"
   | "place___menu___localFile___id"
   | "place___menu___localFile___children"
@@ -2272,6 +2316,7 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___tags___place___tel"
   | "place___tags___place___closed_on"
   | "place___tags___place___business_hours"
+  | "place___tags___place___website"
   | "place___tags___place___facebook"
   | "place___tags___place___pictures"
   | "place___tags___place___menu"
@@ -2281,7 +2326,6 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___tags___place___createdAt"
   | "place___tags___place___updatedAt"
   | "place___tags___place___node_locale"
-  | "place___tags___place___website"
   | "place___tags___place___twitter"
   | "place___tags___spaceId"
   | "place___tags___contentful_id"
@@ -2330,7 +2374,6 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___updatedAt"
   | "place___sys___revision"
   | "place___node_locale"
-  | "place___website"
   | "place___twitter"
   | "place___childContentfulPlaceDescriptionTextNode___id"
   | "place___childContentfulPlaceDescriptionTextNode___parent___id"
@@ -2551,6 +2594,8 @@ export type Directory = Node & {
   ctime: Scalars["Date"];
   birthtime?: Maybe<Scalars["Date"]>;
   birthtimeMs?: Maybe<Scalars["Float"]>;
+  blksize?: Maybe<Scalars["Int"]>;
+  blocks?: Maybe<Scalars["Int"]>;
   id: Scalars["ID"];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -2663,6 +2708,8 @@ export type DirectoryFieldsEnum =
   | "ctime"
   | "birthtime"
   | "birthtimeMs"
+  | "blksize"
+  | "blocks"
   | "id"
   | "parent___id"
   | "parent___parent___id"
@@ -2782,6 +2829,8 @@ export type DirectoryFilterInput = {
   ctime?: Maybe<DateQueryOperatorInput>;
   birthtime?: Maybe<DateQueryOperatorInput>;
   birthtimeMs?: Maybe<FloatQueryOperatorInput>;
+  blksize?: Maybe<IntQueryOperatorInput>;
+  blocks?: Maybe<IntQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -2843,6 +2892,8 @@ export type File = Node & {
   blksize?: Maybe<Scalars["Int"]>;
   blocks?: Maybe<Scalars["Int"]>;
   url?: Maybe<Scalars["String"]>;
+  /** Copy file to static directory and return public url to it */
+  publicURL?: Maybe<Scalars["String"]>;
   /** Copy file to static directory and return public url to it */
   localURL?: Maybe<Scalars["String"]>;
   childImageSharp?: Maybe<ImageSharp>;
@@ -2961,6 +3012,7 @@ export type FileFieldsEnum =
   | "blksize"
   | "blocks"
   | "url"
+  | "publicURL"
   | "localURL"
   | "childImageSharp___fixed___base64"
   | "childImageSharp___fixed___tracedSVG"
@@ -3175,6 +3227,7 @@ export type FileFilterInput = {
   blksize?: Maybe<IntQueryOperatorInput>;
   blocks?: Maybe<IntQueryOperatorInput>;
   url?: Maybe<StringQueryOperatorInput>;
+  publicURL?: Maybe<StringQueryOperatorInput>;
   localURL?: Maybe<StringQueryOperatorInput>;
   childImageSharp?: Maybe<ImageSharpFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -3861,6 +3914,7 @@ export type QueryFileArgs = {
   blksize?: Maybe<IntQueryOperatorInput>;
   blocks?: Maybe<IntQueryOperatorInput>;
   url?: Maybe<StringQueryOperatorInput>;
+  publicURL?: Maybe<StringQueryOperatorInput>;
   localURL?: Maybe<StringQueryOperatorInput>;
   childImageSharp?: Maybe<ImageSharpFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -3908,6 +3962,8 @@ export type QueryDirectoryArgs = {
   ctime?: Maybe<DateQueryOperatorInput>;
   birthtime?: Maybe<DateQueryOperatorInput>;
   birthtimeMs?: Maybe<FloatQueryOperatorInput>;
+  blksize?: Maybe<IntQueryOperatorInput>;
+  blocks?: Maybe<IntQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -3927,15 +3983,15 @@ export type QuerySitePageArgs = {
   internalComponentName?: Maybe<StringQueryOperatorInput>;
   componentChunkName?: Maybe<StringQueryOperatorInput>;
   matchPath?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>;
   context?: Maybe<SitePageContextFilterInput>;
   pluginCreator?: Maybe<SitePluginFilterInput>;
   pluginCreatorId?: Maybe<StringQueryOperatorInput>;
   componentPath?: Maybe<StringQueryOperatorInput>;
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
 };
 
 export type QueryAllSitePageArgs = {
@@ -3950,6 +4006,8 @@ export type QuerySiteArgs = {
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
   port?: Maybe<IntQueryOperatorInput>;
   host?: Maybe<StringQueryOperatorInput>;
+  polyfill?: Maybe<BooleanQueryOperatorInput>;
+  pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -4076,6 +4134,7 @@ export type QueryContentfulPlaceArgs = {
   tel?: Maybe<StringQueryOperatorInput>;
   closed_on?: Maybe<StringQueryOperatorInput>;
   business_hours?: Maybe<StringQueryOperatorInput>;
+  website?: Maybe<StringQueryOperatorInput>;
   facebook?: Maybe<StringQueryOperatorInput>;
   pictures?: Maybe<ContentfulAssetFilterListInput>;
   menu?: Maybe<ContentfulAssetFilterListInput>;
@@ -4088,7 +4147,6 @@ export type QueryContentfulPlaceArgs = {
   updatedAt?: Maybe<DateQueryOperatorInput>;
   sys?: Maybe<ContentfulPlaceSysFilterInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
-  website?: Maybe<StringQueryOperatorInput>;
   twitter?: Maybe<StringQueryOperatorInput>;
   childContentfulPlaceDescriptionTextNode?: Maybe<
     ContentfulPlaceDescriptionTextNodeFilterInput
@@ -4165,6 +4223,8 @@ export type Site = Node & {
   siteMetadata?: Maybe<SiteSiteMetadata>;
   port?: Maybe<Scalars["Int"]>;
   host?: Maybe<Scalars["String"]>;
+  polyfill?: Maybe<Scalars["Boolean"]>;
+  pathPrefix?: Maybe<Scalars["String"]>;
   id: Scalars["ID"];
   parent?: Maybe<Node>;
   children: Array<Node>;
@@ -4374,6 +4434,8 @@ export type SiteFieldsEnum =
   | "siteMetadata___pickUpTags"
   | "port"
   | "host"
+  | "polyfill"
+  | "pathPrefix"
   | "id"
   | "parent___id"
   | "parent___parent___id"
@@ -4466,6 +4528,8 @@ export type SiteFilterInput = {
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
   port?: Maybe<IntQueryOperatorInput>;
   host?: Maybe<StringQueryOperatorInput>;
+  polyfill?: Maybe<BooleanQueryOperatorInput>;
+  pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
   children?: Maybe<NodeFilterListInput>;
@@ -4487,15 +4551,15 @@ export type SitePage = Node & {
   internalComponentName: Scalars["String"];
   componentChunkName: Scalars["String"];
   matchPath?: Maybe<Scalars["String"]>;
+  id: Scalars["ID"];
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
   isCreatedByStatefulCreatePages?: Maybe<Scalars["Boolean"]>;
   context?: Maybe<SitePageContext>;
   pluginCreator?: Maybe<SitePlugin>;
   pluginCreatorId?: Maybe<Scalars["String"]>;
   componentPath?: Maybe<Scalars["String"]>;
-  id: Scalars["ID"];
-  parent?: Maybe<Node>;
-  children: Array<Node>;
-  internal: Internal;
 };
 
 export type SitePageConnection = {
@@ -4553,95 +4617,6 @@ export type SitePageFieldsEnum =
   | "internalComponentName"
   | "componentChunkName"
   | "matchPath"
-  | "isCreatedByStatefulCreatePages"
-  | "context___pageNumber"
-  | "context___humanPageNumber"
-  | "context___skip"
-  | "context___limit"
-  | "context___numberOfPages"
-  | "context___previousPagePath"
-  | "context___nextPagePath"
-  | "context___id"
-  | "context___slug"
-  | "pluginCreator___id"
-  | "pluginCreator___parent___id"
-  | "pluginCreator___parent___parent___id"
-  | "pluginCreator___parent___parent___children"
-  | "pluginCreator___parent___children"
-  | "pluginCreator___parent___children___id"
-  | "pluginCreator___parent___children___children"
-  | "pluginCreator___parent___internal___content"
-  | "pluginCreator___parent___internal___contentDigest"
-  | "pluginCreator___parent___internal___description"
-  | "pluginCreator___parent___internal___fieldOwners"
-  | "pluginCreator___parent___internal___ignoreType"
-  | "pluginCreator___parent___internal___mediaType"
-  | "pluginCreator___parent___internal___owner"
-  | "pluginCreator___parent___internal___type"
-  | "pluginCreator___children"
-  | "pluginCreator___children___id"
-  | "pluginCreator___children___parent___id"
-  | "pluginCreator___children___parent___children"
-  | "pluginCreator___children___children"
-  | "pluginCreator___children___children___id"
-  | "pluginCreator___children___children___children"
-  | "pluginCreator___children___internal___content"
-  | "pluginCreator___children___internal___contentDigest"
-  | "pluginCreator___children___internal___description"
-  | "pluginCreator___children___internal___fieldOwners"
-  | "pluginCreator___children___internal___ignoreType"
-  | "pluginCreator___children___internal___mediaType"
-  | "pluginCreator___children___internal___owner"
-  | "pluginCreator___children___internal___type"
-  | "pluginCreator___internal___content"
-  | "pluginCreator___internal___contentDigest"
-  | "pluginCreator___internal___description"
-  | "pluginCreator___internal___fieldOwners"
-  | "pluginCreator___internal___ignoreType"
-  | "pluginCreator___internal___mediaType"
-  | "pluginCreator___internal___owner"
-  | "pluginCreator___internal___type"
-  | "pluginCreator___resolve"
-  | "pluginCreator___name"
-  | "pluginCreator___version"
-  | "pluginCreator___pluginOptions___siteUrl"
-  | "pluginCreator___pluginOptions___fileName"
-  | "pluginCreator___pluginOptions___documentPaths"
-  | "pluginCreator___pluginOptions___spaceId"
-  | "pluginCreator___pluginOptions___accessToken"
-  | "pluginCreator___pluginOptions___downloadLocal"
-  | "pluginCreator___pluginOptions___name"
-  | "pluginCreator___pluginOptions___short_name"
-  | "pluginCreator___pluginOptions___lang"
-  | "pluginCreator___pluginOptions___start_url"
-  | "pluginCreator___pluginOptions___background_color"
-  | "pluginCreator___pluginOptions___theme_color"
-  | "pluginCreator___pluginOptions___display"
-  | "pluginCreator___pluginOptions___icon"
-  | "pluginCreator___pluginOptions___path"
-  | "pluginCreator___pluginOptions___pathCheck"
-  | "pluginCreator___nodeAPIs"
-  | "pluginCreator___browserAPIs"
-  | "pluginCreator___ssrAPIs"
-  | "pluginCreator___pluginFilepath"
-  | "pluginCreator___packageJson___name"
-  | "pluginCreator___packageJson___description"
-  | "pluginCreator___packageJson___version"
-  | "pluginCreator___packageJson___main"
-  | "pluginCreator___packageJson___author"
-  | "pluginCreator___packageJson___license"
-  | "pluginCreator___packageJson___dependencies"
-  | "pluginCreator___packageJson___dependencies___name"
-  | "pluginCreator___packageJson___dependencies___version"
-  | "pluginCreator___packageJson___devDependencies"
-  | "pluginCreator___packageJson___devDependencies___name"
-  | "pluginCreator___packageJson___devDependencies___version"
-  | "pluginCreator___packageJson___peerDependencies"
-  | "pluginCreator___packageJson___peerDependencies___name"
-  | "pluginCreator___packageJson___peerDependencies___version"
-  | "pluginCreator___packageJson___keywords"
-  | "pluginCreatorId"
-  | "componentPath"
   | "id"
   | "parent___id"
   | "parent___parent___id"
@@ -4727,7 +4702,96 @@ export type SitePageFieldsEnum =
   | "internal___ignoreType"
   | "internal___mediaType"
   | "internal___owner"
-  | "internal___type";
+  | "internal___type"
+  | "isCreatedByStatefulCreatePages"
+  | "context___pageNumber"
+  | "context___humanPageNumber"
+  | "context___skip"
+  | "context___limit"
+  | "context___numberOfPages"
+  | "context___previousPagePath"
+  | "context___nextPagePath"
+  | "context___id"
+  | "context___slug"
+  | "pluginCreator___id"
+  | "pluginCreator___parent___id"
+  | "pluginCreator___parent___parent___id"
+  | "pluginCreator___parent___parent___children"
+  | "pluginCreator___parent___children"
+  | "pluginCreator___parent___children___id"
+  | "pluginCreator___parent___children___children"
+  | "pluginCreator___parent___internal___content"
+  | "pluginCreator___parent___internal___contentDigest"
+  | "pluginCreator___parent___internal___description"
+  | "pluginCreator___parent___internal___fieldOwners"
+  | "pluginCreator___parent___internal___ignoreType"
+  | "pluginCreator___parent___internal___mediaType"
+  | "pluginCreator___parent___internal___owner"
+  | "pluginCreator___parent___internal___type"
+  | "pluginCreator___children"
+  | "pluginCreator___children___id"
+  | "pluginCreator___children___parent___id"
+  | "pluginCreator___children___parent___children"
+  | "pluginCreator___children___children"
+  | "pluginCreator___children___children___id"
+  | "pluginCreator___children___children___children"
+  | "pluginCreator___children___internal___content"
+  | "pluginCreator___children___internal___contentDigest"
+  | "pluginCreator___children___internal___description"
+  | "pluginCreator___children___internal___fieldOwners"
+  | "pluginCreator___children___internal___ignoreType"
+  | "pluginCreator___children___internal___mediaType"
+  | "pluginCreator___children___internal___owner"
+  | "pluginCreator___children___internal___type"
+  | "pluginCreator___internal___content"
+  | "pluginCreator___internal___contentDigest"
+  | "pluginCreator___internal___description"
+  | "pluginCreator___internal___fieldOwners"
+  | "pluginCreator___internal___ignoreType"
+  | "pluginCreator___internal___mediaType"
+  | "pluginCreator___internal___owner"
+  | "pluginCreator___internal___type"
+  | "pluginCreator___resolve"
+  | "pluginCreator___name"
+  | "pluginCreator___version"
+  | "pluginCreator___pluginOptions___name"
+  | "pluginCreator___pluginOptions___path"
+  | "pluginCreator___pluginOptions___siteUrl"
+  | "pluginCreator___pluginOptions___fileName"
+  | "pluginCreator___pluginOptions___documentPaths"
+  | "pluginCreator___pluginOptions___spaceId"
+  | "pluginCreator___pluginOptions___accessToken"
+  | "pluginCreator___pluginOptions___downloadLocal"
+  | "pluginCreator___pluginOptions___short_name"
+  | "pluginCreator___pluginOptions___lang"
+  | "pluginCreator___pluginOptions___start_url"
+  | "pluginCreator___pluginOptions___background_color"
+  | "pluginCreator___pluginOptions___theme_color"
+  | "pluginCreator___pluginOptions___display"
+  | "pluginCreator___pluginOptions___icon"
+  | "pluginCreator___pluginOptions___pathCheck"
+  | "pluginCreator___nodeAPIs"
+  | "pluginCreator___browserAPIs"
+  | "pluginCreator___ssrAPIs"
+  | "pluginCreator___pluginFilepath"
+  | "pluginCreator___packageJson___name"
+  | "pluginCreator___packageJson___description"
+  | "pluginCreator___packageJson___version"
+  | "pluginCreator___packageJson___main"
+  | "pluginCreator___packageJson___author"
+  | "pluginCreator___packageJson___license"
+  | "pluginCreator___packageJson___dependencies"
+  | "pluginCreator___packageJson___dependencies___name"
+  | "pluginCreator___packageJson___dependencies___version"
+  | "pluginCreator___packageJson___devDependencies"
+  | "pluginCreator___packageJson___devDependencies___name"
+  | "pluginCreator___packageJson___devDependencies___version"
+  | "pluginCreator___packageJson___peerDependencies"
+  | "pluginCreator___packageJson___peerDependencies___name"
+  | "pluginCreator___packageJson___peerDependencies___version"
+  | "pluginCreator___packageJson___keywords"
+  | "pluginCreatorId"
+  | "componentPath";
 
 export type SitePageFilterInput = {
   path?: Maybe<StringQueryOperatorInput>;
@@ -4735,15 +4799,15 @@ export type SitePageFilterInput = {
   internalComponentName?: Maybe<StringQueryOperatorInput>;
   componentChunkName?: Maybe<StringQueryOperatorInput>;
   matchPath?: Maybe<StringQueryOperatorInput>;
+  id?: Maybe<StringQueryOperatorInput>;
+  parent?: Maybe<NodeFilterInput>;
+  children?: Maybe<NodeFilterListInput>;
+  internal?: Maybe<InternalFilterInput>;
   isCreatedByStatefulCreatePages?: Maybe<BooleanQueryOperatorInput>;
   context?: Maybe<SitePageContextFilterInput>;
   pluginCreator?: Maybe<SitePluginFilterInput>;
   pluginCreatorId?: Maybe<StringQueryOperatorInput>;
   componentPath?: Maybe<StringQueryOperatorInput>;
-  id?: Maybe<StringQueryOperatorInput>;
-  parent?: Maybe<NodeFilterInput>;
-  children?: Maybe<NodeFilterListInput>;
-  internal?: Maybe<InternalFilterInput>;
 };
 
 export type SitePageGroupConnection = {
@@ -4891,13 +4955,14 @@ export type SitePluginFieldsEnum =
   | "resolve"
   | "name"
   | "version"
+  | "pluginOptions___name"
+  | "pluginOptions___path"
   | "pluginOptions___siteUrl"
   | "pluginOptions___fileName"
   | "pluginOptions___documentPaths"
   | "pluginOptions___spaceId"
   | "pluginOptions___accessToken"
   | "pluginOptions___downloadLocal"
-  | "pluginOptions___name"
   | "pluginOptions___short_name"
   | "pluginOptions___lang"
   | "pluginOptions___start_url"
@@ -4905,7 +4970,6 @@ export type SitePluginFieldsEnum =
   | "pluginOptions___theme_color"
   | "pluginOptions___display"
   | "pluginOptions___icon"
-  | "pluginOptions___path"
   | "pluginOptions___pathCheck"
   | "nodeAPIs"
   | "browserAPIs"
@@ -5024,13 +5088,14 @@ export type SitePluginPackageJsonPeerDependenciesFilterListInput = {
 };
 
 export type SitePluginPluginOptions = {
+  name?: Maybe<Scalars["String"]>;
+  path?: Maybe<Scalars["String"]>;
   siteUrl?: Maybe<Scalars["String"]>;
   fileName?: Maybe<Scalars["String"]>;
   documentPaths?: Maybe<Array<Maybe<Scalars["String"]>>>;
   spaceId?: Maybe<Scalars["String"]>;
   accessToken?: Maybe<Scalars["String"]>;
   downloadLocal?: Maybe<Scalars["Boolean"]>;
-  name?: Maybe<Scalars["String"]>;
   short_name?: Maybe<Scalars["String"]>;
   lang?: Maybe<Scalars["String"]>;
   start_url?: Maybe<Scalars["String"]>;
@@ -5038,18 +5103,18 @@ export type SitePluginPluginOptions = {
   theme_color?: Maybe<Scalars["String"]>;
   display?: Maybe<Scalars["String"]>;
   icon?: Maybe<Scalars["String"]>;
-  path?: Maybe<Scalars["String"]>;
   pathCheck?: Maybe<Scalars["Boolean"]>;
 };
 
 export type SitePluginPluginOptionsFilterInput = {
+  name?: Maybe<StringQueryOperatorInput>;
+  path?: Maybe<StringQueryOperatorInput>;
   siteUrl?: Maybe<StringQueryOperatorInput>;
   fileName?: Maybe<StringQueryOperatorInput>;
   documentPaths?: Maybe<StringQueryOperatorInput>;
   spaceId?: Maybe<StringQueryOperatorInput>;
   accessToken?: Maybe<StringQueryOperatorInput>;
   downloadLocal?: Maybe<BooleanQueryOperatorInput>;
-  name?: Maybe<StringQueryOperatorInput>;
   short_name?: Maybe<StringQueryOperatorInput>;
   lang?: Maybe<StringQueryOperatorInput>;
   start_url?: Maybe<StringQueryOperatorInput>;
@@ -5057,7 +5122,6 @@ export type SitePluginPluginOptionsFilterInput = {
   theme_color?: Maybe<StringQueryOperatorInput>;
   display?: Maybe<StringQueryOperatorInput>;
   icon?: Maybe<StringQueryOperatorInput>;
-  path?: Maybe<StringQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
 };
 
@@ -5159,6 +5223,16 @@ export type FooterQuery = {
   }>;
 };
 
+export type PlaceListQueryVariables = {};
+
+export type PlaceListQuery = {
+  file: Maybe<{
+    childImageSharp: Maybe<{
+      fixed: Maybe<GatsbyImageSharpFixed_WithWebp_TracedSvgFragment>;
+    }>;
+  }>;
+};
+
 export type Unnamed_1_QueryVariables = {};
 
 export type Unnamed_1_Query = {
@@ -5229,35 +5303,23 @@ export type IndexQuery = {
     edges: Array<{
       node: Pick<
         ContentfulPlace,
-        | "id"
-        | "official"
-        | "address"
-        | "closed_on"
-        | "business_hours"
-        | "facebook"
-        | "twitter"
-        | "website"
-        | "name"
-        | "tel"
+        "id" | "address" | "closed_on" | "business_hours" | "name"
       > & {
-        description: Maybe<
-          Pick<ContentfulPlaceDescriptionTextNode, "description">
-        >;
-        location: Maybe<Pick<ContentfulPlaceLocation, "lat" | "lon">>;
         pictures: Maybe<
           Array<
             Maybe<
               Pick<ContentfulAsset, "id" | "title"> & {
                 localFile: Maybe<{
                   childImageSharp: Maybe<{
-                    fixed: Maybe<GatsbyImageSharpFixedFragment>;
+                    fixed: Maybe<
+                      GatsbyImageSharpFixed_WithWebp_TracedSvgFragment
+                    >;
                   }>;
                 }>;
               }
             >
           >
         >;
-        message: Maybe<Pick<ContentfulPlaceMessageRichTextNode, "json">>;
         tags: Maybe<Array<Maybe<Pick<ContentfulPlaceTag, "slug" | "name">>>>;
       };
     }>;
@@ -5343,35 +5405,23 @@ export type TagsQuery = {
     edges: Array<{
       node: Pick<
         ContentfulPlace,
-        | "id"
-        | "official"
-        | "address"
-        | "closed_on"
-        | "business_hours"
-        | "facebook"
-        | "twitter"
-        | "website"
-        | "name"
-        | "tel"
+        "id" | "address" | "closed_on" | "business_hours" | "name"
       > & {
-        description: Maybe<
-          Pick<ContentfulPlaceDescriptionTextNode, "description">
-        >;
-        location: Maybe<Pick<ContentfulPlaceLocation, "lat" | "lon">>;
         pictures: Maybe<
           Array<
             Maybe<
               Pick<ContentfulAsset, "id" | "title"> & {
                 localFile: Maybe<{
                   childImageSharp: Maybe<{
-                    fixed: Maybe<GatsbyImageSharpFixedFragment>;
+                    fixed: Maybe<
+                      GatsbyImageSharpFixed_WithWebp_TracedSvgFragment
+                    >;
                   }>;
                 }>;
               }
             >
           >
         >;
-        message: Maybe<Pick<ContentfulPlaceMessageRichTextNode, "json">>;
         tags: Maybe<Array<Maybe<Pick<ContentfulPlaceTag, "slug" | "name">>>>;
       };
     }>;

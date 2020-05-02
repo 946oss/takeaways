@@ -32,7 +32,7 @@ exports.createPages = async ({ graphql, actions }) => {
   paginate({
     createPage,
     items: allPlaces.data.allContentfulPlace.edges,
-    itemsPerPage: 10,
+    itemsPerPage: 12,
     pathPrefix: ({ pageNumber, _ }) =>
       pageNumber === 0 ? "/" : "/places/page",
     component: indexTemplate

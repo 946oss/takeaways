@@ -4,7 +4,7 @@ import { graphql } from "gatsby";
 import { css } from "@emotion/core";
 import SEO from "../components/SEO";
 import Layout from "../components/Layout";
-import PlaceListItem from "../components/PlaceListItem";
+import PlaceList from "../components/PlaceList";
 
 const Tags: React.FC<{ data: TagsQuery }> = ({ data }) => (
   <Layout>
@@ -38,9 +38,10 @@ const Tags: React.FC<{ data: TagsQuery }> = ({ data }) => (
         <article
           css={css`
             background: #fff;
-            border: 5px solid #f3af16;
             border-radius: 1em;
-            margin: 1rem 0;
+            border: 5px solid #f3af16;
+            margin: 2rem auto;
+            max-width: 800px;
             padding: 1em;
 
             h2 {
@@ -131,9 +132,9 @@ const Tags: React.FC<{ data: TagsQuery }> = ({ data }) => (
           </p>
         </article>
       )}
-      {data.allContentfulPlace.edges.map(({ node }) => (
-        <PlaceListItem key={node.id} place={node} />
-      ))}
+      <PlaceList
+        places={data.allContentfulPlace.edges.map(({ node }) => node)}
+      />
     </section>
   </Layout>
 );
@@ -159,35 +160,20 @@ export const query = graphql`
       edges {
         node {
           id
-          official
           address
           closed_on
           business_hours
-          facebook
-          twitter
-          website
           name
-          description {
-            description
-          }
-          tel
-          location {
-            lat
-            lon
-          }
           pictures {
             id
             title
             localFile {
               childImageSharp {
-                fixed(width: 320, height: 320, cropFocus: CENTER) {
-                  ...GatsbyImageSharpFixed
+                fixed(width: 440, height: 308, cropFocus: CENTER) {
+                  ...GatsbyImageSharpFixed_withWebp_tracedSVG
                 }
               }
             }
-          }
-          message {
-            json
           }
           tags {
             slug

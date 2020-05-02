@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   siteMetadata: {
     name: `お持ち帰りごはん 釧路版`,
@@ -32,6 +34,13 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: path.join(__dirname, `src`, `images`)
+      }
+    },
     `gatsby-transformer-remote-filesystem`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
