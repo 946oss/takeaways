@@ -34,8 +34,10 @@ export type ContentfulAsset = Node & {
   node_locale?: Maybe<Scalars["String"]>;
   localFile?: Maybe<File>;
   fixed?: Maybe<ContentfulFixed>;
+  /** @deprecated Resolutions was deprecated in Gatsby v2. It's been renamed to "fixed" https://example.com/write-docs-and-fix-this-example-link */
   resolutions?: Maybe<ContentfulResolutions>;
   fluid?: Maybe<ContentfulFluid>;
+  /** @deprecated Sizes was deprecated in Gatsby v2. It's been renamed to "fluid" https://example.com/write-docs-and-fix-this-example-link */
   sizes?: Maybe<ContentfulSizes>;
   resize?: Maybe<ContentfulResize>;
 };
@@ -1639,6 +1641,7 @@ export type ContentfulPlaceMessageRichTextNode = Node & {
   children: Array<Node>;
   internal: Internal;
   content?: Maybe<Array<Maybe<ContentfulPlaceMessageRichTextNodeContent>>>;
+  /** @deprecated This field is deprecated, please use 'json' instead. */
   nodeType?: Maybe<Scalars["String"]>;
   message?: Maybe<Scalars["String"]>;
   json?: Maybe<Scalars["JSON"]>;
@@ -2592,7 +2595,9 @@ export type Directory = Node & {
   atime: Scalars["Date"];
   mtime: Scalars["Date"];
   ctime: Scalars["Date"];
+  /** @deprecated Use `birthTime` instead */
   birthtime?: Maybe<Scalars["Date"]>;
+  /** @deprecated Use `birthTime` instead */
   birthtimeMs?: Maybe<Scalars["Float"]>;
   blksize?: Maybe<Scalars["Int"]>;
   blocks?: Maybe<Scalars["Int"]>;
@@ -2887,7 +2892,9 @@ export type File = Node & {
   atime: Scalars["Date"];
   mtime: Scalars["Date"];
   ctime: Scalars["Date"];
+  /** @deprecated Use `birthTime` instead */
   birthtime?: Maybe<Scalars["Date"]>;
+  /** @deprecated Use `birthTime` instead */
   birthtimeMs?: Maybe<Scalars["Float"]>;
   blksize?: Maybe<Scalars["Int"]>;
   blocks?: Maybe<Scalars["Int"]>;
@@ -3296,8 +3303,10 @@ export type ImageResizingBehavior =
 
 export type ImageSharp = Node & {
   fixed?: Maybe<ImageSharpFixed>;
+  /** @deprecated Resolutions was deprecated in Gatsby v2. It's been renamed to "fixed" https://example.com/write-docs-and-fix-this-example-link */
   resolutions?: Maybe<ImageSharpResolutions>;
   fluid?: Maybe<ImageSharpFluid>;
+  /** @deprecated Sizes was deprecated in Gatsby v2. It's been renamed to "fluid" https://example.com/write-docs-and-fix-this-example-link */
   sizes?: Maybe<ImageSharpSizes>;
   original?: Maybe<ImageSharpOriginal>;
   resize?: Maybe<ImageSharpResize>;
@@ -5205,10 +5214,10 @@ export type StringQueryOperatorInput = {
 export type FooterQueryVariables = {};
 
 export type FooterQuery = {
-  site: Maybe<{
-    siteMetadata: Maybe<
+  site?: Maybe<{
+    siteMetadata?: Maybe<
       Pick<SiteSiteMetadata, "copyright"> & {
-        coopOrgs: Maybe<
+        coopOrgs?: Maybe<
           Array<
             Maybe<
               Pick<
@@ -5226,9 +5235,9 @@ export type FooterQuery = {
 export type PlaceListQueryVariables = {};
 
 export type PlaceListQuery = {
-  file: Maybe<{
-    childImageSharp: Maybe<{
-      fixed: Maybe<GatsbyImageSharpFixed_WithWebp_TracedSvgFragment>;
+  file?: Maybe<{
+    childImageSharp?: Maybe<{
+      fixed?: Maybe<GatsbyImageSharpFixed_WithWebp_TracedSvgFragment>;
     }>;
   }>;
 };
@@ -5236,8 +5245,8 @@ export type PlaceListQuery = {
 export type Unnamed_1_QueryVariables = {};
 
 export type Unnamed_1_Query = {
-  site: Maybe<{
-    siteMetadata: Maybe<
+  site?: Maybe<{
+    siteMetadata?: Maybe<
       Pick<
         SiteSiteMetadata,
         "title" | "siteUrl" | "description" | "name" | "keywords"
@@ -5252,7 +5261,7 @@ export type AllQuery = {
   allContentfulPlace: {
     edges: Array<{
       node: Pick<ContentfulPlace, "id" | "address" | "name"> & {
-        tags: Maybe<Array<Maybe<Pick<ContentfulPlaceTag, "slug" | "name">>>>;
+        tags?: Maybe<Array<Maybe<Pick<ContentfulPlaceTag, "slug" | "name">>>>;
       };
     }>;
   };
@@ -5261,10 +5270,10 @@ export type AllQuery = {
 export type MapQueryVariables = {};
 
 export type MapQuery = {
-  site: Maybe<{
-    siteMetadata: Maybe<
+  site?: Maybe<{
+    siteMetadata?: Maybe<
       Pick<SiteSiteMetadata, "title" | "pickUpTags"> & {
-        defaultMapLocation: Maybe<
+        defaultMapLocation?: Maybe<
           Pick<
             SiteSiteMetadataDefaultMapLocation,
             "latitude" | "longitude" | "zoom"
@@ -5282,11 +5291,11 @@ export type MapQuery = {
         ContentfulPlace,
         "id" | "official" | "business_hours" | "name"
       > & {
-        description: Maybe<
+        description?: Maybe<
           Pick<ContentfulPlaceDescriptionTextNode, "description">
         >;
-        location: Maybe<Pick<ContentfulPlaceLocation, "lat" | "lon">>;
-        tags: Maybe<Array<Maybe<Pick<ContentfulPlaceTag, "slug">>>>;
+        location?: Maybe<Pick<ContentfulPlaceLocation, "lat" | "lon">>;
+        tags?: Maybe<Array<Maybe<Pick<ContentfulPlaceTag, "slug">>>>;
       };
     }>;
   };
@@ -5298,20 +5307,20 @@ export type IndexQueryVariables = {
 };
 
 export type IndexQuery = {
-  site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, "title">> }>;
+  site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, "title">> }>;
   allContentfulPlace: Pick<ContentfulPlaceConnection, "totalCount"> & {
     edges: Array<{
       node: Pick<
         ContentfulPlace,
         "id" | "address" | "closed_on" | "business_hours" | "name"
       > & {
-        pictures: Maybe<
+        pictures?: Maybe<
           Array<
             Maybe<
               Pick<ContentfulAsset, "id" | "title"> & {
-                localFile: Maybe<{
-                  childImageSharp: Maybe<{
-                    fixed: Maybe<
+                localFile?: Maybe<{
+                  childImageSharp?: Maybe<{
+                    fixed?: Maybe<
                       GatsbyImageSharpFixed_WithWebp_TracedSvgFragment
                     >;
                   }>;
@@ -5320,14 +5329,14 @@ export type IndexQuery = {
             >
           >
         >;
-        tags: Maybe<Array<Maybe<Pick<ContentfulPlaceTag, "slug" | "name">>>>;
+        tags?: Maybe<Array<Maybe<Pick<ContentfulPlaceTag, "slug" | "name">>>>;
       };
     }>;
   };
   allContentfulPlaceTag: {
     edges: Array<{
       node: Pick<ContentfulPlaceTag, "slug" | "name"> & {
-        place: Maybe<Array<Maybe<Pick<ContentfulPlace, "id">>>>;
+        place?: Maybe<Array<Maybe<Pick<ContentfulPlace, "id">>>>;
       };
     }>;
   };
@@ -5338,10 +5347,10 @@ export type PlacesQueryVariables = {
 };
 
 export type PlacesQuery = {
-  site: Maybe<{
-    siteMetadata: Maybe<Pick<SiteSiteMetadata, "title" | "siteUrl">>;
+  site?: Maybe<{
+    siteMetadata?: Maybe<Pick<SiteSiteMetadata, "title" | "siteUrl">>;
   }>;
-  contentfulPlace: Maybe<
+  contentfulPlace?: Maybe<
     Pick<
       ContentfulPlace,
       | "id"
@@ -5355,32 +5364,32 @@ export type PlacesQuery = {
       | "name"
       | "tel"
     > & {
-      description: Maybe<
+      description?: Maybe<
         Pick<ContentfulPlaceDescriptionTextNode, "description">
       >;
-      location: Maybe<Pick<ContentfulPlaceLocation, "lat" | "lon">>;
-      pictures: Maybe<
+      location?: Maybe<Pick<ContentfulPlaceLocation, "lat" | "lon">>;
+      pictures?: Maybe<
         Array<
           Maybe<
             Pick<ContentfulAsset, "id"> & {
-              localFile: Maybe<{
-                childImageSharp: Maybe<{
-                  fluid: Maybe<GatsbyImageSharpFluidFragment>;
+              localFile?: Maybe<{
+                childImageSharp?: Maybe<{
+                  fluid?: Maybe<GatsbyImageSharpFluidFragment>;
                 }>;
               }>;
             }
           >
         >
       >;
-      menu: Maybe<
+      menu?: Maybe<
         Array<
           Maybe<
             Pick<ContentfulAsset, "id" | "title"> & {
-              file: Maybe<Pick<ContentfulAssetFile, "contentType">>;
-              localFile: Maybe<
+              file?: Maybe<Pick<ContentfulAssetFile, "contentType">>;
+              localFile?: Maybe<
                 Pick<File, "localURL"> & {
-                  childImageSharp: Maybe<{
-                    fixed: Maybe<GatsbyImageSharpFixedFragment>;
+                  childImageSharp?: Maybe<{
+                    fixed?: Maybe<GatsbyImageSharpFixedFragment>;
                   }>;
                 }
               >;
@@ -5388,8 +5397,8 @@ export type PlacesQuery = {
           >
         >
       >;
-      message: Maybe<Pick<ContentfulPlaceMessageRichTextNode, "json">>;
-      tags: Maybe<Array<Maybe<Pick<ContentfulPlaceTag, "slug" | "name">>>>;
+      message?: Maybe<Pick<ContentfulPlaceMessageRichTextNode, "json">>;
+      tags?: Maybe<Array<Maybe<Pick<ContentfulPlaceTag, "slug" | "name">>>>;
     }
   >;
 };
@@ -5399,21 +5408,21 @@ export type TagsQueryVariables = {
 };
 
 export type TagsQuery = {
-  site: Maybe<{ siteMetadata: Maybe<Pick<SiteSiteMetadata, "title">> }>;
-  contentfulPlaceTag: Maybe<Pick<ContentfulPlaceTag, "name" | "slug">>;
+  site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, "title">> }>;
+  contentfulPlaceTag?: Maybe<Pick<ContentfulPlaceTag, "name" | "slug">>;
   allContentfulPlace: Pick<ContentfulPlaceConnection, "totalCount"> & {
     edges: Array<{
       node: Pick<
         ContentfulPlace,
         "id" | "address" | "closed_on" | "business_hours" | "name"
       > & {
-        pictures: Maybe<
+        pictures?: Maybe<
           Array<
             Maybe<
               Pick<ContentfulAsset, "id" | "title"> & {
-                localFile: Maybe<{
-                  childImageSharp: Maybe<{
-                    fixed: Maybe<
+                localFile?: Maybe<{
+                  childImageSharp?: Maybe<{
+                    fixed?: Maybe<
                       GatsbyImageSharpFixed_WithWebp_TracedSvgFragment
                     >;
                   }>;
@@ -5422,7 +5431,7 @@ export type TagsQuery = {
             >
           >
         >;
-        tags: Maybe<Array<Maybe<Pick<ContentfulPlaceTag, "slug" | "name">>>>;
+        tags?: Maybe<Array<Maybe<Pick<ContentfulPlaceTag, "slug" | "name">>>>;
       };
     }>;
   };

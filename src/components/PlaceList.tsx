@@ -131,6 +131,7 @@ const PlaceList: React.FC<{
             </p>
             <div
               css={css`
+                font-size: small;
                 font-style: normal;
               `}
             >
