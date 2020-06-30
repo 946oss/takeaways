@@ -6,7 +6,6 @@ import { TwitterHashtagButton } from "react-twitter-embed";
 import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import PlaceList from "../components/PlaceList";
-import GochitaxiBanner from "../components/gochitaxi-banner.svg";
 
 const borderdTitle = css`
   font-size: 0.8rem;
@@ -65,9 +64,8 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
             font-weight: bold;
           `}
         >
-          ※
-          「ごちそうタクシー便」に対応していない店舗情報も掲載されています。ご注意ください。
-          ※
+          ※<Link to="/tags/gochisotaxiavailable">「ごちそうタクシー便」</Link>
+          に対応していない店舗情報も掲載されています。ご注意ください。 ※
         </p>
         <p>
           感想や、オススメ情報など{" "}
@@ -87,28 +85,6 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
           />
         </div>
       </article>
-
-      <section
-        css={css`
-          font-size: large;
-          font-weight: bold;
-          text-align: center;
-          max-width: 640px;
-          margin: 0 auto;
-        `}
-      >
-        <Link
-          to="/tags/gochisotaxiavailable"
-          css={css`
-            color: #221f1f;
-          `}
-        >
-          <GochitaxiBanner />
-        </Link>
-        <a href="https://drive.google.com/open?id=1PEuqIFoykrn4xjtRBrPXJcRJ1xIY8_AY">
-          「ごちそうタクシー便」参加店舗募集中！
-        </a>
-      </section>
 
       {tags.length > 0 && (
         <nav
