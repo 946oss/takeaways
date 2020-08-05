@@ -1,4 +1,7 @@
 export type Maybe<T> = T | null;
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -28,10 +31,14 @@ export type ContentfulAsset = Node & {
   children: Array<Node>;
   internal: Internal;
   contentful_id?: Maybe<Scalars["String"]>;
+  spaceId?: Maybe<Scalars["String"]>;
+  createdAt?: Maybe<Scalars["Date"]>;
+  updatedAt?: Maybe<Scalars["Date"]>;
   file?: Maybe<ContentfulAssetFile>;
   title?: Maybe<Scalars["String"]>;
   description?: Maybe<Scalars["String"]>;
   node_locale?: Maybe<Scalars["String"]>;
+  sys?: Maybe<ContentfulAssetSys>;
   localFile?: Maybe<File>;
   fixed?: Maybe<ContentfulFixed>;
   /** @deprecated Resolutions was deprecated in Gatsby v2. It's been renamed to "fixed" https://example.com/write-docs-and-fix-this-example-link */
@@ -40,6 +47,20 @@ export type ContentfulAsset = Node & {
   /** @deprecated Sizes was deprecated in Gatsby v2. It's been renamed to "fluid" https://example.com/write-docs-and-fix-this-example-link */
   sizes?: Maybe<ContentfulSizes>;
   resize?: Maybe<ContentfulResize>;
+};
+
+export type ContentfulAssetCreatedAtArgs = {
+  formatString?: Maybe<Scalars["String"]>;
+  fromNow?: Maybe<Scalars["Boolean"]>;
+  difference?: Maybe<Scalars["String"]>;
+  locale?: Maybe<Scalars["String"]>;
+};
+
+export type ContentfulAssetUpdatedAtArgs = {
+  formatString?: Maybe<Scalars["String"]>;
+  fromNow?: Maybe<Scalars["Boolean"]>;
+  difference?: Maybe<Scalars["String"]>;
+  locale?: Maybe<Scalars["String"]>;
 };
 
 export type ContentfulAssetFixedArgs = {
@@ -208,6 +229,9 @@ export type ContentfulAssetFieldsEnum =
   | "internal___owner"
   | "internal___type"
   | "contentful_id"
+  | "spaceId"
+  | "createdAt"
+  | "updatedAt"
   | "file___url"
   | "file___details___size"
   | "file___details___image___width"
@@ -217,6 +241,7 @@ export type ContentfulAssetFieldsEnum =
   | "title"
   | "description"
   | "node_locale"
+  | "sys___revision"
   | "localFile___sourceInstanceName"
   | "localFile___absolutePath"
   | "localFile___relativePath"
@@ -439,10 +464,14 @@ export type ContentfulAssetFilterInput = {
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   contentful_id?: Maybe<StringQueryOperatorInput>;
+  spaceId?: Maybe<StringQueryOperatorInput>;
+  createdAt?: Maybe<DateQueryOperatorInput>;
+  updatedAt?: Maybe<DateQueryOperatorInput>;
   file?: Maybe<ContentfulAssetFileFilterInput>;
   title?: Maybe<StringQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
+  sys?: Maybe<ContentfulAssetSysFilterInput>;
   localFile?: Maybe<FileFilterInput>;
   fixed?: Maybe<ContentfulFixedFilterInput>;
   resolutions?: Maybe<ContentfulResolutionsFilterInput>;
@@ -467,6 +496,14 @@ export type ContentfulAssetGroupConnection = {
 export type ContentfulAssetSortInput = {
   fields?: Maybe<Array<Maybe<ContentfulAssetFieldsEnum>>>;
   order?: Maybe<Array<Maybe<SortOrderEnum>>>;
+};
+
+export type ContentfulAssetSys = {
+  revision?: Maybe<Scalars["Int"]>;
+};
+
+export type ContentfulAssetSysFilterInput = {
+  revision?: Maybe<IntQueryOperatorInput>;
 };
 
 export type ContentfulContentType = Node & {
@@ -689,8 +726,9 @@ export type ContentfulPlace = Node & {
   official?: Maybe<Scalars["Boolean"]>;
   location?: Maybe<ContentfulPlaceLocation>;
   address?: Maybe<Scalars["String"]>;
+  tel?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  closed_on?: Maybe<Array<Maybe<Scalars["String"]>>>;
   business_hours?: Maybe<Scalars["String"]>;
-  website?: Maybe<Scalars["String"]>;
   pictures?: Maybe<Array<Maybe<ContentfulAsset>>>;
   menu?: Maybe<Array<Maybe<ContentfulAsset>>>;
   tags?: Maybe<Array<Maybe<ContentfulPlaceTag>>>;
@@ -702,8 +740,7 @@ export type ContentfulPlace = Node & {
   updatedAt?: Maybe<Scalars["Date"]>;
   sys?: Maybe<ContentfulPlaceSys>;
   node_locale?: Maybe<Scalars["String"]>;
-  tel?: Maybe<Array<Maybe<Scalars["String"]>>>;
-  closed_on?: Maybe<Array<Maybe<Scalars["String"]>>>;
+  website?: Maybe<Scalars["String"]>;
   facebook?: Maybe<Scalars["String"]>;
   twitter?: Maybe<Scalars["String"]>;
   childContentfulPlaceDescriptionTextNode?: Maybe<
@@ -989,8 +1026,9 @@ export type ContentfulPlaceFieldsEnum =
   | "location___lon"
   | "location___lat"
   | "address"
+  | "tel"
+  | "closed_on"
   | "business_hours"
-  | "website"
   | "pictures"
   | "pictures___id"
   | "pictures___parent___id"
@@ -1031,6 +1069,9 @@ export type ContentfulPlaceFieldsEnum =
   | "pictures___internal___owner"
   | "pictures___internal___type"
   | "pictures___contentful_id"
+  | "pictures___spaceId"
+  | "pictures___createdAt"
+  | "pictures___updatedAt"
   | "pictures___file___url"
   | "pictures___file___details___size"
   | "pictures___file___fileName"
@@ -1038,6 +1079,7 @@ export type ContentfulPlaceFieldsEnum =
   | "pictures___title"
   | "pictures___description"
   | "pictures___node_locale"
+  | "pictures___sys___revision"
   | "pictures___localFile___sourceInstanceName"
   | "pictures___localFile___absolutePath"
   | "pictures___localFile___relativePath"
@@ -1170,6 +1212,9 @@ export type ContentfulPlaceFieldsEnum =
   | "menu___internal___owner"
   | "menu___internal___type"
   | "menu___contentful_id"
+  | "menu___spaceId"
+  | "menu___createdAt"
+  | "menu___updatedAt"
   | "menu___file___url"
   | "menu___file___details___size"
   | "menu___file___fileName"
@@ -1177,6 +1222,7 @@ export type ContentfulPlaceFieldsEnum =
   | "menu___title"
   | "menu___description"
   | "menu___node_locale"
+  | "menu___sys___revision"
   | "menu___localFile___sourceInstanceName"
   | "menu___localFile___absolutePath"
   | "menu___localFile___relativePath"
@@ -1330,12 +1376,16 @@ export type ContentfulPlaceFieldsEnum =
   | "tags___place___location___lon"
   | "tags___place___location___lat"
   | "tags___place___address"
+  | "tags___place___tel"
+  | "tags___place___closed_on"
   | "tags___place___business_hours"
-  | "tags___place___website"
   | "tags___place___pictures"
   | "tags___place___pictures___id"
   | "tags___place___pictures___children"
   | "tags___place___pictures___contentful_id"
+  | "tags___place___pictures___spaceId"
+  | "tags___place___pictures___createdAt"
+  | "tags___place___pictures___updatedAt"
   | "tags___place___pictures___title"
   | "tags___place___pictures___description"
   | "tags___place___pictures___node_locale"
@@ -1343,6 +1393,9 @@ export type ContentfulPlaceFieldsEnum =
   | "tags___place___menu___id"
   | "tags___place___menu___children"
   | "tags___place___menu___contentful_id"
+  | "tags___place___menu___spaceId"
+  | "tags___place___menu___createdAt"
+  | "tags___place___menu___updatedAt"
   | "tags___place___menu___title"
   | "tags___place___menu___description"
   | "tags___place___menu___node_locale"
@@ -1372,8 +1425,7 @@ export type ContentfulPlaceFieldsEnum =
   | "tags___place___updatedAt"
   | "tags___place___sys___revision"
   | "tags___place___node_locale"
-  | "tags___place___tel"
-  | "tags___place___closed_on"
+  | "tags___place___website"
   | "tags___place___facebook"
   | "tags___place___twitter"
   | "tags___place___childContentfulPlaceDescriptionTextNode___id"
@@ -1487,8 +1539,7 @@ export type ContentfulPlaceFieldsEnum =
   | "sys___contentType___sys___id"
   | "sys___contentType___sys___contentful_id"
   | "node_locale"
-  | "tel"
-  | "closed_on"
+  | "website"
   | "facebook"
   | "twitter"
   | "childContentfulPlaceDescriptionTextNode___id"
@@ -1587,8 +1638,9 @@ export type ContentfulPlaceFilterInput = {
   official?: Maybe<BooleanQueryOperatorInput>;
   location?: Maybe<ContentfulPlaceLocationFilterInput>;
   address?: Maybe<StringQueryOperatorInput>;
+  tel?: Maybe<StringQueryOperatorInput>;
+  closed_on?: Maybe<StringQueryOperatorInput>;
   business_hours?: Maybe<StringQueryOperatorInput>;
-  website?: Maybe<StringQueryOperatorInput>;
   pictures?: Maybe<ContentfulAssetFilterListInput>;
   menu?: Maybe<ContentfulAssetFilterListInput>;
   tags?: Maybe<ContentfulPlaceTagFilterListInput>;
@@ -1600,8 +1652,7 @@ export type ContentfulPlaceFilterInput = {
   updatedAt?: Maybe<DateQueryOperatorInput>;
   sys?: Maybe<ContentfulPlaceSysFilterInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
-  tel?: Maybe<StringQueryOperatorInput>;
-  closed_on?: Maybe<StringQueryOperatorInput>;
+  website?: Maybe<StringQueryOperatorInput>;
   facebook?: Maybe<StringQueryOperatorInput>;
   twitter?: Maybe<StringQueryOperatorInput>;
   childContentfulPlaceDescriptionTextNode?: Maybe<
@@ -1683,13 +1734,13 @@ export type ContentfulPlaceMessageRichTextNodeContentContent = {
 };
 
 export type ContentfulPlaceMessageRichTextNodeContentContentContent = {
-  value?: Maybe<Scalars["String"]>;
   nodeType?: Maybe<Scalars["String"]>;
+  value?: Maybe<Scalars["String"]>;
 };
 
 export type ContentfulPlaceMessageRichTextNodeContentContentContentFilterInput = {
-  value?: Maybe<StringQueryOperatorInput>;
   nodeType?: Maybe<StringQueryOperatorInput>;
+  value?: Maybe<StringQueryOperatorInput>;
 };
 
 export type ContentfulPlaceMessageRichTextNodeContentContentContentFilterListInput = {
@@ -1831,8 +1882,8 @@ export type ContentfulPlaceMessageRichTextNodeFieldsEnum =
   | "content___content___value"
   | "content___content___nodeType"
   | "content___content___content"
-  | "content___content___content___value"
   | "content___content___content___nodeType"
+  | "content___content___content___value"
   | "content___nodeType"
   | "nodeType"
   | "message"
@@ -2088,8 +2139,9 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___location___lon"
   | "place___location___lat"
   | "place___address"
+  | "place___tel"
+  | "place___closed_on"
   | "place___business_hours"
-  | "place___website"
   | "place___pictures"
   | "place___pictures___id"
   | "place___pictures___parent___id"
@@ -2106,12 +2158,16 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___pictures___internal___owner"
   | "place___pictures___internal___type"
   | "place___pictures___contentful_id"
+  | "place___pictures___spaceId"
+  | "place___pictures___createdAt"
+  | "place___pictures___updatedAt"
   | "place___pictures___file___url"
   | "place___pictures___file___fileName"
   | "place___pictures___file___contentType"
   | "place___pictures___title"
   | "place___pictures___description"
   | "place___pictures___node_locale"
+  | "place___pictures___sys___revision"
   | "place___pictures___localFile___sourceInstanceName"
   | "place___pictures___localFile___absolutePath"
   | "place___pictures___localFile___relativePath"
@@ -2206,12 +2262,16 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___menu___internal___owner"
   | "place___menu___internal___type"
   | "place___menu___contentful_id"
+  | "place___menu___spaceId"
+  | "place___menu___createdAt"
+  | "place___menu___updatedAt"
   | "place___menu___file___url"
   | "place___menu___file___fileName"
   | "place___menu___file___contentType"
   | "place___menu___title"
   | "place___menu___description"
   | "place___menu___node_locale"
+  | "place___menu___sys___revision"
   | "place___menu___localFile___sourceInstanceName"
   | "place___menu___localFile___absolutePath"
   | "place___menu___localFile___relativePath"
@@ -2313,8 +2373,9 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___tags___place___name"
   | "place___tags___place___official"
   | "place___tags___place___address"
+  | "place___tags___place___tel"
+  | "place___tags___place___closed_on"
   | "place___tags___place___business_hours"
-  | "place___tags___place___website"
   | "place___tags___place___pictures"
   | "place___tags___place___menu"
   | "place___tags___place___tags"
@@ -2323,8 +2384,7 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___tags___place___createdAt"
   | "place___tags___place___updatedAt"
   | "place___tags___place___node_locale"
-  | "place___tags___place___tel"
-  | "place___tags___place___closed_on"
+  | "place___tags___place___website"
   | "place___tags___place___facebook"
   | "place___tags___place___twitter"
   | "place___tags___spaceId"
@@ -2374,8 +2434,7 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___updatedAt"
   | "place___sys___revision"
   | "place___node_locale"
-  | "place___tel"
-  | "place___closed_on"
+  | "place___website"
   | "place___facebook"
   | "place___twitter"
   | "place___childContentfulPlaceDescriptionTextNode___id"
@@ -3646,8 +3705,8 @@ export type ImageSharpFluid = {
   sizes: Scalars["String"];
   originalImg?: Maybe<Scalars["String"]>;
   originalName?: Maybe<Scalars["String"]>;
-  presentationWidth?: Maybe<Scalars["Int"]>;
-  presentationHeight?: Maybe<Scalars["Int"]>;
+  presentationWidth: Scalars["Int"];
+  presentationHeight: Scalars["Int"];
 };
 
 export type ImageSharpFluidFilterInput = {
@@ -3741,8 +3800,8 @@ export type ImageSharpSizes = {
   sizes: Scalars["String"];
   originalImg?: Maybe<Scalars["String"]>;
   originalName?: Maybe<Scalars["String"]>;
-  presentationWidth?: Maybe<Scalars["Int"]>;
-  presentationHeight?: Maybe<Scalars["Int"]>;
+  presentationWidth: Scalars["Int"];
+  presentationHeight: Scalars["Int"];
 };
 
 export type ImageSharpSizesFilterInput = {
@@ -3833,6 +3892,7 @@ export type PageInfo = {
   itemCount: Scalars["Int"];
   pageCount: Scalars["Int"];
   perPage?: Maybe<Scalars["Int"]>;
+  totalCount: Scalars["Int"];
 };
 
 export type Potrace = {
@@ -4013,8 +4073,6 @@ export type QueryAllSitePageArgs = {
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
-  port?: Maybe<IntQueryOperatorInput>;
-  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -4056,10 +4114,14 @@ export type QueryContentfulAssetArgs = {
   children?: Maybe<NodeFilterListInput>;
   internal?: Maybe<InternalFilterInput>;
   contentful_id?: Maybe<StringQueryOperatorInput>;
+  spaceId?: Maybe<StringQueryOperatorInput>;
+  createdAt?: Maybe<DateQueryOperatorInput>;
+  updatedAt?: Maybe<DateQueryOperatorInput>;
   file?: Maybe<ContentfulAssetFileFilterInput>;
   title?: Maybe<StringQueryOperatorInput>;
   description?: Maybe<StringQueryOperatorInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
+  sys?: Maybe<ContentfulAssetSysFilterInput>;
   localFile?: Maybe<FileFilterInput>;
   fixed?: Maybe<ContentfulFixedFilterInput>;
   resolutions?: Maybe<ContentfulResolutionsFilterInput>;
@@ -4140,8 +4202,9 @@ export type QueryContentfulPlaceArgs = {
   official?: Maybe<BooleanQueryOperatorInput>;
   location?: Maybe<ContentfulPlaceLocationFilterInput>;
   address?: Maybe<StringQueryOperatorInput>;
+  tel?: Maybe<StringQueryOperatorInput>;
+  closed_on?: Maybe<StringQueryOperatorInput>;
   business_hours?: Maybe<StringQueryOperatorInput>;
-  website?: Maybe<StringQueryOperatorInput>;
   pictures?: Maybe<ContentfulAssetFilterListInput>;
   menu?: Maybe<ContentfulAssetFilterListInput>;
   tags?: Maybe<ContentfulPlaceTagFilterListInput>;
@@ -4153,8 +4216,7 @@ export type QueryContentfulPlaceArgs = {
   updatedAt?: Maybe<DateQueryOperatorInput>;
   sys?: Maybe<ContentfulPlaceSysFilterInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
-  tel?: Maybe<StringQueryOperatorInput>;
-  closed_on?: Maybe<StringQueryOperatorInput>;
+  website?: Maybe<StringQueryOperatorInput>;
   facebook?: Maybe<StringQueryOperatorInput>;
   twitter?: Maybe<StringQueryOperatorInput>;
   childContentfulPlaceDescriptionTextNode?: Maybe<
@@ -4230,8 +4292,6 @@ export type QueryAllSitePluginArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars["Date"]>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
-  port?: Maybe<Scalars["Int"]>;
-  host?: Maybe<Scalars["String"]>;
   polyfill?: Maybe<Scalars["Boolean"]>;
   pathPrefix?: Maybe<Scalars["String"]>;
   id: Scalars["ID"];
@@ -4441,8 +4501,6 @@ export type SiteFieldsEnum =
   | "siteMetadata___coopOrgs___tel"
   | "siteMetadata___copyright"
   | "siteMetadata___pickUpTags"
-  | "port"
-  | "host"
   | "polyfill"
   | "pathPrefix"
   | "id"
@@ -4535,8 +4593,6 @@ export type SiteFieldsEnum =
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
-  port?: Maybe<IntQueryOperatorInput>;
-  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -4778,6 +4834,11 @@ export type SitePageFieldsEnum =
   | "pluginCreator___pluginOptions___theme_color"
   | "pluginCreator___pluginOptions___display"
   | "pluginCreator___pluginOptions___icon"
+  | "pluginCreator___pluginOptions___cache_busting_mode"
+  | "pluginCreator___pluginOptions___include_favicon"
+  | "pluginCreator___pluginOptions___legacy"
+  | "pluginCreator___pluginOptions___theme_color_in_head"
+  | "pluginCreator___pluginOptions___cacheDigest"
   | "pluginCreator___pluginOptions___pathCheck"
   | "pluginCreator___nodeAPIs"
   | "pluginCreator___browserAPIs"
@@ -4979,6 +5040,11 @@ export type SitePluginFieldsEnum =
   | "pluginOptions___theme_color"
   | "pluginOptions___display"
   | "pluginOptions___icon"
+  | "pluginOptions___cache_busting_mode"
+  | "pluginOptions___include_favicon"
+  | "pluginOptions___legacy"
+  | "pluginOptions___theme_color_in_head"
+  | "pluginOptions___cacheDigest"
   | "pluginOptions___pathCheck"
   | "nodeAPIs"
   | "browserAPIs"
@@ -5112,6 +5178,11 @@ export type SitePluginPluginOptions = {
   theme_color?: Maybe<Scalars["String"]>;
   display?: Maybe<Scalars["String"]>;
   icon?: Maybe<Scalars["String"]>;
+  cache_busting_mode?: Maybe<Scalars["String"]>;
+  include_favicon?: Maybe<Scalars["Boolean"]>;
+  legacy?: Maybe<Scalars["Boolean"]>;
+  theme_color_in_head?: Maybe<Scalars["Boolean"]>;
+  cacheDigest?: Maybe<Scalars["String"]>;
   pathCheck?: Maybe<Scalars["Boolean"]>;
 };
 
@@ -5131,6 +5202,11 @@ export type SitePluginPluginOptionsFilterInput = {
   theme_color?: Maybe<StringQueryOperatorInput>;
   display?: Maybe<StringQueryOperatorInput>;
   icon?: Maybe<StringQueryOperatorInput>;
+  cache_busting_mode?: Maybe<StringQueryOperatorInput>;
+  include_favicon?: Maybe<BooleanQueryOperatorInput>;
+  legacy?: Maybe<BooleanQueryOperatorInput>;
+  theme_color_in_head?: Maybe<BooleanQueryOperatorInput>;
+  cacheDigest?: Maybe<StringQueryOperatorInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
 };
 
@@ -5211,7 +5287,7 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars["String"]>;
 };
 
-export type FooterQueryVariables = {};
+export type FooterQueryVariables = Exact<{ [key: string]: never }>;
 
 export type FooterQuery = {
   site?: Maybe<{
@@ -5232,7 +5308,7 @@ export type FooterQuery = {
   }>;
 };
 
-export type PlaceListQueryVariables = {};
+export type PlaceListQueryVariables = Exact<{ [key: string]: never }>;
 
 export type PlaceListQuery = {
   file?: Maybe<{
@@ -5242,7 +5318,7 @@ export type PlaceListQuery = {
   }>;
 };
 
-export type Unnamed_1_QueryVariables = {};
+export type Unnamed_1_QueryVariables = Exact<{ [key: string]: never }>;
 
 export type Unnamed_1_Query = {
   site?: Maybe<{
@@ -5255,7 +5331,7 @@ export type Unnamed_1_Query = {
   }>;
 };
 
-export type AllQueryVariables = {};
+export type AllQueryVariables = Exact<{ [key: string]: never }>;
 
 export type AllQuery = {
   allContentfulPlace: {
@@ -5267,7 +5343,7 @@ export type AllQuery = {
   };
 };
 
-export type MapQueryVariables = {};
+export type MapQueryVariables = Exact<{ [key: string]: never }>;
 
 export type MapQuery = {
   site?: Maybe<{
@@ -5301,10 +5377,10 @@ export type MapQuery = {
   };
 };
 
-export type IndexQueryVariables = {
+export type IndexQueryVariables = Exact<{
   skip: Scalars["Int"];
   limit: Scalars["Int"];
-};
+}>;
 
 export type IndexQuery = {
   site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, "title">> }>;
@@ -5342,9 +5418,9 @@ export type IndexQuery = {
   };
 };
 
-export type PlacesQueryVariables = {
+export type PlacesQueryVariables = Exact<{
   id: Scalars["String"];
-};
+}>;
 
 export type PlacesQuery = {
   site?: Maybe<{
@@ -5403,9 +5479,9 @@ export type PlacesQuery = {
   >;
 };
 
-export type TagsQueryVariables = {
+export type TagsQueryVariables = Exact<{
   slug: Scalars["String"];
-};
+}>;
 
 export type TagsQuery = {
   site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, "title">> }>;
@@ -5583,6 +5659,11 @@ export type GatsbyImageSharpFluidFragment = Pick<
   ImageSharpFluid,
   "base64" | "aspectRatio" | "src" | "srcSet" | "sizes"
 >;
+
+export type GatsbyImageSharpFluidLimitPresentationSizeFragment = {
+  maxHeight: ImageSharpFluid["presentationHeight"];
+  maxWidth: ImageSharpFluid["presentationWidth"];
+};
 
 export type GatsbyImageSharpFluid_TracedSvgFragment = Pick<
   ImageSharpFluid,
