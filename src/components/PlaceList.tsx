@@ -95,7 +95,7 @@ const PlaceList: React.FC<{
                   }
                 `}
                 fixed={
-                  place.pictures
+                  place.pictures[0]?.localFile?.childImageSharp
                     ? place.pictures[0].localFile.childImageSharp.fixed
                     : file.childImageSharp.fixed
                 }
@@ -170,8 +170,8 @@ const PlaceList: React.FC<{
           {pageContext.previousPagePath ? (
             <Link to={pageContext.previousPagePath}>&laquo;</Link>
           ) : (
-            <span></span>
-          )}
+              <span></span>
+            )}
           {pageContext.nextPagePath && (
             <Link to={pageContext.nextPagePath}>&raquo;</Link>
           )}
