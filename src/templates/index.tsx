@@ -59,14 +59,6 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
       >
         <h1 css={borderdTitle}>About</h1>
         <p>釧路・根室管内の飲食店のテイクアウト情報を紹介しています。</p>
-        <p
-          css={css`
-            font-weight: bold;
-          `}
-        >
-          ※<Link to="/tags/gochisotaxiavailable">「ごちそうタクシー便」</Link>
-          に対応していない店舗情報も掲載されています。ご注意ください。 ※
-        </p>
         <p>
           感想や、オススメ情報など{" "}
           <a href="https://twitter.com/search/?q=%23釧路お持ち帰りごはん">

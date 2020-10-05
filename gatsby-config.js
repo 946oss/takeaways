@@ -30,7 +30,7 @@ module.exports = {
       }
     ],
     copyright: `お持ち帰りごはん 釧路版 by 釧路OSSコミュニティ`,
-    pickUpTags: [`gochisotaxiavailable`]
+    pickUpTags: [`delivery`]
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
