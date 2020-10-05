@@ -2,7 +2,7 @@ import * as React from "react";
 import {
   ContentfulPlace,
   SitePageContext,
-  PlaceListQuery
+  PlaceListQuery,
 } from "../../types/graphql-types";
 import { Link, useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
@@ -34,7 +34,7 @@ const PlaceList: React.FC<{
           justify-content: space-between;
         `}
       >
-        {places.map(place => (
+        {places.map((place) => (
           <div
             css={css(
               css`
@@ -44,7 +44,7 @@ const PlaceList: React.FC<{
                 position: relative;
               `,
               mq({
-                width: [`100%`, `48%`, `31%`, `23%`]
+                width: [`100%`, `48%`, `31%`, `23%`],
               })
             )}
           >
@@ -95,6 +95,7 @@ const PlaceList: React.FC<{
                   }
                 `}
                 fixed={
+                  place.pictures.length > 0 &&
                   place.pictures[0]?.localFile?.childImageSharp
                     ? place.pictures[0].localFile.childImageSharp.fixed
                     : file.childImageSharp.fixed
@@ -103,14 +104,14 @@ const PlaceList: React.FC<{
                   position: "relative",
                   borderRadius: "5px",
                   width: "100%",
-                  height: "inherit"
+                  height: "inherit",
                 }}
                 imgStyle={{
                   position: "absolute",
                   top: 0,
                   left: 0,
                   bottom: 0,
-                  right: 0
+                  right: 0,
                 }}
               />
             </Link>
@@ -146,7 +147,7 @@ const PlaceList: React.FC<{
           [...Array(12 - (places.length % 12))].map(() => (
             <div
               css={mq({
-                width: [`100%`, `48%`, `31%`, `23%`]
+                width: [`100%`, `48%`, `31%`, `23%`],
               })}
             ></div>
           ))}
@@ -170,8 +171,8 @@ const PlaceList: React.FC<{
           {pageContext.previousPagePath ? (
             <Link to={pageContext.previousPagePath}>&laquo;</Link>
           ) : (
-              <span></span>
-            )}
+            <span></span>
+          )}
           {pageContext.nextPagePath && (
             <Link to={pageContext.nextPagePath}>&raquo;</Link>
           )}
