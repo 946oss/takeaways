@@ -95,7 +95,7 @@ const PlaceList: React.FC<{
                   }
                 `}
                 fixed={
-                  place.pictures.length > 0 &&
+                  place.pictures &&
                   place.pictures[0]?.localFile?.childImageSharp
                     ? place.pictures[0].localFile.childImageSharp.fixed
                     : file.childImageSharp.fixed
