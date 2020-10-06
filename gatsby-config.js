@@ -83,6 +83,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-svg`,
-    `gatsby-plugin-offline`,
+    `gatsby-plugin-remove-serviceworker`,
   ],
 };
