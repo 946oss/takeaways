@@ -69,12 +69,8 @@ export const query = graphql`
           pictures {
             id
             title
-            localFile {
-              childImageSharp {
-                fixed(width: 440, height: 308, cropFocus: CENTER) {
-                  ...GatsbyImageSharpFixed_withWebp_tracedSVG
-                }
-              }
+            fixed(width: 440, height: 308, cropFocus: CENTER) {
+              ...GatsbyContentfulFixed_withWebp
             }
           }
           tags {

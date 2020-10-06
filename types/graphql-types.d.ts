@@ -39,7 +39,6 @@ export type ContentfulAsset = Node & {
   description?: Maybe<Scalars["String"]>;
   node_locale?: Maybe<Scalars["String"]>;
   sys?: Maybe<ContentfulAssetSys>;
-  localFile?: Maybe<File>;
   fixed?: Maybe<ContentfulFixed>;
   /** @deprecated Resolutions was deprecated in Gatsby v2. It's been renamed to "fixed" https://example.com/write-docs-and-fix-this-example-link */
   resolutions?: Maybe<ContentfulResolutions>;
@@ -242,147 +241,6 @@ export type ContentfulAssetFieldsEnum =
   | "description"
   | "node_locale"
   | "sys___revision"
-  | "localFile___sourceInstanceName"
-  | "localFile___absolutePath"
-  | "localFile___relativePath"
-  | "localFile___extension"
-  | "localFile___size"
-  | "localFile___prettySize"
-  | "localFile___modifiedTime"
-  | "localFile___accessTime"
-  | "localFile___changeTime"
-  | "localFile___birthTime"
-  | "localFile___root"
-  | "localFile___dir"
-  | "localFile___base"
-  | "localFile___ext"
-  | "localFile___name"
-  | "localFile___relativeDirectory"
-  | "localFile___dev"
-  | "localFile___mode"
-  | "localFile___nlink"
-  | "localFile___uid"
-  | "localFile___gid"
-  | "localFile___rdev"
-  | "localFile___ino"
-  | "localFile___atimeMs"
-  | "localFile___mtimeMs"
-  | "localFile___ctimeMs"
-  | "localFile___atime"
-  | "localFile___mtime"
-  | "localFile___ctime"
-  | "localFile___birthtime"
-  | "localFile___birthtimeMs"
-  | "localFile___blksize"
-  | "localFile___blocks"
-  | "localFile___url"
-  | "localFile___publicURL"
-  | "localFile___localURL"
-  | "localFile___childImageSharp___fixed___base64"
-  | "localFile___childImageSharp___fixed___tracedSVG"
-  | "localFile___childImageSharp___fixed___aspectRatio"
-  | "localFile___childImageSharp___fixed___width"
-  | "localFile___childImageSharp___fixed___height"
-  | "localFile___childImageSharp___fixed___src"
-  | "localFile___childImageSharp___fixed___srcSet"
-  | "localFile___childImageSharp___fixed___srcWebp"
-  | "localFile___childImageSharp___fixed___srcSetWebp"
-  | "localFile___childImageSharp___fixed___originalName"
-  | "localFile___childImageSharp___resolutions___base64"
-  | "localFile___childImageSharp___resolutions___tracedSVG"
-  | "localFile___childImageSharp___resolutions___aspectRatio"
-  | "localFile___childImageSharp___resolutions___width"
-  | "localFile___childImageSharp___resolutions___height"
-  | "localFile___childImageSharp___resolutions___src"
-  | "localFile___childImageSharp___resolutions___srcSet"
-  | "localFile___childImageSharp___resolutions___srcWebp"
-  | "localFile___childImageSharp___resolutions___srcSetWebp"
-  | "localFile___childImageSharp___resolutions___originalName"
-  | "localFile___childImageSharp___fluid___base64"
-  | "localFile___childImageSharp___fluid___tracedSVG"
-  | "localFile___childImageSharp___fluid___aspectRatio"
-  | "localFile___childImageSharp___fluid___src"
-  | "localFile___childImageSharp___fluid___srcSet"
-  | "localFile___childImageSharp___fluid___srcWebp"
-  | "localFile___childImageSharp___fluid___srcSetWebp"
-  | "localFile___childImageSharp___fluid___sizes"
-  | "localFile___childImageSharp___fluid___originalImg"
-  | "localFile___childImageSharp___fluid___originalName"
-  | "localFile___childImageSharp___fluid___presentationWidth"
-  | "localFile___childImageSharp___fluid___presentationHeight"
-  | "localFile___childImageSharp___sizes___base64"
-  | "localFile___childImageSharp___sizes___tracedSVG"
-  | "localFile___childImageSharp___sizes___aspectRatio"
-  | "localFile___childImageSharp___sizes___src"
-  | "localFile___childImageSharp___sizes___srcSet"
-  | "localFile___childImageSharp___sizes___srcWebp"
-  | "localFile___childImageSharp___sizes___srcSetWebp"
-  | "localFile___childImageSharp___sizes___sizes"
-  | "localFile___childImageSharp___sizes___originalImg"
-  | "localFile___childImageSharp___sizes___originalName"
-  | "localFile___childImageSharp___sizes___presentationWidth"
-  | "localFile___childImageSharp___sizes___presentationHeight"
-  | "localFile___childImageSharp___original___width"
-  | "localFile___childImageSharp___original___height"
-  | "localFile___childImageSharp___original___src"
-  | "localFile___childImageSharp___resize___src"
-  | "localFile___childImageSharp___resize___tracedSVG"
-  | "localFile___childImageSharp___resize___width"
-  | "localFile___childImageSharp___resize___height"
-  | "localFile___childImageSharp___resize___aspectRatio"
-  | "localFile___childImageSharp___resize___originalName"
-  | "localFile___childImageSharp___id"
-  | "localFile___childImageSharp___parent___id"
-  | "localFile___childImageSharp___parent___children"
-  | "localFile___childImageSharp___children"
-  | "localFile___childImageSharp___children___id"
-  | "localFile___childImageSharp___children___children"
-  | "localFile___childImageSharp___internal___content"
-  | "localFile___childImageSharp___internal___contentDigest"
-  | "localFile___childImageSharp___internal___description"
-  | "localFile___childImageSharp___internal___fieldOwners"
-  | "localFile___childImageSharp___internal___ignoreType"
-  | "localFile___childImageSharp___internal___mediaType"
-  | "localFile___childImageSharp___internal___owner"
-  | "localFile___childImageSharp___internal___type"
-  | "localFile___id"
-  | "localFile___parent___id"
-  | "localFile___parent___parent___id"
-  | "localFile___parent___parent___children"
-  | "localFile___parent___children"
-  | "localFile___parent___children___id"
-  | "localFile___parent___children___children"
-  | "localFile___parent___internal___content"
-  | "localFile___parent___internal___contentDigest"
-  | "localFile___parent___internal___description"
-  | "localFile___parent___internal___fieldOwners"
-  | "localFile___parent___internal___ignoreType"
-  | "localFile___parent___internal___mediaType"
-  | "localFile___parent___internal___owner"
-  | "localFile___parent___internal___type"
-  | "localFile___children"
-  | "localFile___children___id"
-  | "localFile___children___parent___id"
-  | "localFile___children___parent___children"
-  | "localFile___children___children"
-  | "localFile___children___children___id"
-  | "localFile___children___children___children"
-  | "localFile___children___internal___content"
-  | "localFile___children___internal___contentDigest"
-  | "localFile___children___internal___description"
-  | "localFile___children___internal___fieldOwners"
-  | "localFile___children___internal___ignoreType"
-  | "localFile___children___internal___mediaType"
-  | "localFile___children___internal___owner"
-  | "localFile___children___internal___type"
-  | "localFile___internal___content"
-  | "localFile___internal___contentDigest"
-  | "localFile___internal___description"
-  | "localFile___internal___fieldOwners"
-  | "localFile___internal___ignoreType"
-  | "localFile___internal___mediaType"
-  | "localFile___internal___owner"
-  | "localFile___internal___type"
   | "fixed___base64"
   | "fixed___tracedSVG"
   | "fixed___aspectRatio"
@@ -472,7 +330,6 @@ export type ContentfulAssetFilterInput = {
   description?: Maybe<StringQueryOperatorInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
   sys?: Maybe<ContentfulAssetSysFilterInput>;
-  localFile?: Maybe<FileFilterInput>;
   fixed?: Maybe<ContentfulFixedFilterInput>;
   resolutions?: Maybe<ContentfulResolutionsFilterInput>;
   fluid?: Maybe<ContentfulFluidFilterInput>;
@@ -1080,58 +937,6 @@ export type ContentfulPlaceFieldsEnum =
   | "pictures___description"
   | "pictures___node_locale"
   | "pictures___sys___revision"
-  | "pictures___localFile___sourceInstanceName"
-  | "pictures___localFile___absolutePath"
-  | "pictures___localFile___relativePath"
-  | "pictures___localFile___extension"
-  | "pictures___localFile___size"
-  | "pictures___localFile___prettySize"
-  | "pictures___localFile___modifiedTime"
-  | "pictures___localFile___accessTime"
-  | "pictures___localFile___changeTime"
-  | "pictures___localFile___birthTime"
-  | "pictures___localFile___root"
-  | "pictures___localFile___dir"
-  | "pictures___localFile___base"
-  | "pictures___localFile___ext"
-  | "pictures___localFile___name"
-  | "pictures___localFile___relativeDirectory"
-  | "pictures___localFile___dev"
-  | "pictures___localFile___mode"
-  | "pictures___localFile___nlink"
-  | "pictures___localFile___uid"
-  | "pictures___localFile___gid"
-  | "pictures___localFile___rdev"
-  | "pictures___localFile___ino"
-  | "pictures___localFile___atimeMs"
-  | "pictures___localFile___mtimeMs"
-  | "pictures___localFile___ctimeMs"
-  | "pictures___localFile___atime"
-  | "pictures___localFile___mtime"
-  | "pictures___localFile___ctime"
-  | "pictures___localFile___birthtime"
-  | "pictures___localFile___birthtimeMs"
-  | "pictures___localFile___blksize"
-  | "pictures___localFile___blocks"
-  | "pictures___localFile___url"
-  | "pictures___localFile___publicURL"
-  | "pictures___localFile___localURL"
-  | "pictures___localFile___childImageSharp___id"
-  | "pictures___localFile___childImageSharp___children"
-  | "pictures___localFile___id"
-  | "pictures___localFile___parent___id"
-  | "pictures___localFile___parent___children"
-  | "pictures___localFile___children"
-  | "pictures___localFile___children___id"
-  | "pictures___localFile___children___children"
-  | "pictures___localFile___internal___content"
-  | "pictures___localFile___internal___contentDigest"
-  | "pictures___localFile___internal___description"
-  | "pictures___localFile___internal___fieldOwners"
-  | "pictures___localFile___internal___ignoreType"
-  | "pictures___localFile___internal___mediaType"
-  | "pictures___localFile___internal___owner"
-  | "pictures___localFile___internal___type"
   | "pictures___fixed___base64"
   | "pictures___fixed___tracedSVG"
   | "pictures___fixed___aspectRatio"
@@ -1223,58 +1028,6 @@ export type ContentfulPlaceFieldsEnum =
   | "menu___description"
   | "menu___node_locale"
   | "menu___sys___revision"
-  | "menu___localFile___sourceInstanceName"
-  | "menu___localFile___absolutePath"
-  | "menu___localFile___relativePath"
-  | "menu___localFile___extension"
-  | "menu___localFile___size"
-  | "menu___localFile___prettySize"
-  | "menu___localFile___modifiedTime"
-  | "menu___localFile___accessTime"
-  | "menu___localFile___changeTime"
-  | "menu___localFile___birthTime"
-  | "menu___localFile___root"
-  | "menu___localFile___dir"
-  | "menu___localFile___base"
-  | "menu___localFile___ext"
-  | "menu___localFile___name"
-  | "menu___localFile___relativeDirectory"
-  | "menu___localFile___dev"
-  | "menu___localFile___mode"
-  | "menu___localFile___nlink"
-  | "menu___localFile___uid"
-  | "menu___localFile___gid"
-  | "menu___localFile___rdev"
-  | "menu___localFile___ino"
-  | "menu___localFile___atimeMs"
-  | "menu___localFile___mtimeMs"
-  | "menu___localFile___ctimeMs"
-  | "menu___localFile___atime"
-  | "menu___localFile___mtime"
-  | "menu___localFile___ctime"
-  | "menu___localFile___birthtime"
-  | "menu___localFile___birthtimeMs"
-  | "menu___localFile___blksize"
-  | "menu___localFile___blocks"
-  | "menu___localFile___url"
-  | "menu___localFile___publicURL"
-  | "menu___localFile___localURL"
-  | "menu___localFile___childImageSharp___id"
-  | "menu___localFile___childImageSharp___children"
-  | "menu___localFile___id"
-  | "menu___localFile___parent___id"
-  | "menu___localFile___parent___children"
-  | "menu___localFile___children"
-  | "menu___localFile___children___id"
-  | "menu___localFile___children___children"
-  | "menu___localFile___internal___content"
-  | "menu___localFile___internal___contentDigest"
-  | "menu___localFile___internal___description"
-  | "menu___localFile___internal___fieldOwners"
-  | "menu___localFile___internal___ignoreType"
-  | "menu___localFile___internal___mediaType"
-  | "menu___localFile___internal___owner"
-  | "menu___localFile___internal___type"
   | "menu___fixed___base64"
   | "menu___fixed___tracedSVG"
   | "menu___fixed___aspectRatio"
@@ -2168,44 +1921,6 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___pictures___description"
   | "place___pictures___node_locale"
   | "place___pictures___sys___revision"
-  | "place___pictures___localFile___sourceInstanceName"
-  | "place___pictures___localFile___absolutePath"
-  | "place___pictures___localFile___relativePath"
-  | "place___pictures___localFile___extension"
-  | "place___pictures___localFile___size"
-  | "place___pictures___localFile___prettySize"
-  | "place___pictures___localFile___modifiedTime"
-  | "place___pictures___localFile___accessTime"
-  | "place___pictures___localFile___changeTime"
-  | "place___pictures___localFile___birthTime"
-  | "place___pictures___localFile___root"
-  | "place___pictures___localFile___dir"
-  | "place___pictures___localFile___base"
-  | "place___pictures___localFile___ext"
-  | "place___pictures___localFile___name"
-  | "place___pictures___localFile___relativeDirectory"
-  | "place___pictures___localFile___dev"
-  | "place___pictures___localFile___mode"
-  | "place___pictures___localFile___nlink"
-  | "place___pictures___localFile___uid"
-  | "place___pictures___localFile___gid"
-  | "place___pictures___localFile___rdev"
-  | "place___pictures___localFile___ino"
-  | "place___pictures___localFile___atimeMs"
-  | "place___pictures___localFile___mtimeMs"
-  | "place___pictures___localFile___ctimeMs"
-  | "place___pictures___localFile___atime"
-  | "place___pictures___localFile___mtime"
-  | "place___pictures___localFile___ctime"
-  | "place___pictures___localFile___birthtime"
-  | "place___pictures___localFile___birthtimeMs"
-  | "place___pictures___localFile___blksize"
-  | "place___pictures___localFile___blocks"
-  | "place___pictures___localFile___url"
-  | "place___pictures___localFile___publicURL"
-  | "place___pictures___localFile___localURL"
-  | "place___pictures___localFile___id"
-  | "place___pictures___localFile___children"
   | "place___pictures___fixed___base64"
   | "place___pictures___fixed___tracedSVG"
   | "place___pictures___fixed___aspectRatio"
@@ -2272,44 +1987,6 @@ export type ContentfulPlaceTagFieldsEnum =
   | "place___menu___description"
   | "place___menu___node_locale"
   | "place___menu___sys___revision"
-  | "place___menu___localFile___sourceInstanceName"
-  | "place___menu___localFile___absolutePath"
-  | "place___menu___localFile___relativePath"
-  | "place___menu___localFile___extension"
-  | "place___menu___localFile___size"
-  | "place___menu___localFile___prettySize"
-  | "place___menu___localFile___modifiedTime"
-  | "place___menu___localFile___accessTime"
-  | "place___menu___localFile___changeTime"
-  | "place___menu___localFile___birthTime"
-  | "place___menu___localFile___root"
-  | "place___menu___localFile___dir"
-  | "place___menu___localFile___base"
-  | "place___menu___localFile___ext"
-  | "place___menu___localFile___name"
-  | "place___menu___localFile___relativeDirectory"
-  | "place___menu___localFile___dev"
-  | "place___menu___localFile___mode"
-  | "place___menu___localFile___nlink"
-  | "place___menu___localFile___uid"
-  | "place___menu___localFile___gid"
-  | "place___menu___localFile___rdev"
-  | "place___menu___localFile___ino"
-  | "place___menu___localFile___atimeMs"
-  | "place___menu___localFile___mtimeMs"
-  | "place___menu___localFile___ctimeMs"
-  | "place___menu___localFile___atime"
-  | "place___menu___localFile___mtime"
-  | "place___menu___localFile___ctime"
-  | "place___menu___localFile___birthtime"
-  | "place___menu___localFile___birthtimeMs"
-  | "place___menu___localFile___blksize"
-  | "place___menu___localFile___blocks"
-  | "place___menu___localFile___url"
-  | "place___menu___localFile___publicURL"
-  | "place___menu___localFile___localURL"
-  | "place___menu___localFile___id"
-  | "place___menu___localFile___children"
   | "place___menu___fixed___base64"
   | "place___menu___fixed___tracedSVG"
   | "place___menu___fixed___aspectRatio"
@@ -2957,7 +2634,6 @@ export type File = Node & {
   birthtimeMs?: Maybe<Scalars["Float"]>;
   blksize?: Maybe<Scalars["Int"]>;
   blocks?: Maybe<Scalars["Int"]>;
-  url?: Maybe<Scalars["String"]>;
   /** Copy file to static directory and return public url to it */
   publicURL?: Maybe<Scalars["String"]>;
   /** Copy file to static directory and return public url to it */
@@ -3077,7 +2753,6 @@ export type FileFieldsEnum =
   | "birthtimeMs"
   | "blksize"
   | "blocks"
-  | "url"
   | "publicURL"
   | "localURL"
   | "childImageSharp___fixed___base64"
@@ -3292,7 +2967,6 @@ export type FileFilterInput = {
   birthtimeMs?: Maybe<FloatQueryOperatorInput>;
   blksize?: Maybe<IntQueryOperatorInput>;
   blocks?: Maybe<IntQueryOperatorInput>;
-  url?: Maybe<StringQueryOperatorInput>;
   publicURL?: Maybe<StringQueryOperatorInput>;
   localURL?: Maybe<StringQueryOperatorInput>;
   childImageSharp?: Maybe<ImageSharpFilterInput>;
@@ -3982,7 +3656,6 @@ export type QueryFileArgs = {
   birthtimeMs?: Maybe<FloatQueryOperatorInput>;
   blksize?: Maybe<IntQueryOperatorInput>;
   blocks?: Maybe<IntQueryOperatorInput>;
-  url?: Maybe<StringQueryOperatorInput>;
   publicURL?: Maybe<StringQueryOperatorInput>;
   localURL?: Maybe<StringQueryOperatorInput>;
   childImageSharp?: Maybe<ImageSharpFilterInput>;
@@ -4073,6 +3746,8 @@ export type QueryAllSitePageArgs = {
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
+  port?: Maybe<IntQueryOperatorInput>;
+  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -4122,7 +3797,6 @@ export type QueryContentfulAssetArgs = {
   description?: Maybe<StringQueryOperatorInput>;
   node_locale?: Maybe<StringQueryOperatorInput>;
   sys?: Maybe<ContentfulAssetSysFilterInput>;
-  localFile?: Maybe<FileFilterInput>;
   fixed?: Maybe<ContentfulFixedFilterInput>;
   resolutions?: Maybe<ContentfulResolutionsFilterInput>;
   fluid?: Maybe<ContentfulFluidFilterInput>;
@@ -4292,6 +3966,8 @@ export type QueryAllSitePluginArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars["Date"]>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
+  port?: Maybe<Scalars["Int"]>;
+  host?: Maybe<Scalars["String"]>;
   polyfill?: Maybe<Scalars["Boolean"]>;
   pathPrefix?: Maybe<Scalars["String"]>;
   id: Scalars["ID"];
@@ -4501,6 +4177,8 @@ export type SiteFieldsEnum =
   | "siteMetadata___coopOrgs___tel"
   | "siteMetadata___copyright"
   | "siteMetadata___pickUpTags"
+  | "port"
+  | "host"
   | "polyfill"
   | "pathPrefix"
   | "id"
@@ -4593,6 +4271,8 @@ export type SiteFieldsEnum =
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
+  port?: Maybe<IntQueryOperatorInput>;
+  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -4826,7 +4506,6 @@ export type SitePageFieldsEnum =
   | "pluginCreator___pluginOptions___documentPaths"
   | "pluginCreator___pluginOptions___spaceId"
   | "pluginCreator___pluginOptions___accessToken"
-  | "pluginCreator___pluginOptions___downloadLocal"
   | "pluginCreator___pluginOptions___short_name"
   | "pluginCreator___pluginOptions___lang"
   | "pluginCreator___pluginOptions___start_url"
@@ -5032,7 +4711,6 @@ export type SitePluginFieldsEnum =
   | "pluginOptions___documentPaths"
   | "pluginOptions___spaceId"
   | "pluginOptions___accessToken"
-  | "pluginOptions___downloadLocal"
   | "pluginOptions___short_name"
   | "pluginOptions___lang"
   | "pluginOptions___start_url"
@@ -5170,7 +4848,6 @@ export type SitePluginPluginOptions = {
   documentPaths?: Maybe<Array<Maybe<Scalars["String"]>>>;
   spaceId?: Maybe<Scalars["String"]>;
   accessToken?: Maybe<Scalars["String"]>;
-  downloadLocal?: Maybe<Scalars["Boolean"]>;
   short_name?: Maybe<Scalars["String"]>;
   lang?: Maybe<Scalars["String"]>;
   start_url?: Maybe<Scalars["String"]>;
@@ -5194,7 +4871,6 @@ export type SitePluginPluginOptionsFilterInput = {
   documentPaths?: Maybe<StringQueryOperatorInput>;
   spaceId?: Maybe<StringQueryOperatorInput>;
   accessToken?: Maybe<StringQueryOperatorInput>;
-  downloadLocal?: Maybe<BooleanQueryOperatorInput>;
   short_name?: Maybe<StringQueryOperatorInput>;
   lang?: Maybe<StringQueryOperatorInput>;
   start_url?: Maybe<StringQueryOperatorInput>;
@@ -5394,13 +5070,7 @@ export type IndexQuery = {
           Array<
             Maybe<
               Pick<ContentfulAsset, "id" | "title"> & {
-                localFile?: Maybe<{
-                  childImageSharp?: Maybe<{
-                    fixed?: Maybe<
-                      GatsbyImageSharpFixed_WithWebp_TracedSvgFragment
-                    >;
-                  }>;
-                }>;
+                fixed?: Maybe<GatsbyContentfulFixed_WithWebpFragment>;
               }
             >
           >
@@ -5448,11 +5118,7 @@ export type PlacesQuery = {
         Array<
           Maybe<
             Pick<ContentfulAsset, "id"> & {
-              localFile?: Maybe<{
-                childImageSharp?: Maybe<{
-                  fluid?: Maybe<GatsbyImageSharpFluidFragment>;
-                }>;
-              }>;
+              fluid?: Maybe<GatsbyContentfulFluid_WithWebpFragment>;
             }
           >
         >
@@ -5461,14 +5127,8 @@ export type PlacesQuery = {
         Array<
           Maybe<
             Pick<ContentfulAsset, "id" | "title"> & {
-              file?: Maybe<Pick<ContentfulAssetFile, "contentType">>;
-              localFile?: Maybe<
-                Pick<File, "localURL"> & {
-                  childImageSharp?: Maybe<{
-                    fixed?: Maybe<GatsbyImageSharpFixedFragment>;
-                  }>;
-                }
-              >;
+              file?: Maybe<Pick<ContentfulAssetFile, "url" | "contentType">>;
+              fixed?: Maybe<GatsbyContentfulFixed_WithWebpFragment>;
             }
           >
         >
@@ -5496,13 +5156,7 @@ export type TagsQuery = {
           Array<
             Maybe<
               Pick<ContentfulAsset, "id" | "title"> & {
-                localFile?: Maybe<{
-                  childImageSharp?: Maybe<{
-                    fixed?: Maybe<
-                      GatsbyImageSharpFixed_WithWebp_TracedSvgFragment
-                    >;
-                  }>;
-                }>;
+                fixed?: Maybe<GatsbyContentfulFixed_WithWebpFragment>;
               }
             >
           >

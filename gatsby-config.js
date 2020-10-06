@@ -11,26 +11,26 @@ module.exports = {
     defaultMapLocation: {
       latitude: 43,
       longitude: 144.3838363,
-      zoom: 12
+      zoom: 12,
     },
     coopOrgs: [
       {
         name: `釧路市ビジネスサポートセンター k-Biz`,
         website: `https://www.kushiro-biz.net`,
         email: `info@k-biz.kushiro.jp`,
-        tel: `0154-68-5624`
+        tel: `0154-68-5624`,
       },
       {
         name: `釧路商工会議所`,
-        tel: `0154-41-4141`
+        tel: `0154-41-4141`,
       },
       {
         name: `一般社団法人北海道中小企業家同友会くしろ支部`,
-        tel: `0154-31-0923`
-      }
+        tel: `0154-31-0923`,
+      },
     ],
     copyright: `お持ち帰りごはん 釧路版 by 釧路OSSコミュニティ`,
-    pickUpTags: [`delivery`]
+    pickUpTags: [`delivery`],
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -38,8 +38,8 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: path.join(__dirname, `src`, `images`)
-      }
+        path: path.join(__dirname, `src`, `images`),
+      },
     },
     `gatsby-transformer-remote-filesystem`,
     `gatsby-transformer-sharp`,
@@ -49,8 +49,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-react-helmet-canonical-urls`,
       options: {
-        siteUrl: process.env.URL || ""
-      }
+        siteUrl: process.env.URL || "",
+      },
     },
     {
       resolve: "gatsby-plugin-graphql-codegen",
@@ -58,17 +58,16 @@ module.exports = {
         fileName: `types/graphql-types.d.ts`,
         documentPaths: [
           "./src/**/*.{ts,tsx}",
-          "./node_modules/gatsby-*/**/*.js"
-        ]
-      }
+          "./node_modules/gatsby-*/**/*.js",
+        ],
+      },
     },
     {
       resolve: `gatsby-source-contentful`,
       options: {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-        downloadLocal: true
-      }
+      },
     },
     {
       resolve: `gatsby-plugin-manifest`,
@@ -80,10 +79,10 @@ module.exports = {
         background_color: `#f5f5f1`,
         theme_color: `#221f1f`,
         display: `standalone`,
-        icon: `static/logo.png`
-      }
+        icon: `static/logo.png`,
+      },
     },
     `gatsby-plugin-react-svg`,
-    `gatsby-plugin-offline`
-  ]
+    `gatsby-plugin-offline`,
+  ],
 };

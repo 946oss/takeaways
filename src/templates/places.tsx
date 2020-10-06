@@ -7,7 +7,7 @@ import ReactMapGL, {
   Marker,
   NavigationControl,
   FullscreenControl,
-  ScaleControl
+  ScaleControl,
 } from "react-map-gl";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
@@ -24,7 +24,7 @@ import {
   PocketShareButton,
   PocketIcon,
   TwitterShareButton,
-  TwitterIcon
+  TwitterIcon,
 } from "react-share";
 
 const ICON = `M20.2,15.7L20.2,15.7c1.1-1.6,1.8-3.6,1.8-5.7c0-5.6-4.5-10-10-10S2,4.5,2,10c0,2,0.6,3.9,1.6,5.4c0,0.1,0.1,0.2,0.2,0.3
@@ -36,7 +36,7 @@ const Places: React.FC<{ data: PlacesQuery }> = ({ data }) => {
   const [viewport, setViewport] = useState({
     latitude: place.location.lat,
     longitude: place.location.lon,
-    zoom: 14
+    zoom: 14,
   });
 
   const url = `${data.site.siteMetadata.siteUrl}/places/${place.id}`;
@@ -56,12 +56,12 @@ const Places: React.FC<{ data: PlacesQuery }> = ({ data }) => {
         meta={[
           {
             property: "og:latitude",
-            content: place.location.lat
+            content: place.location.lat,
           },
           {
             property: "og:longitude",
-            content: place.location.lon
-          }
+            content: place.location.lon,
+          },
         ]}
       />
       <section>
@@ -94,7 +94,7 @@ const Places: React.FC<{ data: PlacesQuery }> = ({ data }) => {
               }
             `}
           >
-            {place.tags.map(t => (
+            {place.tags.map((t) => (
               <Link to={`/tags/${t.slug}`} key={t.slug}>
                 {t.name}
               </Link>
@@ -115,9 +115,9 @@ const Places: React.FC<{ data: PlacesQuery }> = ({ data }) => {
               showThumbs={false}
               showStatus={false}
             >
-              {place.pictures.map(pic => (
+              {place.pictures.map((pic) => (
                 <div key={pic.id}>
-                  <Img fluid={pic.localFile.childImageSharp.fluid} />
+                  <Img fluid={pic.fluid} />
                 </div>
               ))}
             </Carousel>
@@ -178,14 +178,14 @@ const Places: React.FC<{ data: PlacesQuery }> = ({ data }) => {
 
         <div>
           {place.menu && place.menu.length > 0 ? (
-            place.menu.map(m => (
-              <a href={m.localFile.localURL} key={m.id}>
-                {m.localFile.childImageSharp ? (
+            place.menu.map((m) => (
+              <a href={m.file.url} key={m.id}>
+                {m.fixed ? (
                   <Img
                     css={css`
                       max-width: 100%;
                     `}
-                    fixed={m.localFile.childImageSharp.fixed}
+                    fixed={m.fixed}
                   />
                 ) : (
                   "開く"
@@ -250,7 +250,7 @@ const Places: React.FC<{ data: PlacesQuery }> = ({ data }) => {
               <th>TEL</th>
               <td>
                 {place.tel &&
-                  place.tel.map(n => (
+                  place.tel.map((n) => (
                     <a href={`tel:${n}`} className="tel" key={n}>
                       {n}
                     </a>
@@ -308,12 +308,12 @@ const Places: React.FC<{ data: PlacesQuery }> = ({ data }) => {
           height="240px"
           onViewportChange={setViewport}
           mapboxApiAccessToken="pk.eyJ1IjoiOTQ2b3NzIiwiYSI6ImNrN2t2dTA4eTAwbjYzbHA4YjdpOGxhbm4ifQ.4BZeulOXSjBeAClmJaM9Ig"
-          onLoad={event => {
-            event.target.getStyle().layers.forEach(thisLayer => {
+          onLoad={(event) => {
+            event.target.getStyle().layers.forEach((thisLayer) => {
               if (thisLayer.type === "symbol") {
                 event.target.setLayoutProperty(thisLayer.id, "text-field", [
                   "get",
-                  "name_ja"
+                  "name_ja",
                 ]);
               }
             });
@@ -327,7 +327,7 @@ const Places: React.FC<{ data: PlacesQuery }> = ({ data }) => {
                 cursor: "pointer",
                 fill: "#e50914",
                 stroke: "none",
-                transform: `translate(${-20 / 2}px,${-20}px)`
+                transform: `translate(${-20 / 2}px,${-20}px)`,
               }}
             >
               <path d={ICON} />
@@ -413,27 +413,19 @@ export const query = graphql`
       }
       pictures {
         id
-        localFile {
-          childImageSharp {
-            fluid(maxWidth: 640) {
-              ...GatsbyImageSharpFluid
-            }
-          }
+        fluid(maxWidth: 640) {
+          ...GatsbyContentfulFluid_withWebp
         }
       }
       menu {
         id
         title
         file {
+          url
           contentType
         }
-        localFile {
-          localURL
-          childImageSharp {
-            fixed(width: 320, height: 320, cropFocus: CENTER) {
-              ...GatsbyImageSharpFixed
-            }
-          }
+        fixed(width: 320, height: 320, cropFocus: CENTER) {
+          ...GatsbyContentfulFixed_withWebp
         }
       }
       message {

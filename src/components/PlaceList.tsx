@@ -95,9 +95,8 @@ const PlaceList: React.FC<{
                   }
                 `}
                 fixed={
-                  place.pictures &&
-                  place.pictures[0]?.localFile?.childImageSharp
-                    ? place.pictures[0].localFile.childImageSharp.fixed
+                  place.pictures
+                    ? place.pictures[0].fixed
                     : file.childImageSharp.fixed
                 }
                 style={{

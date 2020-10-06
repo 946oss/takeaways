@@ -30,11 +30,11 @@ const borderdTitle = css`
 
 const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
   data,
-  pageContext
+  pageContext,
 }) => {
   const tags = data.allContentfulPlaceTag.edges
-    .map(e => e.node)
-    .filter(node => {
+    .map((e) => e.node)
+    .filter((node) => {
       return node.place && node.place.length > 0;
     })
     .sort((a, b) => {
@@ -106,7 +106,7 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
             </span>{" "}
             ジャンルから
           </header>
-          {tags.slice(0, expandTags ? tags.length : 12).map(t => (
+          {tags.slice(0, expandTags ? tags.length : 12).map((t) => (
             <Link to={`/tags/${t.slug}`} key={t.slug}>
               {t.name}
             </Link>
@@ -117,7 +117,7 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
               color: #f5f5f1;
               cursor: pointer;
             `}
-            onClick={_ => setExpandTags(!expandTags)}
+            onClick={(_) => setExpandTags(!expandTags)}
           >
             {expandTags ? `省略する` : `すべて見る`}
           </a>
@@ -158,12 +158,8 @@ export const pageQuery = graphql`
           pictures {
             id
             title
-            localFile {
-              childImageSharp {
-                fixed(width: 440, height: 308, cropFocus: CENTER) {
-                  ...GatsbyImageSharpFixed_withWebp_tracedSVG
-                }
-              }
+            fixed(width: 440, height: 308, cropFocus: CENTER) {
+              ...GatsbyContentfulFixed_withWebp
             }
           }
           tags {
