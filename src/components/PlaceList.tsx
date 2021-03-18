@@ -161,9 +161,11 @@ const PlaceList: React.FC<{
               border-radius: 3em;
               background: #e50914;
               color: #f5f5f1;
+              margin: 0 auto;
               padding: 0.5em 2em;
               text-decoration: none;
               font-size: 1.2rem;
+              max-width: 640px;
             }
           `}
         >

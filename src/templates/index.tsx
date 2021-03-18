@@ -48,9 +48,10 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
       <SEO />
       <article
         css={css`
-          margin: 1rem 0;
+          margin: 1rem auto;
           padding: 1rem 0;
           line-height: 1.5;
+          max-width: 640px;
 
           p {
             margin: 0.3em 0 0.5em;
@@ -68,6 +69,7 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
         </p>
         <div
           css={css`
+            margin-top: 1.5rem;
             text-align: center;
           `}
         >
@@ -78,13 +80,82 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
         </div>
       </article>
 
+      <article
+        css={css`
+          margin: 1rem auto;
+          padding: 1rem 0;
+          line-height: 1.5;
+          max-width: 640px;
+        `}
+      >
+        <h1 css={borderdTitle}>地元飲食店支援企画</h1>
+        <h2
+          css={css`
+            font-size: 1rem;
+            color: #999;
+            text-align: center;
+            margin: 1rem 0;
+
+            &::before {
+              content: "〜";
+            }
+            &::after {
+              content: "〜";
+            }
+          `}
+        >
+          お弁当やオードブルで感謝を伝えよう
+        </h2>
+        <p>
+          歓送迎会の実施が難しい状況でも、感謝を伝えることを大切に。
+          <br />
+          今年はお弁当やオードブルで過ごした時間の共有を
+        </p>
+        <p
+          css={css`
+            text-align: center;
+          `}
+        >
+          <Link
+            to={`/tags/Thank you lunch`}
+            css={css`
+              background: #e50914;
+              border-radius: 3rem;
+              color: #f5f5f1;
+              display: inline-block;
+              font-weight: bold;
+              margin: 1rem auto;
+              padding: 0.5rem 1rem;
+              text-decoration: none;
+            `}
+          >
+            「ありがとう弁当」参加店はこちら
+          </Link>
+        </p>
+        <dl
+          css={css`
+            font-size: 0.8rem;
+
+            dt {
+              font-weight: bold;
+            }
+          `}
+        >
+          <dt>釧路市役所からこの企画の協力を依頼した方々</dt>
+          <dd>
+            釧路商工会議所、北海道中小企業家同友会くしろ支部、阿寒・音別商工会
+          </dd>
+        </dl>
+      </article>
+
       {tags.length > 0 && (
         <nav
           css={css`
             font-size: 0.7rem;
             font-weight: bold;
             padding: 1rem 0;
-            margin: 1rem 0;
+            margin: 1rem auto;
+            max-width: 640px;
 
             a {
               border-radius: 3em;
