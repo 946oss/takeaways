@@ -68,11 +68,21 @@ const Places: React.FC<{ data: PlacesQuery }> = ({ data }) => {
         <h1
           css={css`
             text-align: center;
-            margin: 1em 0;
+            margin: 1em 0 0;
           `}
         >
           {place.name}
         </h1>
+        <time
+          css={css`
+            display: block;
+            text-align: center;
+            margin: 0 0 1em;
+            color: #999;
+          `}
+        >
+          情報更新日 {place.updatedAt}
+        </time>
         {place.tags && place.tags.length > 0 && (
           <div
             css={css`
@@ -435,6 +445,7 @@ export const query = graphql`
         slug
         name
       }
+      updatedAt(formatString: "YYYY年MM月DD日")
     }
   }
 `;

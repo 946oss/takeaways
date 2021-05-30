@@ -35,16 +35,16 @@ exports.createPages = async ({ graphql, actions }) => {
     itemsPerPage: 12,
     pathPrefix: ({ pageNumber, _ }) =>
       pageNumber === 0 ? "/" : "/places/page",
-    component: indexTemplate
+    component: indexTemplate,
   });
 
-  allPlaces.data.allContentfulPlace.edges.forEach(edge => {
+  allPlaces.data.allContentfulPlace.edges.forEach((edge) => {
     createPage({
       path: `places/${edge.node.id}`,
       component: placeTemplate,
       context: {
-        id: edge.node.id
-      }
+        id: edge.node.id,
+      },
     });
   });
 
@@ -63,13 +63,25 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     `)
-  ).data.allContentfulPlaceTag.edges.forEach(edge => {
+  ).data.allContentfulPlaceTag.edges.forEach((edge) => {
     createPage({
       path: `tags/${edge.node.slug}`,
       component: tagsTemplate,
       context: {
-        slug: edge.node.slug
-      }
+        slug: edge.node.slug,
+      },
     });
+  });
+};
+
+exports.onCreateWebpackConfig = ({ stage, actions, plugins }) => {
+  actions.setWebpackConfig({
+    plugins: [
+      plugins.define({
+        global: {
+          BUILT_AT: JSON.stringify(new Date()),
+        },
+      }),
+    ],
   });
 };

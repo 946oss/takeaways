@@ -36,6 +36,7 @@ const PlaceList: React.FC<{
       >
         {places.map((place) => (
           <div
+            key={place.id}
             css={css(
               css`
                 display: block;

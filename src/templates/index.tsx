@@ -3,6 +3,7 @@ import { IndexQuery, SitePageContext } from "../../types/graphql-types";
 import { Link, graphql } from "gatsby";
 import { css } from "@emotion/core";
 import { TwitterHashtagButton } from "react-twitter-embed";
+import { parseJSON, format } from "date-fns";
 import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import PlaceList from "../components/PlaceList";
@@ -66,6 +67,10 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
             #釧路お持ち帰りごはん
           </a>{" "}
           をつけて Tweet してみてください！
+        </p>
+        <p>
+          随時更新中！最終更新日:{" "}
+          {format(parseJSON(global.BUILT_AT), "yyyy年MM月dd日")}
         </p>
         <div
           css={css`
