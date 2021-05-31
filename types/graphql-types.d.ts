@@ -2636,8 +2636,6 @@ export type File = Node & {
   blocks?: Maybe<Scalars["Int"]>;
   /** Copy file to static directory and return public url to it */
   publicURL?: Maybe<Scalars["String"]>;
-  /** Copy file to static directory and return public url to it */
-  localURL?: Maybe<Scalars["String"]>;
   childImageSharp?: Maybe<ImageSharp>;
   id: Scalars["ID"];
   parent?: Maybe<Node>;
@@ -2754,7 +2752,6 @@ export type FileFieldsEnum =
   | "blksize"
   | "blocks"
   | "publicURL"
-  | "localURL"
   | "childImageSharp___fixed___base64"
   | "childImageSharp___fixed___tracedSVG"
   | "childImageSharp___fixed___aspectRatio"
@@ -2968,7 +2965,6 @@ export type FileFilterInput = {
   blksize?: Maybe<IntQueryOperatorInput>;
   blocks?: Maybe<IntQueryOperatorInput>;
   publicURL?: Maybe<StringQueryOperatorInput>;
-  localURL?: Maybe<StringQueryOperatorInput>;
   childImageSharp?: Maybe<ImageSharpFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
@@ -3657,7 +3653,6 @@ export type QueryFileArgs = {
   blksize?: Maybe<IntQueryOperatorInput>;
   blocks?: Maybe<IntQueryOperatorInput>;
   publicURL?: Maybe<StringQueryOperatorInput>;
-  localURL?: Maybe<StringQueryOperatorInput>;
   childImageSharp?: Maybe<ImageSharpFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
   parent?: Maybe<NodeFilterInput>;
@@ -3746,8 +3741,6 @@ export type QueryAllSitePageArgs = {
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
-  port?: Maybe<IntQueryOperatorInput>;
-  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -3966,8 +3959,6 @@ export type QueryAllSitePluginArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars["Date"]>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
-  port?: Maybe<Scalars["Int"]>;
-  host?: Maybe<Scalars["String"]>;
   polyfill?: Maybe<Scalars["Boolean"]>;
   pathPrefix?: Maybe<Scalars["String"]>;
   id: Scalars["ID"];
@@ -4177,8 +4168,6 @@ export type SiteFieldsEnum =
   | "siteMetadata___coopOrgs___tel"
   | "siteMetadata___copyright"
   | "siteMetadata___pickUpTags"
-  | "port"
-  | "host"
   | "polyfill"
   | "pathPrefix"
   | "id"
@@ -4271,8 +4260,6 @@ export type SiteFieldsEnum =
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
-  port?: Maybe<IntQueryOperatorInput>;
-  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -4518,6 +4505,11 @@ export type SitePageFieldsEnum =
   | "pluginCreator___pluginOptions___legacy"
   | "pluginCreator___pluginOptions___theme_color_in_head"
   | "pluginCreator___pluginOptions___cacheDigest"
+  | "pluginCreator___pluginOptions___query"
+  | "pluginCreator___pluginOptions___feeds"
+  | "pluginCreator___pluginOptions___feeds___query"
+  | "pluginCreator___pluginOptions___feeds___output"
+  | "pluginCreator___pluginOptions___feeds___title"
   | "pluginCreator___pluginOptions___pathCheck"
   | "pluginCreator___nodeAPIs"
   | "pluginCreator___browserAPIs"
@@ -4723,6 +4715,11 @@ export type SitePluginFieldsEnum =
   | "pluginOptions___legacy"
   | "pluginOptions___theme_color_in_head"
   | "pluginOptions___cacheDigest"
+  | "pluginOptions___query"
+  | "pluginOptions___feeds"
+  | "pluginOptions___feeds___query"
+  | "pluginOptions___feeds___output"
+  | "pluginOptions___feeds___title"
   | "pluginOptions___pathCheck"
   | "nodeAPIs"
   | "browserAPIs"
@@ -4860,7 +4857,25 @@ export type SitePluginPluginOptions = {
   legacy?: Maybe<Scalars["Boolean"]>;
   theme_color_in_head?: Maybe<Scalars["Boolean"]>;
   cacheDigest?: Maybe<Scalars["String"]>;
+  query?: Maybe<Scalars["String"]>;
+  feeds?: Maybe<Array<Maybe<SitePluginPluginOptionsFeeds>>>;
   pathCheck?: Maybe<Scalars["Boolean"]>;
+};
+
+export type SitePluginPluginOptionsFeeds = {
+  query?: Maybe<Scalars["String"]>;
+  output?: Maybe<Scalars["String"]>;
+  title?: Maybe<Scalars["String"]>;
+};
+
+export type SitePluginPluginOptionsFeedsFilterInput = {
+  query?: Maybe<StringQueryOperatorInput>;
+  output?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+};
+
+export type SitePluginPluginOptionsFeedsFilterListInput = {
+  elemMatch?: Maybe<SitePluginPluginOptionsFeedsFilterInput>;
 };
 
 export type SitePluginPluginOptionsFilterInput = {
@@ -4883,6 +4898,8 @@ export type SitePluginPluginOptionsFilterInput = {
   legacy?: Maybe<BooleanQueryOperatorInput>;
   theme_color_in_head?: Maybe<BooleanQueryOperatorInput>;
   cacheDigest?: Maybe<StringQueryOperatorInput>;
+  query?: Maybe<StringQueryOperatorInput>;
+  feeds?: Maybe<SitePluginPluginOptionsFeedsFilterListInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
 };
 

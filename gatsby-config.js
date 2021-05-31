@@ -41,7 +41,6 @@ module.exports = {
         path: path.join(__dirname, `src`, `images`),
       },
     },
-    `gatsby-transformer-remote-filesystem`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-emotion`,
@@ -84,5 +83,80 @@ module.exports = {
     },
     `gatsby-plugin-react-svg`,
     `gatsby-plugin-remove-serviceworker`,
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allContentfulPlace } }) => {
+              return allContentfulPlace.edges.map((edge) => {
+                return {
+                  title: `[更新情報] ${edge.node.name} ${
+                    edge.node.tags
+                      ? edge.node.tags.map((t) => `#${t.name}`).join(" ")
+                      : null
+                  }`,
+                  description: edge.node.description.description,
+                  date: edge.node.updatedAt,
+                  url: `${site.siteMetadata.siteUrl}/places/${edge.node.id}`,
+                  guid: `${site.siteMetadata.siteUrl}/places/${edge.node.id}`,
+                  // custom_elements: [{ "content:encoded": edge.node.html }],
+                };
+              });
+            },
+            query: `
+              {
+                allContentfulPlace(
+                  filter: { node_locale: { eq: "ja-JP" } }
+                  sort: { fields: updatedAt, order: DESC }
+                ) {
+                  edges {
+                    node {
+                      id
+                      address
+                      closed_on
+                      business_hours
+                      name
+                      description {
+                        description
+                      }
+                      message {
+                        json
+                      }
+                      tags {
+                        slug
+                        name
+                      }
+                      updatedAt
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "お持ち帰りごはん 釧路版 更新情報",
+            // optional configuration to insert feed reference in pages:
+            // if `string` is used, it will be used to create RegExp and then test if pathname of
+            // current page satisfied this regular expression;
+            // if not provided or `undefined`, all pages will have feed reference inserted
+            // match: "^/blog/",
+            // optional configuration to specify external rss feed, such as feedburner
+            // link: "https://feeds.feedburner.com/gatsby/blog",
+          },
+        ],
+      },
+    },
   ],
 };
