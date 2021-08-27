@@ -14,6 +14,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import { Global, css } from "@emotion/core";
 import Layout from "../components/Layout";
+import Environment from "../components/Environment";
 import {
   EmailShareButton,
   EmailIcon,
@@ -375,6 +376,7 @@ const Places: React.FC<{ data: PlacesQuery }> = ({ data }) => {
             <ScaleControl />
           </div>
         </ReactMapGL>
+
         <p
           css={css`
             font-size: 0.9rem;
@@ -390,6 +392,16 @@ const Places: React.FC<{ data: PlacesQuery }> = ({ data }) => {
             掲載情報の訂正リクエスト
           </a>
         </p>
+
+        <div
+          css={css`
+            max-width: 640px;
+            margin: 1rem auto;
+            padding: 1rem 0;
+          `}
+        >
+          <Environment />
+        </div>
       </section>
     </Layout>
   );

@@ -7,6 +7,7 @@ import { parseJSON, format } from "date-fns";
 import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import PlaceList from "../components/PlaceList";
+import Environment from "../components/Environment";
 
 const borderdTitle = css`
   font-size: 0.8rem;
@@ -152,6 +153,16 @@ const Index: React.FC<{ data: IndexQuery; pageContext: SitePageContext }> = ({
           </dd>
         </dl>
       </article>
+
+      <div
+        css={css`
+          max-width: 640px;
+          margin: 1rem auto;
+          padding: 1rem 0;
+        `}
+      >
+        <Environment />
+      </div>
 
       {tags.length > 0 && (
         <nav
